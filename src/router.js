@@ -108,7 +108,7 @@ Vue.use(Router);
 const router = new Router({routes});
 
 const isAuthenticated = function(){
-  return window.localStorage.token
+  return window.localStorage.id
 }
 
 const isRol = function(){
@@ -123,17 +123,17 @@ router.beforeEach((to, from, next) => {
     return next({ name: 'index' })
   }
 
-  if(to.name === 'Estudiante'  && window.localStorage.role !== 'ROLE_ESTUDIANTE'){
+  if(to.name === 'Admin'  && window.localStorage.role !== 'Administrador'){
     console.log(window.localStorage.role);
     return next({ name: 'index' })
   }
 
-  if(to.name === 'Profesor'  && window.localStorage.role !== 'ROLE_PROFESOR'){
+  if(to.name === 'Profesor'  && window.localStorage.role !== 'Profesor'){
     console.log(window.localStorage.role);
     return next({ name: 'index' })
   }
 
-  if(to.name === 'Estudiante'  && window.localStorage.role !== 'ROLE_ESTUDIANTE'){
+  if(to.name === 'Estudiante'  && window.localStorage.role !== 'Estudiante'){
     console.log(window.localStorage.role);
     return next({ name: 'index' })
   }

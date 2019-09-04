@@ -96,15 +96,11 @@ export default {
       tabPane1: [
         { image: require("@/assets/img/examples/studio-1.jpg") }
       ],
-      leafShow: false,
-      user:JSON.parse(window.localStorage.user),
-      apiStatus:{},
-      tokenStatus:''
+      leafShow: false
     };
   },
   created(){
-    this.getStatus()
-    this.checkToken()
+    
   },
   methods: {
     leafActive() {
@@ -113,21 +109,6 @@ export default {
       } else {
         this.leafShow = true;
       }
-    },
-    getStatus(){
-      api.getStatus()
-      .then(apiStatus => (this.apiStatus = apiStatus))
-    },
-
-    checkToken(){
-      api.checkToken()
-      .then(tokenStatus =>(this.tokenStatus = tokenStatus))
-      .catch(err =>(
-        this.tokenStatus = {
-          status: err.status,
-          statusText:err.statusText
-        }
-      ))
     }
   },
   computed: {

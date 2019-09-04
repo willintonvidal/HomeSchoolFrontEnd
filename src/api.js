@@ -22,9 +22,12 @@ api.verificarid = function(id){
     .catch(err => console.log('[ERROR]'+id,err))
 }
 
-/*
-api.registroInicio = function(name,username,email,role,password){
-    return trae.post('/api/auth/signup',{name,username,email,role,password})
+
+          api.registroInicio = function(usu_id,usu_tipo_documento,usu_nombres,usu_apellidos,usu_tipo_usuario,usu_contrasenia,usu_email,usu_telefono){
+    var usu_foto = "Sin foto";
+    var usu_estado = "Sin validar";
+    var cen_edu_nit = "1065";
+    return trae.post('/api/usuario/insertar',{usu_id,cen_edu_nit,usu_tipo_documento,usu_nombres,usu_apellidos,usu_tipo_usuario,usu_contrasenia,usu_estado,usu_email,usu_telefono,usu_foto})
     .then(res => res.data)
     .catch(err => console.log('[ERROR]',err))
 }
@@ -37,6 +40,7 @@ api.verificarcorreo = function(correo){
     .catch(err => console.log('[ERROR]'+correo,err))
 }
 
+/*
 
 api.getStatus = function(){
     return trae.get('/')

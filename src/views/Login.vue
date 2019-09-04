@@ -91,7 +91,28 @@ export default {
         .authenticate(this.id_usuario, this.password)
         .then(res => {
           console.log(res);
+
+          if(res == undefined)
+          toastr.error("Datos Incorrectos")
+          else{
+          window.localStorage.id = res[0][0];
+          window.localStorage.nombres = res[0][1];
+          window.localStorage.apellidos = res[0][2];
+          window.localStorage.role = res[0][3];
+          window.localStorage.estado = res[0][4];
+          window.localStorage.correo = res[0][5];
+          window.localStorage.celular = res[0][6];
+         
+          if(res[0][3] =='Profesor')
+          this.$router.push("/profesor");
+
+          if(res[0][3] =='Estudiante')
+          this.$router.push("/estudiante");
+          if(res[0][3] =='Administrador')
           this.$router.push("/admin");
+          }
+          
+
         })
         .catch(err => toastr.error("Datos Incorrectos"));
 

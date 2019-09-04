@@ -32,13 +32,33 @@
               <p slot="description" class="description">Dijita tus datos para el registro</p>
               <md-field class="md-form-group" slot="inputs">
                 <md-icon>face</md-icon>
-                <label>Nombre...</label>
-                <md-input v-model="nombre"></md-input>
+                <label>Nombres...</label>
+                <md-input v-model="nombres"></md-input>
+              </md-field>
+              <md-field class="md-form-group" slot="inputs">
+                <md-icon>face</md-icon>
+                <label>Apellidos...</label>
+                <md-input v-model="apellidos"></md-input>
+              </md-field>
+
+              <md-field class="md-form-group" slot="inputs">
+                
+                  <md-select v-model="tipo_docu" name="tipo_docu" id="tipo_docu" placeholder="            Tipo de documento">
+            <md-option value="Targetaidentidad">Targeta identidad</md-option>
+            <md-option value="Cedula">Cedula</md-option>
+        
+          </md-select>  
+
               </md-field>
               <md-field class="md-form-group" slot="inputs">
               <md-icon>perm_identity</md-icon>
                 <label>Número de identificación...</label>
                 <md-input v-model="numeroId" @change="verificarid" @input="verificarid"></md-input>
+              </md-field>
+              <md-field class="md-form-group" slot="inputs">
+                <md-icon>face</md-icon>
+                <label>Telefono Celular...</label>
+                <md-input v-model="celular"></md-input>
               </md-field>
               <md-field class="md-form-group" slot="inputs">
                 <md-icon>email</md-icon>
@@ -50,11 +70,24 @@
                 <label>Password...</label>
                 <md-input v-model="password" type="password"></md-input>
               </md-field>
+              
               <md-field class="md-form-group" slot="inputs">
                 <md-icon>lock_outline</md-icon>
                 <label>Repita el Password...</label>
                 <md-input type="password"></md-input>
               </md-field>
+
+
+              <md-field class="md-form-group" slot="inputs">
+                
+                  <md-select v-model="tipo_usuario" name="tipo_usuario" id="tipo_usuario" placeholder="            Registrarse como:">
+            <md-option value="Estudiante">Estudiante</md-option>
+            <md-option value="Profesor">Profesor</md-option>
+        
+          </md-select>  
+
+              </md-field>
+
               <md-button slot="footer" @click="registro" class="md-simple md-success md-lg">
                 Registrarse
               </md-button>
@@ -97,11 +130,14 @@ export default {
   bodyClass: "login-page",
   data() {
     return {
-      nombre: null,
+      nombres: null,
+      apellidos: null,
+      tipo_docu:null,
       numeroId: null,
+      celular:null,
+      tipo_usuario:null,
       email: null,
       password: null,
-      role:['user'],
       errores:{}
     };
   },
@@ -119,10 +155,28 @@ export default {
     }
   },
   methods:{
+
+
     registro(){
           console.log("Entra a registrar");
-          api.registroInicio(this.nombre,this.numeroId,this.email,this.role,this.password)
-          .then(res =>{console.log("---"+res.message)})
+          console.log("Nombres"+this.nombres);
+          console.log("Apellifos"+this.apellidos);
+          console.log(this.tipo_docu);
+          console.log(this.numeroId);
+          console.log(this.celular);
+          console.log(this.tipo_usuario);
+          console.log(this.email);
+          console.log(this.password);
+          
+          api.registroInicio(this.numeroId,this.tipo_docu,this.nombres,this.apellidos,this.tipo_usuario,this.password,this.email,this.celular)
+          .then(res =>{
+            console.log("---"+res)
+            if(res == 'Se insertaron correctamente los datos de la tabla usuario'){
+              toastr.success("Registro Exitoso!!");
+              this.$router.push("/login");
+            }
+
+          })
           .catch(err =>{console.log("---"+err)})
     },
     verificarid(){

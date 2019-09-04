@@ -171,7 +171,7 @@ export default {
     };
   },
   created(){
-        this.loginStaus=isAuthenticated();
+        
   },
   computed: {
     showDownload() {
@@ -225,26 +225,25 @@ export default {
       }
     },
     logout (){
-          localStorage.removeItem('token');
-          localStorage.removeItem('user');
+          localStorage.removeItem('apellidos');
+          localStorage.removeItem('correo');
           localStorage.removeItem('role');
+          localStorage.removeItem('celular');
+          localStorage.removeItem('nombres');
+          localStorage.removeItem('id');
+          localStorage.removeItem('estado');
+
           this.loginStaus = "false";
           this.$router.push('/')
     },probar(){
      
       return this.loginStaus = this.isAuthenticate;
  
-    },
-    isAuthenticated(){
-      if(window.localStorage.token){
-          return  "trueasdadsad";
-      }
-      return "false";
     }
   },
   mounted() {
     document.addEventListener("scroll", this.scrollListener);
-    this.loginStaus = isAuthenticated();
+    
   },
   beforeDestroy() {
     document.removeEventListener("scroll", this.scrollListener);
