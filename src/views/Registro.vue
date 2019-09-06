@@ -83,7 +83,7 @@
                   <md-select v-model="tipo_usuario" name="tipo_usuario" id="tipo_usuario" placeholder="            Registrarse como:">
             <md-option value="Estudiante">Estudiante</md-option>
             <md-option value="Profesor">Profesor</md-option>
-        
+            <md-option value="Administrador">Administrador</md-option>
           </md-select>  
 
               </md-field>
@@ -184,7 +184,7 @@ export default {
       .then(res =>{
 
         if(res){
-          toastr.error('Este usuario ya esta ocupado')
+          toastr.error('Este usuario ya esta registrado!')
         }else{
          // toastr.success('Este usuario esta disponible',{progressBar:true})
          console.log("Este usuario esta disponible");
@@ -199,7 +199,7 @@ export default {
       .then(res =>{
 
         if(res){
-          toastr.error('Este email ya esta ocupado')
+          toastr.error('Este email ya esta registrado!')
         }else{
          // toastr.success('Este usuario esta disponible',{progressBar:true})
          console.log("Este email esta disponible");

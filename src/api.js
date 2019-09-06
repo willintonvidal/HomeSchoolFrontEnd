@@ -23,7 +23,7 @@ api.verificarid = function(id){
 }
 
 
-          api.registroInicio = function(usu_id,usu_tipo_documento,usu_nombres,usu_apellidos,usu_tipo_usuario,usu_contrasenia,usu_email,usu_telefono){
+    api.registroInicio = function(usu_id,usu_tipo_documento,usu_nombres,usu_apellidos,usu_tipo_usuario,usu_contrasenia,usu_email,usu_telefono){
     var usu_foto = "Sin foto";
     var usu_estado = "Sin validar";
     var cen_edu_nit = "1065";
@@ -40,6 +40,18 @@ api.verificarcorreo = function(correo){
     .catch(err => console.log('[ERROR]'+correo,err))
 }
 
+api.mostrarTodosLosUsuarios = function(){
+    return trae.get('/api/usuario/getnovalid')
+    .then(res =>res.data)
+    .catch(err => console.log('[ERROR]',err))
+}
+
+api.validarUsuarios = function(usu_id){
+    return trae.get('/api/usuario/validarusuario/'+usu_id)
+    .then(res =>res.data)
+    .catch(err => console.log('[ERROR]',err))
+}
+
 /*
 
 api.getStatus = function(){
@@ -48,11 +60,7 @@ api.getStatus = function(){
     .catch(err => console.log('[ERROR]',err))
 }
 
-api.mostrarTodosLosUsuarios = function(){
-    return trae.get('/datosAllUsuarios')
-    .then(res =>res.data)
-    .catch(err => console.log('[ERROR]',err))
-}
+
 
 api.checkToken = function(){
     return trae.get('/check')

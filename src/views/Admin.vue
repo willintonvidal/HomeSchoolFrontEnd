@@ -18,39 +18,16 @@
                   />
                 </div>
                 <div class="name">
-                  <h3 class="title">Carla Hortensia</h3>
+                  
+                  <h3 class="title"> {{nombres}} {{apellidos}}</h3>
                   <h4>Administrador</h4>
-                  <h6>Designer</h6>
-                  <md-button
-                    href="javascript:void(0)"
-                    class="md-just-icon md-simple md-dribbble"
-                    ><i class="fab fa-dribbble"></i
-                  ></md-button>
-                  <md-button
-                    href="javascript:void(0)"
-                    class="md-just-icon md-simple md-twitter"
-                    ><i class="fab fa-twitter"></i
-                  ></md-button>
-                  <md-button
-                    href="javascript:void(0)"
-                    class="md-just-icon md-simple md-pinterest"
-                    ><i class="fab fa-pinterest"></i
-                  ></md-button>
                 </div>
               </div>
             </div>
           </div>
-          <div class="description text-center">
-            <p>
-              An artist of considerable range, Chet Faker — the name taken by
-              Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs
-              and records all of his own music, giving it a warm, intimate feel
-              with a solid groove structure.
-            </p>
-          </div>
           <div class="profile-tabs">
             <tabs
-              :tab-name="['Studio', 'Work', 'Favorite']"
+              :tab-name="['Validar', 'Work', 'Favorite']"
               :tab-icon="['camera', 'palette', 'favorite']"
               plain
               nav-pills-icons
@@ -59,11 +36,43 @@
               <!-- here you can add your content for tab-content -->
               <template slot="tab-pane-1">
                 <div class="md-layout">
-                  <div class="md-layout-item md-size-25 ml-auto">
-                    <img :src="tabPane1[0].image" class="rounded" />
-                    <img :src="tabPane1[1].image" class="rounded" />
+                  <div class="md-layout-item md-size-85 ml-auto">
+                        <div class="row p-4">
+                          <div class="col-md-12">
+                            <input type="text" v-model="search" class="form-control" placeholder="BUscar por número de cedula"/>
+                          </div>
+                        </div><br />
+                    <div class="table-responsive-sm">
+                        <table class="table table-striped table:hover table-bordered">
+                          <thead>
+                            <tr>
+                              <td># Identificación</td>
+                              <td>Nombres</td>
+                              <td>Apellidos</td>
+                              <td>Role</td>
+                              <td>Eliminar</td>
+                            </tr>
+                          </thead>
+
+                          <tbody>
+                            <tr v-for="(item,index) in filteredItems">
+                              
+                              <td>{{ item[0] }}</td>
+                              <td>{{ item[3] }}</td>
+                              <td>{{ item[4] }}</td>
+                              <td>{{ item[5] }}</td>
+                              <td>
+                                <button class="btn btn-succes" v-on:click="validar(item[0],index)">
+                                  Validar
+                                </button>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        </div>
+
                   </div>
-                  <div class="md-layout-item md-size-25 mr-auto">
+                  <div class="md-layout-item md-size-15 mr-auto">
                     <img :src="tabPane1[3].image" class="rounded" />
                     <img :src="tabPane1[2].image" class="rounded" />
                   </div>
@@ -120,6 +129,7 @@
 <script>
 import { Tabs } from "@/components";
 import api from '@/api'
+import toastr from "toastr";
 
 
 export default {
@@ -150,9 +160,12 @@ export default {
         { image: require("@/assets/img/examples/studio-1.jpg") }
       ],
       users:[],
-      search:null,
-      searched:[]
+      search:'',
+      nombres:window.localStorage.nombres,
+      apellidos:window.localStorage.apellidos,
+      contador:0
     };
+
   },
   props: {
     header: {
@@ -169,6 +182,11 @@ export default {
       return {
         backgroundImage: `url(${this.header})`
       };
+    },
+    filteredItems: function(){
+      return this.users.filter((item) =>{
+        return item[0].toString().indexOf(this.search) != -1 || item[3].toString().toLowerCase().indexOf(this.search) != -1 || item[4].toString().toLowerCase().match(this.search) || item[5].toString().toLowerCase().match(this.search);
+      });
     }
   },
   methods:{
@@ -177,14 +195,27 @@ export default {
           console.log(res)
           this.users = res;
           })
-    },
-    searchOnTable () {
-        this.searched = searchByName(this.users, this.search)
-      }
+    },validar(usu_id,index){
+        const respuesta = confirm("Estas segur@ que deseas validar este usuario?");
+        if(respuesta){
+            api.validarUsuarios(usu_id)
+            .then(res => {
+              if(res){
+                    this.users.splice(index,1);
+                    toastr.success("OK");
+                    console.log('se va eliminar '+usu_id);
+              }else{
+                  toastr.error("Por alguna razon no se pudo validar este usuario")
+              }
+        })
+        .catch(err => {
+          console.log("Esto no salio nada bien..."+usu_id);
+        });
+        }
+    }
   },
   created(){
     this.mostrarUsuarios();
-    this.searched = this.users;
   }
 };
 </script>
