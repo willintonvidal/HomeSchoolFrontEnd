@@ -46,11 +46,31 @@ api.mostrarTodosLosUsuarios = function(){
     .catch(err => console.log('[ERROR]',err))
 }
 
-api.validarUsuarios = function(usu_id){
-    return trae.get('/api/usuario/validarusuario/'+usu_id)
+api.mostrarTodosLosUsuariosAll = function(){
+    return trae.get('/api/usuario/getall')
     .then(res =>res.data)
     .catch(err => console.log('[ERROR]',err))
 }
+
+api.validarUsuarios = function(usu_id){
+    return trae.get('/api/usuario/validarusuario/'+usu_id)
+    .then(res =>res.data)
+    .catch(err => console.log('[ERROR] error, esta insertado tambien en estudiante',err))
+}
+
+api.eliminarusuario = function(usu_id){
+    return trae.delete('/api/usuario/eliminar/'+usu_id)
+    .then(res =>res.data)
+    .catch(err => {console.log('[ERROR]',err)})
+}
+
+api.actualzarUsuario = function(usu_id,usu_tipo_documento,usu_nombres,usu_apellidos,usu_tipo_usuario,usu_estado,usu_email,usu_telefono,usu_foto){
+    return trae.post('/api/usuario/actualizar',{usu_id,usu_tipo_documento,usu_nombres,usu_apellidos,usu_tipo_usuario,usu_estado,usu_email,usu_telefono,usu_foto})
+    .then(res =>res.data)
+    .catch(err => {console.log('[ERROR]',err)})
+}
+
+
 
 /*
 

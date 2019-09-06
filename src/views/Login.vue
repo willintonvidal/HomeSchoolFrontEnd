@@ -102,6 +102,7 @@ export default {
           window.localStorage.estado = res[0][4];
           window.localStorage.correo = res[0][5];
           window.localStorage.celular = res[0][6];
+          window.localStorage.tipo_documento = res[0][8];
          
           if(res[0][3] =='Profesor')
           this.$router.push("/profesor");
@@ -114,7 +115,7 @@ export default {
           
 
         })
-        .catch(err => toastr.error("Datos Incorrectos"));
+        .catch(err => toastr.error("Datos Incorrectos "));
 
       console.log("---" + this.error.error);
       console.log("---" + this.error.message);
