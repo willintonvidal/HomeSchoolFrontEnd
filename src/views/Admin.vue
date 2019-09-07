@@ -361,32 +361,18 @@ export default {
     },
     //this.usu_id,this.usu_tipo_documento,this.usu_nombres,this.usu_apellidos,this.usu_tipo_usuario,this.usu_estado,this.usu_email,this.usu_telefono,this.usu_foto
     btnActualizar(){
-        api
-        .authenticate(this.id_usuario, this.password)
-        .then(res => {
-          console.log(res);
-
-          if(res == undefined)
-          toastr.error("Datos Incorrectos")
-          else{
-          window.localStorage.id = res[0][0];
-          window.localStorage.nombres = res[0][1];
-          window.localStorage.apellidos = res[0][2];
-          window.localStorage.role = res[0][3];
-          window.localStorage.estado = res[0][4];
-          window.localStorage.correo = res[0][5];
-          window.localStorage.celular = res[0][6];
-          window.localStorage.tipo_documento = res[0][8];
-         
-          if(res[0][3] =='Profesor')
-          this.$router.push("/profesor");
-
-          if(res[0][3] =='Estudiante')
-          this.$router.push("/estudiante");
-          if(res[0][3] =='Administrador')
-          this.$router.push("/admin");
+        api.actualzarUsuario(this.usu_id,this.usu_tipo_documento,this.usu_nombres,this.usu_apellidos,this.usu_tipo_usuario,this.usu_estado,this.usu_email,this.usu_telefono,this.usu_foto)
+        .then(res =>{
+          console.log(res)
+          if(res == "Se actualizaron correctamente los datos de la tabla usuario"){
+              toastr.success("Se actualizaron correctamente tus datos!");
+          }else{
+            toastr.error("No fue posible actualizar tus datos!");
           }
-      
+        })
+        .catch(err =>{
+          console.log(err)
+        })
     }
   },
   created() {

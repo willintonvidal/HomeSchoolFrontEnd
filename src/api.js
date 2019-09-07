@@ -65,7 +65,7 @@ api.eliminarusuario = function(usu_id){
 }
 
 api.actualzarUsuario = function(usu_id,usu_tipo_documento,usu_nombres,usu_apellidos,usu_tipo_usuario,usu_estado,usu_email,usu_telefono,usu_foto){
-    return trae.post('/api/usuario/actualizar',{usu_id,usu_tipo_documento,usu_nombres,usu_apellidos,usu_tipo_usuario,usu_estado,usu_email,usu_telefono,usu_foto})
+    return trae.put('/api/usuario/actualizar',{usu_id,usu_tipo_documento,usu_nombres,usu_apellidos,usu_tipo_usuario,usu_estado,usu_email,usu_telefono,usu_foto})
     .then(res =>res.data)
     .catch(err => {console.log('[ERROR]',err)})
 }
