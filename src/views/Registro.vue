@@ -8,27 +8,7 @@
           >
             <login-card header-color="green">
               <h4 slot="title" class="card-title">Registrarse</h4>
-              <md-button
-                slot="buttons"
-                href="javascript:void(0)"
-                class="md-just-icon md-simple md-white"
-              >
-                <i class="fab fa-facebook-square"></i>
-              </md-button>
-              <md-button
-                slot="buttons"
-                href="javascript:void(0)"
-                class="md-just-icon md-simple md-white"
-              >
-                <i class="fab fa-twitter"></i>
-              </md-button>
-              <md-button
-                slot="buttons"
-                href="javascript:void(0)"
-                class="md-just-icon md-simple md-white"
-              >
-                <i class="fab fa-google-plus-g"></i>
-              </md-button>
+            
               <p slot="description" class="description">Dijita tus datos para el registro</p>
               <md-field class="md-form-group" slot="inputs">
                 <md-icon>face</md-icon>

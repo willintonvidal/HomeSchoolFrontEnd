@@ -18,9 +18,8 @@
                   />
                 </div>
                 <div class="name">
-                  <h3 class="title">Carla Hortensia ***</h3>
+                  <h3 class="title">{{nombres}} {{apellidos}}</h3>
                   <h4>Profesor</h4>
-                  <h6>Profesir</h6>
                   <md-button
                     href="javascript:void(0)"
                     class="md-just-icon md-simple md-dribbble"
@@ -128,8 +127,10 @@ export default {
         { image: require("@/assets/img/examples/clem-onojeghuo.jpg") },
         { image: require("@/assets/img/examples/olu-eletu.jpg") },
         { image: require("@/assets/img/examples/studio-1.jpg") }
-      ]
-    };
+      ],
+      nombres: window.localStorage.nombres,
+      apellidos: window.localStorage.apellidos,
+    }
   },
   props: {
     header: {

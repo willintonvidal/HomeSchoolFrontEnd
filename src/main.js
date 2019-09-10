@@ -1,7 +1,7 @@
 import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
-
+import {Modal} from '@/components'
 import MaterialKit from "./plugins/material-kit";
 /* Estilos para la targeta*/
 require('@/assets/scss/hipster_cards.css');
@@ -10,6 +10,8 @@ require('@/assets/scss/hipster_cards.css');
 Vue.config.productionTip = false;
 
 Vue.use(MaterialKit);
+Vue.component(Modal);
+
 
 const NavbarStore = {
   showNavbar: false

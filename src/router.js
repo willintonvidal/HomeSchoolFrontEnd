@@ -11,6 +11,10 @@ import Estudiante from "./views/Estudiante.vue";
 import ProfileAdmi from "./views/ProfileAdmi.vue";
 import MainNavbar from "./layout/MainNavbar.vue";
 import MainFooter from "./layout/MainFooter.vue";
+import Estudiante_descomposicion from "./views/Estudiante_descomposicion.vue";
+import Estudiante_diferenciacion from "./views/Estudiante_diferenciacion.vue";
+import Estudiante_lectura_y_escritura from "./views/Estudiante_lectura_y_escritura.vue";
+import Estudiante_operaciones_basicas from "./views/Estudiante_operaciones_basicas.vue";
 
 //Vue.use(Router);
 
@@ -99,6 +103,38 @@ const routes = [
         header: { colorOnScroll: 400 },
         footer: { backgroundColor: "black" }
       }
+    },{
+      path: "/estudiante/descomposicion",
+      name: "Estudiante_descomposicion",
+      components: { default: Estudiante_descomposicion, header: MainNavbar, footer: MainFooter },
+      props: {
+        header: { colorOnScroll: 400 },
+        footer: { backgroundColor: "black" }
+      }
+    },,{
+      path: "/estudiante/diferenciacion",
+      name: "Estudiante_diferenciacion",
+      components: { default: Estudiante_diferenciacion, header: MainNavbar, footer: MainFooter },
+      props: {
+        header: { colorOnScroll: 400 },
+        footer: { backgroundColor: "black" }
+      }
+    },{
+      path: "/estudiante/lecturayescritura",
+      name: "Estudiante_lectura_y_escritura",
+      components: { default: Estudiante_lectura_y_escritura, header: MainNavbar, footer: MainFooter },
+      props: {
+        header: { colorOnScroll: 400 },
+        footer: { backgroundColor: "black" }
+      }
+    },{
+      path: "/estudiante/operacionesbasicas",
+      name: "Estudiante_operaciones_basicas",
+      components: { default: Estudiante_operaciones_basicas, header: MainNavbar, footer: MainFooter },
+      props: {
+        header: { colorOnScroll: 400 },
+        footer: { backgroundColor: "black" }
+      }
     }
 
 ];
@@ -138,6 +174,24 @@ router.beforeEach((to, from, next) => {
     return next({ name: 'index' })
   }
 
+  if(to.name === 'Estudiante_descomposicion'  && window.localStorage.role !== 'Estudiante'){
+    console.log(window.localStorage.role);
+    return next({ name: 'index' })
+  }
+
+  if(to.name === 'Estudiante_diferenciacion'  && window.localStorage.role !== 'Estudiante'){
+    console.log(window.localStorage.role);
+    return next({ name: 'index' })
+  }
+
+  if(to.name === 'Estudiante_lectura_y_escritura'  && window.localStorage.role !== 'Estudiante'){
+    console.log(window.localStorage.role);
+    return next({ name: 'index' })
+  }
+  if(to.name === 'Estudiante_operaciones_basicas'  && window.localStorage.role !== 'Estudiante'){
+    console.log(window.localStorage.role);
+    return next({ name: 'index' })
+  }
 
   return next();
 });

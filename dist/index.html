@@ -1,1 +1,22 @@
-<!DOCTYPE html><html lang=en><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><link rel=icon href=/public/favicon.png><title>Eventos Equinos</title><link rel=stylesheet type=text/css href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons"><link rel=stylesheet href="//fonts.googleapis.com/icon?family=Material+Icons"><link href=https://use.fontawesome.com/releases/v5.0.8/css/all.css rel=stylesheet><link rel=canonical href=https://www.creative-tim.com/product/hipster-as-f-cards><link href=@/assets/scss/hipster_cards.css rel=stylesheet><link href=/css/app.6d54d7ab.css rel=preload as=style><link href=/css/chunk-vendors.00c394d1.css rel=preload as=style><link href=/js/app.3c33b1bb.js rel=preload as=script><link href=/js/chunk-vendors.768e2dea.js rel=preload as=script><link href=/css/chunk-vendors.00c394d1.css rel=stylesheet><link href=/css/app.6d54d7ab.css rel=stylesheet></head><body><noscript><strong>We're sorry but vue-material-kit doesn't work properly without JavaScript enabled. Please enable it to continue.</strong></noscript><div id=app></div><script src=/js/chunk-vendors.768e2dea.js></script><script src=/js/app.3c33b1bb.js></script></body></html>
+<!DOCTYPE html><html lang=en><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><link rel=icon href=/public/favicon.png><title>HomeScholl</title><link rel=stylesheet type=text/css href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons"><link rel=stylesheet href="//fonts.googleapis.com/icon?family=Material+Icons"><link href=https://use.fontawesome.com/releases/v5.0.8/css/all.css rel=stylesheet><link rel=canonical href=https://www.creative-tim.com/product/hipster-as-f-cards><link href=@/assets/scss/hipster_cards.css rel=stylesheet><link href=css/Principal.css rel=stylesheet><link href=css/bootstrap.css rel=stylesheet><link href=css/pe-icon-7-stroke.css rel=stylesheet><link href=css/rotating-card.css rel=stylesheet><meta content="width=device-width, initial-scale=1.0"><link href=https://netdna.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css rel=stylesheet><script src=https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js></script><link rel=stylesheet href=css/toastr.min.css><link href=/css/app.7e4e1c73.css rel=preload as=style><link href=/css/chunk-vendors.94feeeba.css rel=preload as=style><link href=/js/app.6fdf8f47.js rel=preload as=script><link href=/js/chunk-vendors.1fc1a7c5.js rel=preload as=script><link href=/css/chunk-vendors.94feeeba.css rel=stylesheet><link href=/css/app.7e4e1c73.css rel=stylesheet></head><body><noscript><strong>We're sorry but vue-material-kit doesn't work properly without JavaScript enabled. Please enable it to continue.</strong></noscript><div id=app></div><script src=/js/chunk-vendors.1fc1a7c5.js></script><script src=/js/app.6fdf8f47.js></script></body><script src=js/jquery-1.10.2.js></script><script src=js/bootstrap.min.js></script><script>$().ready(function(){
+        $('[rel="tooltip"]').tooltip();
+
+        $('a.scroll-down').click(function(e){
+            e.preventDefault();
+            scroll_target = $(this).data('href');
+             $('html, body').animate({
+                 scrollTop: $(scroll_target).offset().top - 60
+             }, 1000);
+        });
+
+    });
+
+    function rotateCard(btn){
+        var $card = $(btn).closest('.card-container');
+        console.log($card);
+        if($card.hasClass('hover')){
+            $card.removeClass('hover');
+        } else {
+            $card.addClass('hover');
+        }
+    }</script></html>
