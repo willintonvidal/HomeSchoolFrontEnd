@@ -3,7 +3,7 @@ import trae from 'trae'
 //const url = window.location.href.includes('localhost')?'http://localhost:8080':'https://jwt-java.herokuapp.com'
 //const url = window.location.href.includes('https://jwt-java.herokuapp.com/')
 
-trae.baseUrl('http://192.168.0.44:8102')
+trae.baseUrl('http://192.168.0.44:8102' || 'http://localhost:8102' || 'http://192.168.0.103:8102'  )
 //trae.baseUrl(url)
 
 
