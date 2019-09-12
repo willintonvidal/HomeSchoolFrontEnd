@@ -345,11 +345,11 @@ export default {
   props: {
     header: {
       type: String,
-      default: require("@/assets/img/city-profile.jpg")
+      default: require("@/assets/img/img-act/banner.jpg")
     },
     img: {
       type: String,
-      default: require("@/assets/img/faces/christian.jpg")
+      default: require("@/assets/img/faces/profile.png")
     }
   },
   computed: {

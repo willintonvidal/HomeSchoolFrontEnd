@@ -31,12 +31,11 @@
                 </md-field>
                 <md-button slot="footer" @click="acceso" class="md-simple md-success md-lg">Acceder</md-button>
                 
-                <md-button
+              <md-button
                   slot="footer"
                   class="md-simple md-success md-lg"
                   href="#/Registro"
-                >Registrarse</md-button>
-              </login-card>
+                ><small>Registrarse</small></md-button>              </login-card>
             </form>
           </div>
         </div>

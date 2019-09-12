@@ -25,10 +25,11 @@
             </div>
           </div>
           <div class="description text-center">
+              <h1>Matemáticas</h1>
           </div>
           <div class="profile-tabs">
             <tabs
-              :tab-name="['Mis temas', 'Work', 'Favorite']"
+              :tab-name="['Mis temas', 'Re. Acudiente', 'Favorite']"
               :tab-icon="['camera', 'palette', 'favorite']"
               plain
               nav-pills-icons
@@ -51,12 +52,10 @@
               </template>
               <template slot="tab-pane-2">
                 <div class="md-layout">
-                  <div class="md-layout-item md-size-25 ml-auto">
-                    <img :src="tabPane2[0].image" class="rounded" />
-                    <img :src="tabPane2[1].image" class="rounded" />
-                    <img :src="tabPane2[2].image" class="rounded" />
+                  <div class="md-layout-item md-size-85 ml-auto">
+                      
                   </div>
-                  <div class="md-layout-item md-size-25 mr-auto">
+                  <div class="md-layout-item md-size-15 mr-auto">
                     <img :src="tabPane2[3].image" class="rounded" />
                     <img :src="tabPane2[4].image" class="rounded" />
                   </div>
@@ -95,10 +94,10 @@ export default {
   data() {
     return {
       tabPane1: [
-        { image: require("@/assets/img/examples/studio-1.jpg") },
-        { image: require("@/assets/img/examples/studio-2.jpg") },
-        { image: require("@/assets/img/examples/studio-4.jpg") },
-        { image: require("@/assets/img/examples/studio-5.jpg") }
+        { image: require("@/assets/img/img-act/banner.jpg") },
+        { image: require("@/assets/img/img-act/banner.jpg") },
+        { image: require("@/assets/img/img-act/banner.jpg") },
+        { image: require("@/assets/img/img-act/banner.jpg") }
       ],
       tabPane2: [
         { image: require("@/assets/img/examples/olu-eletu.jpg") },
@@ -124,11 +123,11 @@ export default {
   props: {
     header: {
       type: String,
-      default: require("@/assets/img/city-profile.jpg")
+      default: require("@/assets/img/img-act/banner.jpg")
     },
     img: {
       type: String,
-      default: require("@/assets/img/faces/christian.jpg")
+      default: require("@/assets/img/faces/profile.png")
     }
   },
   computed: {

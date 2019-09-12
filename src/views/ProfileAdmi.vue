@@ -297,7 +297,7 @@ export default {
     },
     img: {
       type: String,
-      default: require("@/assets/img/faces/christian.jpg")
+      default: require("@/assets/img/faces/profile.png")
     }
   },
   computed: {

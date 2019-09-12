@@ -30,8 +30,8 @@
           </div>
           <div class="profile-tabs">
             <tabs
-              :tab-name="['Material', 'Actividades', 'Favorite']"
-              :tab-icon="['camera', 'palette', 'favorite']"
+              :tab-name="['Material', 'Actividades']"
+              :tab-icon="['camera', 'palette']"
               plain
               nav-pills-icons
               color-button="success"
@@ -255,19 +255,7 @@
                   </div>
                 </div>
               </template>
-              <template slot="tab-pane-3">
-                <div class="md-layout">
-                  <div class="md-layout-item md-size-25 ml-auto">
-                    <img :src="tabPane3[0].image" class="rounded" />
-                    <img :src="tabPane3[1].image" class="rounded" />
-                  </div>
-                  <div class="md-layout-item md-size-25 mr-auto">
-                    <img :src="tabPane3[2].image" class="rounded" />
-                    <img :src="tabPane3[3].image" class="rounded" />
-                    <img :src="tabPane3[4].image" class="rounded" />
-                  </div>
-                </div>
-              </template>
+              
             </tabs>
           </div>
         </div>
@@ -341,11 +329,11 @@ export default {
   props: {
     header: {
       type: String,
-      default: require("@/assets/img/city-profile.jpg")
+      default: require("@/assets/img/img-act/banner.jpg")
     },
     img: {
       type: String,
-      default: require("@/assets/img/faces/christian.jpg")
+      default: require("@/assets/img/faces/profile.png")
     }
   },
   computed: {
