@@ -29,20 +29,58 @@
           </div>
           <div class="profile-tabs">
             <tabs
-              :tab-name="['Mis temas', 'Re. Acudiente', 'Favorite']"
+              :tab-name="['Acudiente', 'Mis temas', 'Favorite']"
               :tab-icon="['camera', 'palette', 'favorite']"
               plain
               nav-pills-icons
               color-button="success"
             >
               <!-- here you can add your content for tab-content -->
+
+              <!--Empieza el primer item de información del acudiente -->
               <template slot="tab-pane-1">
                 <div class="md-layout">
                   <div class="md-layout-item md-size-85 ml-auto">
-                      <md-button class="md-info" href="#/estudiante/lecturayescritura" >lectura y escritura de números</md-button><br>
-                      <md-button class="md-info" href="#/estudiante/diferenciacion">Diferenciación</md-button><br>
-                      <md-button class="md-info" href="#/estudiante/operacionesbasicas">operaciones básicas</md-button><br>
-                      <md-button class="md-info" href="#/estudiante/descomposicion">descomposición</md-button>
+                       <!--
+                        <md-select v-model="acudiente_tipo_ident" name="tipo_docu" id="acu_tipo_identificacion" placeholder="Tipo de documento">
+                                <md-option value="Targetaidentidad">Targeta de identidad</md-option>
+                                <md-option value="Cedula">Cédula</md-option>
+                        </md-select> -->
+
+                         <md-field class="md-form-group" slot="inputs">
+                        <md-icon>perm_identity</md-icon>
+                          <label>Tipo de id</label>
+                          <md-input v-model="acudiente_tipo_ident"></md-input>
+                        </md-field>
+
+                        <md-field class="md-form-group" slot="inputs">
+                        <md-icon>perm_identity</md-icon>
+                          <label>Número de identificación...</label>
+                          <md-input v-model="acu_numero_ident"></md-input>
+                        </md-field>
+
+                        <md-field class="md-form-group" slot="inputs">
+                          <md-icon>face</md-icon>
+                          <label>Nombres completos...</label>
+                          <md-input v-model="acu_nombre_completo"></md-input>
+                        </md-field>
+                        
+                        <md-field class="md-form-group" slot="inputs">
+                          <md-icon>email</md-icon>
+                          <label>Email...</label>
+                          <md-input v-model="ecudiente_email" type="email"></md-input>
+                        </md-field>
+
+                        <md-field class="md-form-group" slot="inputs">
+                          <md-icon>face</md-icon>
+                          <label>Telefono Celular...</label>
+                          <md-input v-model="acudiente_telefono"></md-input>
+                        </md-field> 
+
+                        <md-button slot="footer" @click="registroAcudiente" class="md-simple md-success md-lg">
+                          Registrar acudiente
+                        </md-button>
+
                   </div>
                   <div class="md-layout-item md-size-15 mr-auto">
                     <img :src="tabPane1[3].image" class="rounded" />
@@ -50,10 +88,15 @@
                   </div>
                 </div>
               </template>
+              <!--termina el primer item de la información del acudiente -->
+              
               <template slot="tab-pane-2">
                 <div class="md-layout">
                   <div class="md-layout-item md-size-85 ml-auto">
-                      
+                   <md-button class="md-info" href="#/estudiante/lecturayescritura" >lectura y escritura de números</md-button><br>
+                      <md-button class="md-info" href="#/estudiante/diferenciacion">Diferenciación</md-button><br>
+                      <md-button class="md-info" href="#/estudiante/operacionesbasicas">operaciones básicas</md-button><br>
+                      <md-button class="md-info" href="#/estudiante/descomposicion">descomposición</md-button>
                   </div>
                   <div class="md-layout-item md-size-15 mr-auto">
                     <img :src="tabPane2[3].image" class="rounded" />
@@ -61,6 +104,8 @@
                   </div>
                 </div>
               </template>
+
+
               <template slot="tab-pane-3">
                 <div class="md-layout">
                   <div class="md-layout-item md-size-25 ml-auto">
@@ -86,6 +131,28 @@
 import { Tabs } from "@/components";
 import {Modal} from '@/components'
 
+/*pao */
+import api from '@/api'
+import toastr from 'toastr';
+
+ toastr.options = {
+  "closeButton": false,
+  "debug": false,
+  "newestOnTop": false,
+  "progressBar": true,
+  "positionClass": "toast-bottom-full-width",
+  "preventDuplicates": false,
+  "onclick": null,
+  "showDuration": "300",
+  "hideDuration": "1000",
+  "timeOut": "5000",
+  "extendedTimeOut": "1000",
+  "showEasing": "swing",
+  "hideEasing": "linear",
+  "showMethod": "fadeIn",
+  "hideMethod": "fadeOut"
+}
+/* Termina pao */
 export default {
   components: {
     Tabs,Modal
@@ -93,6 +160,16 @@ export default {
   bodyClass: "profile-page",
   data() {
     return {
+       /*pao */
+      acudiente_tipo_ident: null,
+      acu_numero_ident: null,
+      acu_nombre_completo:null,
+      ecudiente_email: null,
+      acudiente_telefono:null,
+      errores:{},
+       /*Termina Pao, coloque una coma(,)*/
+
+
       tabPane1: [
         { image: require("@/assets/img/img-act/banner.jpg") },
         { image: require("@/assets/img/img-act/banner.jpg") },
@@ -143,8 +220,24 @@ export default {
     },
     classicModalHide2() {
       this.classicModal2 = false;
-    }
-  }
+    },
+    /*pao */
+    registroAcudiente(){
+        
+                api.registrarAcudiente(this.acudiente_tipo_ident, this.acu_numero_ident, this.acu_nombre_completo, this.ecudiente_email, this.acudiente_telefono)
+                .then(res =>{
+                console.log(" se insertaron los datos del acudiente"+res)
+                if(res == 'Se insertaron los datos de la tabala acudiente'){
+                  toastr.success("Se registro exitosamente como estudiante  ");
+                  this.$router.push("/estudiante");
+
+                }
+                })
+                .catch(err =>{console.log("error al registrar estudiante"+err)})
+                
+             },
+    /*termina pao */         
+}
 };
 </script>
 

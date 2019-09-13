@@ -32,8 +32,6 @@ api.verificarid = function(id){
     .catch(err => console.log('[ERROR]',err))
 }
 
-
-
 api.verificarcorreo = function(correo){
     return trae.get('/verificarcorreo/'+correo)
     .then(res => res.data)
@@ -70,9 +68,38 @@ api.actualzarUsuario = function(usu_id,usu_tipo_documento,usu_nombres,usu_apelli
     .catch(err => {console.log('[ERROR]',err)})
 }
 
+api.registrarAcudiente=function(acudiente_tipo_ident, acu_numero_ident, acu_nombre_completo, ecudiente_email, acudiente_telefono){
+return trae.post('/api/acudiente/insertar', {acudiente_tipo_ident, acu_numero_ident, acu_nombre_completo, ecudiente_email, acudiente_telefono})
+.then (res => res.data
+    )
+.catch(err => {console.log('[ERROR]',err)})
+}
 
+api.registrarEstudiante= function(estudiante_id, acu_numero_ident,grado_id){
+return trae.get('/api/estudiante/insertar',{estudiante_id,acu_numero_ident,grado_id})
+.then (res=> res.data)
+.catch(err=> {console.log('[ERROR]',err)})
+}
+
+api.registrarProfesor= function(id_prof,titulo_prof, experiencia_laboral_prof){
+    return trae.get('/api/profesor/insertar',{id_prof,titulo_prof,experiencia_laboral_prof })
+    .then (res=> res.data)
+    .catch(err=> {console.log('[ERROR]',err)})
+}
 
 /*
+api.registrarEstudiante= function(){
+    return trae.get('',{})
+    .then (res=> res.data)
+    .catch(err=> {console.log('[ERROR]',err)})
+}
+api.registrarEstudiante= function(){
+    return trae.get('',{})
+    .then (res=> res.data)
+    .catch(err=> {console.log('[ERROR]',err)})
+}
+
+
 
 api.getStatus = function(){
     return trae.get('/')

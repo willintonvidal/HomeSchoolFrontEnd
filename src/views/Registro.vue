@@ -7,9 +7,18 @@
             class="md-layout-item md-size-33 md-small-size-66 md-xsmall-size-100 md-medium-size-40 mx-auto"
           >
             <login-card header-color="green">
-              <h4 slot="title" class="card-title">Registrarse</h4>
-            
-              <p slot="description" class="description">Dijita tus datos para el registro</p>
+              <h2 slot="title" class="card-title">Registrarse</h2>
+              <p slot="description" class="description">Digita tus datos para el registro</p>
+        
+
+        <md-field class="md-form-group" slot="inputs">
+        <md-select v-model="tipo_usuario" name="tipo_usuario" id="tipo_usuario" placeholder=" Registrarse como:">
+            <md-option value="Estudiante">Estudiante</md-option>
+            <md-option value="Profesor">Profesor</md-option>
+            <md-option value="Administrador">Administrador</md-option>
+          </md-select>  
+         </md-field>
+
               <md-field class="md-form-group" slot="inputs">
                 <md-icon>face</md-icon>
                 <label>Nombres...</label>
@@ -21,13 +30,12 @@
                 <md-input v-model="apellidos"></md-input>
               </md-field>
 
-              <md-field class="md-form-group" slot="inputs">
-                
-                  <md-select v-model="tipo_docu" name="tipo_docu" id="tipo_docu" placeholder="            Tipo de documento">
-            <md-option value="Targetaidentidad">Targeta identidad</md-option>
-            <md-option value="Cedula">Cedula</md-option>
-        
-          </md-select>  
+              <md-field class="md-form-group" slot="inputs">       
+
+                  <md-select v-model="tipo_docu" name="tipo_docu" id="tipo_docu" placeholder="Tipo de documento">
+                      <md-option value="Targetaidentidad">Targeta identidad</md-option>
+                      <md-option value="Cedula">Cédula</md-option>
+                   </md-select>  
 
               </md-field>
               <md-field class="md-form-group" slot="inputs">
@@ -56,17 +64,21 @@
                 <label>Repita el Password...</label>
                 <md-input type="password"></md-input>
               </md-field>
-
+               <!--Información del profesor-->
+               
+               <md-field class="md-form-group" slot="inputs">
+                <md-icon>face</md-icon>
+                <label> titulo profesional...</label>
+                <md-input v-model="titulo_prof"></md-input>
+              </md-field>
 
               <md-field class="md-form-group" slot="inputs">
-                
-                  <md-select v-model="tipo_usuario" name="tipo_usuario" id="tipo_usuario" placeholder="            Registrarse como:">
-            <md-option value="Estudiante">Estudiante</md-option>
-            <md-option value="Profesor">Profesor</md-option>
-            <md-option value="Administrador">Administrador</md-option>
-          </md-select>  
-
+                <md-icon>face</md-icon>
+                <label> Experiencia laboral...</label>
+                <md-input v-model="experiencia_laboral_prof"></md-input>
               </md-field>
+               <!--Termina información del profesor-->
+
 
               <md-button slot="footer" @click="registro" class="md-simple md-success md-lg">
                 Registrarse
@@ -136,9 +148,8 @@ export default {
   },
   methods:{
 
-
     registro(){
-          console.log("Entra a registrar");
+        /*  console.log("Entra a registrar");
           console.log("Nombres"+this.nombres);
           console.log("Apellifos"+this.apellidos);
           console.log(this.tipo_docu);
@@ -146,19 +157,61 @@ export default {
           console.log(this.celular);
           console.log(this.tipo_usuario);
           console.log(this.email);
-          console.log(this.password);
+          console.log(this.password);*/
           
           api.registroInicio(this.numeroId,this.tipo_docu,this.nombres,this.apellidos,this.tipo_usuario,this.password,this.email,this.celular)
           .then(res =>{
             console.log("---"+res)
-            if(res == 'Se insertaron correctamente los datos de la tabla usuario'){
-              toastr.success("Registro Exitoso!!");
-              this.$router.push("/login");
-            }
+            if(res == 'Se insertaron correctamente los datos de la tabla usuario'){   
+              if(this.tipo_usuario=='Administrador'){
+                 toastr.success("  Se registro exitosamente como administrador ");
+                 this.$router.push("/login");
+              }
+               if(this.tipo_usuario=='Estudiante'){
+                api.registrarAcudiente(this.acudiente_tipo_ident, this.acu_numero_ident, this.acu_nombre_completo, this.ecudiente_email, this.acudiente_telefono)
+                .then(res =>{
+                console.log(" se insertaron los datos del acudiente"+res)
+                if(res == 'Se insertaron los datos de la tabala acudiente'){
+                     /*
+                    api.registrarEstudiante(this.numeroId, this.titulo_prof, this.experiencia_laboral_prof)
+                    .then(res =>{
+                    console.log("Se insertaron los datos de la tabla estudiante"+res)
+                    if(res == 'Se insertaron correctamente los datos de la tabla usuario'){
+                    toastr.success("Registro Exitoso del estudiante");
+                    this.$router.push("/login");
+                    }
+                    })
+                    .catch(err =>{console.log("error al registrar estudiante"+err)})
+                    */
+                  toastr.success("Se registro exitosamente como estudiante  ");
+                  this.$router.push("/login");
 
-          })
+                }
+                })
+                .catch(err =>{console.log("error al registrar estudiante"+err)})
+                
+             }
+ 
+              if(this.tipo_usuario=='Profesor'){
+                api.registrarProfesor(this.numeroId, this.titulo_prof, this.experiencia_laboral_prof)
+                .then(res =>{
+                console.log("---"+res)
+                if(res == 'Se insertaron correctamente los datos de la tabla profesor'){
+                toastr.success("Se registro exitosamente como profesor");
+                this.$router.push("/login");
+                }
+                })
+                .catch(err =>{console.log("error al registrar profesor"+err)})
+                
+             }//if de profesor
+ 
+
+            }//if general
+
+          }) // then grande todo el resgistro
           .catch(err =>{console.log("---"+err)})
     },
+
     verificarid(){
       api.verificarid(this.numeroId)
       .then(res =>{

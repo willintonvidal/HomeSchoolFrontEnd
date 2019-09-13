@@ -8,9 +8,8 @@
           >
             <form @submit.prevent="acceso">
               <login-card header-color="green">
-                <h4 slot="title" class="card-title">Iniciar Sesion</h4>
+                <h2 slot="title" class="card-title">Iniciar Sesion</h2>
 
-              
                 <p slot="description" class="description">                </p>
 
                 <md-field class="md-form-group" slot="inputs">
@@ -29,13 +28,19 @@
                   <label>Password</label>
                   <md-input v-model="password" name="password" type="password"></md-input>
                 </md-field>
+
+                 <md-button
+                  slot="footer"
+                  class="md-simple md-info md-lg"
+                  href="#/Registro"
+                >Registrate</md-button>
+
+
                 <md-button slot="footer" @click="acceso" class="md-simple md-success md-lg">Acceder</md-button>
                 
-              <md-button
-                  slot="footer"
-                  class="md-simple md-success md-lg"
-                  href="#/Registro"
-                ><small>Registrarse</small></md-button>              </login-card>
+             
+
+                </login-card>
             </form>
           </div>
         </div>
