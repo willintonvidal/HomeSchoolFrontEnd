@@ -66,17 +66,18 @@
               </md-field>
                <!--Información del profesor-->
                
-               <md-field class="md-form-group" slot="inputs">
+               <md-field class="md-form-group" slot="inputs" v-if="tipo_usuario=='Profesor'" >
                 <md-icon>face</md-icon>
                 <label> titulo profesional...</label>
                 <md-input v-model="titulo_prof"></md-input>
               </md-field>
 
-              <md-field class="md-form-group" slot="inputs">
+              <md-field class="md-form-group" slot="inputs" v-if="tipo_usuario=='Profesor'">
                 <md-icon>face</md-icon>
                 <label> Experiencia laboral...</label>
                 <md-input v-model="experiencia_laboral_prof"></md-input>
               </md-field>
+
                <!--Termina información del profesor-->
 
 
@@ -98,16 +99,16 @@ import api from '@/api'
 
  toastr.options = {
   "closeButton": false,
-  "debug": false,
+  "debug": true,
   "newestOnTop": false,
-  "progressBar": true,
-  "positionClass": "toast-bottom-full-width",
+  "progressBar": false,
+  "positionClass": "toast-top-full-width",
   "preventDuplicates": false,
   "onclick": null,
-  "showDuration": "300",
-  "hideDuration": "1000",
-  "timeOut": "5000",
-  "extendedTimeOut": "1000",
+  "showDuration": "200",
+  "hideDuration": "500",
+  "timeOut": "4000",
+  "extendedTimeOut": "900",
   "showEasing": "swing",
   "hideEasing": "linear",
   "showMethod": "fadeIn",
@@ -130,7 +131,11 @@ export default {
       tipo_usuario:null,
       email: null,
       password: null,
-      errores:{}
+      errores:{},
+      MostrarInfoProfesor:false,
+      titulo_prof:null,
+      experiencia_laboral_prof:null
+               
     };
   },
   props: {
@@ -149,15 +154,6 @@ export default {
   methods:{
 
     registro(){
-        /*  console.log("Entra a registrar");
-          console.log("Nombres"+this.nombres);
-          console.log("Apellifos"+this.apellidos);
-          console.log(this.tipo_docu);
-          console.log(this.numeroId);
-          console.log(this.celular);
-          console.log(this.tipo_usuario);
-          console.log(this.email);
-          console.log(this.password);*/
           
           api.registroInicio(this.numeroId,this.tipo_docu,this.nombres,this.apellidos,this.tipo_usuario,this.password,this.email,this.celular)
           .then(res =>{
@@ -167,31 +163,11 @@ export default {
                  toastr.success("  Se registro exitosamente como administrador ");
                  this.$router.push("/login");
               }
-               if(this.tipo_usuario=='Estudiante'){
-                api.registrarAcudiente(this.acudiente_tipo_ident, this.acu_numero_ident, this.acu_nombre_completo, this.ecudiente_email, this.acudiente_telefono)
-                .then(res =>{
-                console.log(" se insertaron los datos del acudiente"+res)
-                if(res == 'Se insertaron los datos de la tabala acudiente'){
-                     /*
-                    api.registrarEstudiante(this.numeroId, this.titulo_prof, this.experiencia_laboral_prof)
-                    .then(res =>{
-                    console.log("Se insertaron los datos de la tabla estudiante"+res)
-                    if(res == 'Se insertaron correctamente los datos de la tabla usuario'){
-                    toastr.success("Registro Exitoso del estudiante");
-                    this.$router.push("/login");
-                    }
-                    })
-                    .catch(err =>{console.log("error al registrar estudiante"+err)})
-                    */
-                  toastr.success("Se registro exitosamente como estudiante  ");
-                  this.$router.push("/login");
+                if(this.tipo_usuario=='Estudiante'){
+                 toastr.success("  Se registro exitosamente como Estudiante ");
+                 this.$router.push("/login");
+              }
 
-                }
-                })
-                .catch(err =>{console.log("error al registrar estudiante"+err)})
-                
-             }
- 
               if(this.tipo_usuario=='Profesor'){
                 api.registrarProfesor(this.numeroId, this.titulo_prof, this.experiencia_laboral_prof)
                 .then(res =>{

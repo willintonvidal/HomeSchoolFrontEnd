@@ -75,14 +75,15 @@ return trae.post('/api/acudiente/insertar', {acudiente_tipo_ident, acu_numero_id
 .catch(err => {console.log('[ERROR]',err)})
 }
 
-api.registrarEstudiante= function(estudiante_id, acu_numero_ident,grado_id){
-return trae.get('/api/estudiante/insertar',{estudiante_id,acu_numero_ident,grado_id})
+api.registrarEstudiante= function(estudiante_id, acu_numero_ident){
+var grado_id = "2";
+return trae.post('/api/estudiante/insertar',{estudiante_id,acu_numero_ident,grado_id})
 .then (res=> res.data)
 .catch(err=> {console.log('[ERROR]',err)})
 }
 
 api.registrarProfesor= function(id_prof,titulo_prof, experiencia_laboral_prof){
-    return trae.get('/api/profesor/insertar',{id_prof,titulo_prof,experiencia_laboral_prof })
+    return trae.post('/api/profesor/insertar',{id_prof,titulo_prof,experiencia_laboral_prof })
     .then (res=> res.data)
     .catch(err=> {console.log('[ERROR]',err)})
 }

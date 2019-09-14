@@ -39,19 +39,18 @@
 
               <!--Empieza el primer item de información del acudiente -->
               <template slot="tab-pane-1">
+
+
+
                 <div class="md-layout">
-                  <div class="md-layout-item md-size-85 ml-auto">
-                       <!--
+                  <div class="md-layout-item md-size-50 ml-auto">
+                       
                         <md-select v-model="acudiente_tipo_ident" name="tipo_docu" id="acu_tipo_identificacion" placeholder="Tipo de documento">
                                 <md-option value="Targetaidentidad">Targeta de identidad</md-option>
                                 <md-option value="Cedula">Cédula</md-option>
-                        </md-select> -->
+                        </md-select> 
 
-                         <md-field class="md-form-group" slot="inputs">
-                        <md-icon>perm_identity</md-icon>
-                          <label>Tipo de id</label>
-                          <md-input v-model="acudiente_tipo_ident"></md-input>
-                        </md-field>
+                      
 
                         <md-field class="md-form-group" slot="inputs">
                         <md-icon>perm_identity</md-icon>
@@ -84,7 +83,6 @@
                   </div>
                   <div class="md-layout-item md-size-15 mr-auto">
                     <img :src="tabPane1[3].image" class="rounded" />
-                    <img :src="tabPane1[2].image" class="rounded" />
                   </div>
                 </div>
               </template>
@@ -139,8 +137,8 @@ import toastr from 'toastr';
   "closeButton": false,
   "debug": false,
   "newestOnTop": false,
-  "progressBar": true,
-  "positionClass": "toast-bottom-full-width",
+  "progressBar": false,
+  "positionClass": "toast-top-center",
   "preventDuplicates": false,
   "onclick": null,
   "showDuration": "300",
@@ -192,6 +190,7 @@ export default {
       ],
       nombres: window.localStorage.nombres,
       apellidos: window.localStorage.apellidos,
+      identificacion: window.localStorage.id,
       words: ['Pera', 'Manzana', 'Tomate', 'Cereza', 'Frutilla'],
       classicModal: false,
       classicModal2: false
@@ -224,21 +223,29 @@ export default {
     /*pao */
     registroAcudiente(){
         
-                api.registrarAcudiente(this.acudiente_tipo_ident, this.acu_numero_ident, this.acu_nombre_completo, this.ecudiente_email, this.acudiente_telefono)
+                 api.registrarAcudiente(this.acudiente_tipo_ident, this.acu_numero_ident, this.acu_nombre_completo, this.ecudiente_email, this.acudiente_telefono)
                 .then(res =>{
-                console.log(" se insertaron los datos del acudiente"+res)
+                  console.log("Se registro acudiente:" +res);
+                  
                 if(res == 'Se insertaron los datos de la tabala acudiente'){
-                  toastr.success("Se registro exitosamente como estudiante  ");
-                  this.$router.push("/estudiante");
+                    api.registrarEstudiante(this.identificacion, this.acu_numero_ident)
+                    .then(res =>{
+                    console.log("Se insertaron los datos de la tabla estudiante"+res)
+                    if(res == 'Se insertaron correctamente los datos'){
+                    toastr.success("Se registro exitosamente como Acudiente  ");
+                    this.$router.push("/estudiante");
+                    }
+                    })
+                    .catch(err =>{console.log("error al registrar estudiante"+err)})
 
                 }
                 })
-                .catch(err =>{console.log("error al registrar estudiante"+err)})
-                
+                .catch(err =>{console.log("error al registrar acudiente"+err)})
              },
     /*termina pao */         
 }
 };
+
 </script>
 
 <style lang="scss" scoped>
