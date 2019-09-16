@@ -39,32 +39,31 @@
 
                         <template slot="body">
                             <div class="md-layout-item"> 
-                               <!--
-                                <md-field>
-                                  <md-select v-model="Materia_sin_matri" name="Materia_sin_matri" id="Materia_sin_matri" placeholder="Materia" v-for="(mate, index) in filteredMateriasAMatricular ">
-                                    <md-option value="materia" >{{mate[0]}}</md-option>
-                                  </md-select>
-                                </md-field>
-                                -->
-
+                               
+                                <!--
                                 <md-field>
                                   <md-select v-model="Materia_sin_matri" name="Materia_sin_matri" id="Materia_sin_matri" placeholder="Materia" >
-                                    <div v-for="(mate, i) in materiasMatri" >
+                                    <div v-for="(mate, i) in materiasMatri">
                                         <md-option value="'${mate[0]}'">{{mate[0]}}</md-option>
                                   </div>
-                                  
                                   </md-select>
+                                </md-field>-->
+                                <select v-model="Materia_sin_matri" @click="mostrarProfesorPorMateria()">
+                                  <option v-for="(Mate,i) in materiasMatri">
+                                      {{Mate[0]}}
+                                  </option>
+                                </select >
+                              
+                                </div>
+                                <md-field>
+                                  <md-input v-model="nombre_profesor" disabled ></md-input>
                                 </md-field>
-
-                              </div>
-                            <md-field>
-                              <md-input v-model="nombre_profesor" disabled ></md-input>
-                            </md-field>
-
+                                
                         </template>
                       
                         <template slot="footer">
-                          <md-button class="md-simple md-success md-lg"  @click="registroMateriaMatricular">Registrar</md-button>
+                         
+                          <md-button class="md-simple md-success md-lg"  @click="registroMateriaMatricular()">Registrar</md-button>
                           <md-button class="md-danger md-simple" @click="classicModalHide">Cerrar</md-button>
 
                         </template>
@@ -340,6 +339,7 @@ export default {
               console.log(res);
               this.temasAllMateria = res;
             });
+          
             },
             mostrarMateriasAMatricular() {
             api.MateriasAMatricular(this.identificacion).then(res => {
@@ -350,7 +350,8 @@ export default {
             },
  
             mostrarProfesorPorMateria(){
-            api.MostrarProfesor(this.nombre_cada_materia).then(res => {
+              
+            api.MostrarProfesor(this.Materia_sin_matri).then(res => {
               console.log(res);
               this.nombre_profesor = res;
               
@@ -391,6 +392,7 @@ created() {
     this.mostrarMateriasAMatricular();
     this.mostrarProfesorPorMateria();
     this.mostrarMateriasMatriculadasEst();
+    console.log("--------------"+materiasMatri[1]);
     
   }
 
