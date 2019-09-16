@@ -138,7 +138,7 @@
                     <md-field>
                       <label for="tipo_docu">Tipo Documento</label>
                       <md-select v-model="usu_tipo_documento" name="tipo_docu" id="tipo_docu">
-                        <md-option value="Cedula">Cedula</md-option>
+                        <md-option value="Cedula">Cédula</md-option>
                         <md-option value="TargetaIdentidad">Targeta Identidad</md-option>
                       </md-select>
                     </md-field>

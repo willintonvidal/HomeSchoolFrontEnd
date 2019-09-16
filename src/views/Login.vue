@@ -8,9 +8,12 @@
           >
             <form @submit.prevent="acceso">
               <login-card header-color="green">
+<<<<<<< HEAD
                 <h4 slot="title" class="card-title"> Iniciar Sesion</h4>
+=======
+                <h2 slot="title" class="card-title">Iniciar Sesion</h2>
+>>>>>>> 3e124651413630b7d49c474e8009e12ce1a65cc6
 
-              
                 <p slot="description" class="description">                </p>
 
                 <md-field class="md-form-group" slot="inputs">
@@ -21,7 +24,6 @@
                     type="number"
                     name="id_usuario"
                     @change="verificarid"
-                    @input="verificarid"
                   ></md-input>
                 </md-field>
                 <md-field class="md-form-group" slot="inputs">
@@ -29,13 +31,18 @@
                   <label>Password</label>
                   <md-input v-model="password" name="password" type="password"></md-input>
                 </md-field>
+
+                 <md-button
+                  slot="footer"
+                  class="md-simple md-info md-lg"
+                  href="#/Registro"
+                >Registrate</md-button>
+
+
                 <md-button slot="footer" @click="acceso" class="md-simple md-success md-lg">Acceder</md-button>
                 
-              <md-button
-                  slot="footer"
-                  class="md-simple md-success md-lg"
-                  href="#/Registro"
-                ><small>Registrarse</small></md-button>              </login-card>
+             
+                </login-card>
             </form>
           </div>
         </div>
@@ -54,21 +61,21 @@ import api from "@/api";
 import toastr from "toastr";
 
 toastr.options = {
-  closeButton: false,
-  debug: false,
-  newestOnTop: false,
-  progressBar: true,
-  positionClass: "toast-bottom-full-width",
-  preventDuplicates: false,
-  onclick: null,
-  showDuration: "300",
-  hideDuration: "1000",
-  timeOut: "5000",
-  extendedTimeOut: "1000",
-  showEasing: "swing",
-  hideEasing: "linear",
-  showMethod: "fadeIn",
-  hideMethod: "fadeOut"
+  "closeButton": false,
+  "debug": false,
+  "newestOnTop": false,
+  "progressBar": false,
+  "positionClass": "toast-top-center",
+  "preventDuplicates": false,
+  "onclick": null,
+  "showDuration": "300",
+  "hideDuration": "1000",
+  "timeOut": "5000",
+  "extendedTimeOut": "1000",
+  "showEasing": "swing",
+  "hideEasing": "linear",
+  "showMethod": "fadeIn",
+  "hideMethod": "fadeOut"
 };
 
 export default {
@@ -103,13 +110,12 @@ export default {
           window.localStorage.celular = res[0][6];
           window.localStorage.tipo_documento = res[0][8];
          
-          if(res[0][3] =='Profesor')
-          this.$router.push("/profesor");
+          if(res[0][3] =='Profesor'){ this.$router.push("/profesor"); toastr.success("Bienvenido Profesor");}
 
-          if(res[0][3] =='Estudiante')
-          this.$router.push("/estudiante");
-          if(res[0][3] =='Administrador')
-          this.$router.push("/admin");
+          if(res[0][3] =='Estudiante'){this.$router.push("/estudiante"); toastr.success("Bienvenido estudiante");}
+        
+          if(res[0][3] =='Administrador'){this.$router.push("/admin"); toastr.success("Bienvenido administrador");}
+          
           }
           
 

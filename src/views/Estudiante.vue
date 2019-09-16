@@ -25,47 +25,146 @@
             </div>
           </div>
           <div class="description text-center">
-              <h1>Matemáticas</h1>
+              <!--<h1>Matemáticas</h1>-->
+              <!--Matriculas  por parte del estudiante-->
+               <template>
+                      <md-button  class="md-primary md-round classic-modal " @click="classicModal = true">Matricular Materia</md-button>
+                      <modal v-if="classicModal" @close="classicModalHide">
+                        <template slot="header">
+                          <h2 class="modal-title" >Matricular Materia</h2>
+                          <md-button class="md-simple md-just-icon md-round modal-default-button" @click="classicModalHide">
+                            <md-icon>clear</md-icon>
+                          </md-button>
+                        </template>
+
+                        <template slot="body">
+                            <div class="md-layout-item"> 
+                               <!--
+                                <md-field>
+                                  <md-select v-model="Materia_sin_matri" name="Materia_sin_matri" id="Materia_sin_matri" placeholder="Materia" v-for="(mate, index) in filteredMateriasAMatricular ">
+                                    <md-option value="materia" >{{mate[0]}}</md-option>
+                                  </md-select>
+                                </md-field>
+                                -->
+
+                                <md-field>
+                                  <md-select v-model="Materia_sin_matri" name="Materia_sin_matri" id="Materia_sin_matri" placeholder="Materia" >
+                                    <div v-for="(mate, i) in materiasMatri" >
+                                        <md-option value="'${mate[0]}'">{{mate[0]}}</md-option>
+                                  </div>
+                                  
+                                  </md-select>
+                                </md-field>
+
+                              </div>
+                            <md-field>
+                              <md-input v-model="nombre_profesor" disabled ></md-input>
+                            </md-field>
+
+                        </template>
+                      
+                        <template slot="footer">
+                          <md-button class="md-simple md-success md-lg"  @click="registroMateriaMatricular">Registrar</md-button>
+                          <md-button class="md-danger md-simple" @click="classicModalHide">Cerrar</md-button>
+
+                        </template>
+                      </modal>
+                    </template>
+                  
+               <!-- Termina Matriculas  por parte del estudiante-->
+                       
           </div>
           <div class="profile-tabs">
             <tabs
-              :tab-name="['Mis temas', 'Re. Acudiente', 'Favorite']"
-              :tab-icon="['camera', 'palette', 'favorite']"
+              :tab-name="['Acudiente', 'Mis Materias', 'Mis temas']"
+              :tab-icon="['person', 'palette', 'list']"
               plain
               nav-pills-icons
               color-button="success"
             >
               <!-- here you can add your content for tab-content -->
+
+              <!--Empieza el primer item de información del acudiente -->
               <template slot="tab-pane-1">
+
+                <div class="md-layout">
+
+                  <div class="md-layout-item md-size-40 mr-auto">
+                    <img :src="tabPane1[4].image" class="rounded" />
+                  </div>
+                 
+                  <div class="md-layout-item md-size-60 ml-auto">  
+                        <md-select v-model="acudiente_tipo_ident" name="tipo_docu" id="acu_tipo_identificacion" placeholder="Tipo de documento">
+                                <md-option value="Targetaidentidad">Tarjeta de identidad</md-option>
+                                <md-option value="Cedula">Cédula</md-option>
+                        </md-select> 
+
+                        <md-field class="md-form-group" slot="inputs">
+                        <md-icon>perm_identity</md-icon>
+                          <label>Número de identificación...</label>
+                          <md-input v-model="acu_numero_ident"></md-input>
+                        </md-field>
+
+                        <md-field class="md-form-group" slot="inputs">
+                          <md-icon>face</md-icon>
+                          <label>Nombres completos...</label>
+                          <md-input v-model="acu_nombre_completo"></md-input>
+                        </md-field>
+                        
+                        <md-field class="md-form-group" slot="inputs">
+                          <md-icon>email</md-icon>
+                          <label>Email...</label>
+                          <md-input v-model="ecudiente_email" type="email"></md-input>
+                        </md-field>
+
+                        <md-field class="md-form-group" slot="inputs">
+                          <md-icon>face</md-icon>
+                          <label>Telefono Celular...</label>
+                          <md-input v-model="acudiente_telefono"></md-input>
+                        </md-field> 
+
+                        <md-button slot="footer" @click="registroAcudiente" class="md-simple md-success md-lg">
+                          Registrar acudiente
+                        </md-button>
+
+                  </div>
+                 
+                </div>
+              </template>
+              <!--termina el primer item de la información del acudiente -->
+
+   <!--Consulta los materias matriculadas  por cada estudiante-->           
+              <template slot="tab-pane-2">
+                <div class="md-layout">
+                  <div class="md-layout-item md-size-15 mr-auto">
+                    <img :src="tabPane2[5].image" class="rounded" />
+                  
+                  </div>
+                  <div class="md-layout-item md-size-85 ml-auto">
+                        <div v-for="(materiasMat) in materias_matriculadas">
+                         <md-button class="md-info" href="#/estudiante/">{{materiasMat}}</md-button><br>       
+                        </div>
+                      </div>
+
+                </div>
+              </template>
+   <!-- termina Consulta los materias matriculadas  por cada estudiante-->   
+
+<!--Consultas para los temas de la materia de matemáticas-->
+              <template slot="tab-pane-3">
                 <div class="md-layout">
                   <div class="md-layout-item md-size-85 ml-auto">
+                   
                       <md-button class="md-info" href="#/estudiante/lecturayescritura" >lectura y escritura de números</md-button><br>
                       <md-button class="md-info" href="#/estudiante/diferenciacion">Diferenciación</md-button><br>
                       <md-button class="md-info" href="#/estudiante/operacionesbasicas">operaciones básicas</md-button><br>
                       <md-button class="md-info" href="#/estudiante/descomposicion">descomposición</md-button>
-                  </div>
-                  <div class="md-layout-item md-size-15 mr-auto">
-                    <img :src="tabPane1[3].image" class="rounded" />
-                    <img :src="tabPane1[2].image" class="rounded" />
-                  </div>
-                </div>
-              </template>
-              <template slot="tab-pane-2">
-                <div class="md-layout">
-                  <div class="md-layout-item md-size-85 ml-auto">
-                      
-                  </div>
-                  <div class="md-layout-item md-size-15 mr-auto">
-                    <img :src="tabPane2[3].image" class="rounded" />
-                    <img :src="tabPane2[4].image" class="rounded" />
-                  </div>
-                </div>
-              </template>
-              <template slot="tab-pane-3">
-                <div class="md-layout">
-                  <div class="md-layout-item md-size-25 ml-auto">
-                    <img :src="tabPane3[0].image" class="rounded" />
-                    <img :src="tabPane3[1].image" class="rounded" />
+                       
+                       <md-button class="md-primary md-block" href="#/estudiante/descomposicion">Información traida desde la bd</md-button>
+
+                       <div v-for="(temas) in temasAllMateria">
+                            <md-button class="md-info" href="#/estudiante/">{{temas}}</md-button><br>       
+                      </div>
                   </div>
                   <div class="md-layout-item md-size-25 mr-auto">
                     <img :src="tabPane3[2].image" class="rounded" />
@@ -74,6 +173,7 @@
                   </div>
                 </div>
               </template>
+  <!-- Termina Consultas para los temas de la materia de matemáticas-->
             </tabs>
           </div>
         </div>
@@ -86,6 +186,28 @@
 import { Tabs } from "@/components";
 import {Modal} from '@/components'
 
+/*pao */
+import api from '@/api'
+import toastr from 'toastr';
+
+ toastr.options = {
+  "closeButton": false,
+  "debug": false,
+  "newestOnTop": false,
+  "progressBar": false,
+  "positionClass": "toast-top-center",
+  "preventDuplicates": false,
+  "onclick": null,
+  "showDuration": "300",
+  "hideDuration": "1000",
+  "timeOut": "5000",
+  "extendedTimeOut": "1000",
+  "showEasing": "swing",
+  "hideEasing": "linear",
+  "showMethod": "fadeIn",
+  "hideMethod": "fadeOut"
+}
+/* Termina pao */
 export default {
   components: {
     Tabs,Modal
@@ -93,18 +215,48 @@ export default {
   bodyClass: "profile-page",
   data() {
     return {
+       /*pao */
+      acudiente_tipo_ident: null,
+      acu_numero_ident: null,
+      acu_nombre_completo:null,
+      ecudiente_email: null,
+      acudiente_telefono:null,
+      errores:{},
+      temasAllMateria: [],
+      nombre_materia: null,
+      nombre_profesor: null,
+      materiasMatri:[],
+      nombre_cada_materia:'Ingles', //obtenerlo del clic de cada materia
+      materias_matriculadas:[],
+      Materia_sin_matri:null,
+      temasdeunamateria:"Matematicas", //obtenerlo del clic de la materia 
+      nombredeltema: "Suma de conjuntos", //obtenerlo desde el clic de un tema especifico
+      materialdeEstudio:[],
+
+      
+      mat_id: 1405,
+      /*mat_id: 1403, esto es el codigo de matematicas*/
+      matri_fecha_fin: '12-03-2019',
+      
+       /*Termina Pao, coloque una coma(,)*/
+
+
       tabPane1: [
         { image: require("@/assets/img/img-act/banner.jpg") },
         { image: require("@/assets/img/img-act/banner.jpg") },
         { image: require("@/assets/img/img-act/banner.jpg") },
-        { image: require("@/assets/img/img-act/banner.jpg") }
+        { image: require("@/assets/img/img-act/banner.jpg") },
+        { image: require("@/assets/img/examples/Acudiente.gif") }
+        
+
       ],
       tabPane2: [
         { image: require("@/assets/img/examples/olu-eletu.jpg") },
         { image: require("@/assets/img/examples/clem-onojeghuo.jpg") },
         { image: require("@/assets/img/examples/cynthia-del-rio.jpg") },
         { image: require("@/assets/img/examples/mariya-georgieva.jpg") },
-        { image: require("@/assets/img/examples/clem-onojegaw.jpg") }
+        { image: require("@/assets/img/examples/clem-onojegaw.jpg") },
+        { image: require("@/assets/img/examples/Materias.gif") }
       ],
       tabPane3: [
         { image: require("@/assets/img/examples/mariya-georgieva.jpg") },
@@ -115,6 +267,7 @@ export default {
       ],
       nombres: window.localStorage.nombres,
       apellidos: window.localStorage.apellidos,
+      identificacion: window.localStorage.id,
       words: ['Pera', 'Manzana', 'Tomate', 'Cereza', 'Frutilla'],
       classicModal: false,
       classicModal2: false
@@ -135,17 +288,114 @@ export default {
       return {
         backgroundImage: `url(${this.header})`
       };
+    },
+ 
+    filteredMateriasAMatricular: function() {
+      return this.materiasMatri.filter(materias => {
+        return (
+          materias[0]
+            .toString()
+            .toLowerCase()
+            .match(this.search)||
+            materias[1].toString().indexOf(this.search) != -1 
+        );
+      });
     }
+
+
   },
   methods: {
+
     classicModalHide() {
       this.classicModal = false;
     },
     classicModalHide2() {
       this.classicModal2 = false;
-    }
+    },
+    /*pao */
+    registroAcudiente(){
+                 api.registrarAcudiente(this.acudiente_tipo_ident, this.acu_numero_ident, this.acu_nombre_completo, this.ecudiente_email, this.acudiente_telefono)
+                .then(res =>{
+                  console.log("Se registro acudiente:" +res);
+                  
+                if(res == 'Se insertaron los datos de la tabala acudiente'){
+                    api.registrarEstudiante(this.identificacion, this.acu_numero_ident)
+                    .then(res =>{
+                    console.log("Se insertaron los datos de la tabla estudiante"+res)
+                    if(res == 'Se insertaron correctamente los datos'){
+                    toastr.success("Se registro exitosamente como Acudiente  ");
+                    this.$router.push("/estudiante");
+                    }
+                    })
+                    .catch(err =>{console.log("error al registrar estudiante"+err)})
+
+                }
+                })
+                .catch(err =>{console.log("error al registrar acudiente"+err)})
+             },
+
+            mostrarTemasAll() {
+
+            api.mostrarTemas(this.temasdeunamateria).then(res => {
+              console.log(res);
+              this.temasAllMateria = res;
+            });
+            },
+            mostrarMateriasAMatricular() {
+            api.MateriasAMatricular(this.identificacion).then(res => {
+              console.log(res);
+              this.materiasMatri = res;
+
+            });
+            },
+ 
+            mostrarProfesorPorMateria(){
+            api.MostrarProfesor(this.nombre_cada_materia).then(res => {
+              console.log(res);
+              this.nombre_profesor = res;
+              
+            });
+            },
+
+            mostrarMateriasMatriculadasEst(){
+            api.MateriasMatriculadasPorEstudiante(this.identificacion).then(res => {
+              console.log(res);
+              this.materias_matriculadas = res;
+             
+            });
+            },
+             mostrarMaterialdeEstudioDeUnTema(){
+             api.mostrarMaterialEstudio(this.nombredeltema).then(res => {
+              console.log(res);
+              this.materialdeEstudio = res;
+             
+            });
+            },
+
+            registroMateriaMatricular(){
+                 api.RegistrarMatricula(this.identificacion, this.mat_id, this.matri_fecha_fin)
+                .then(res =>{
+                  console.log("Se registro la matricula:" +res); 
+                if(res == 'Se insertaron correctamente los datos de la tabla matricula'){
+                    console.log("Se insertaron los datos de la tabla matricula"+res)
+                    toastr.success("Se registro exitosamente su matricula");
+                    this.$router.push("/estudiante");
+                  }
+                })
+                .catch(err =>{console.log("error al registrar matricula de la materia"+err)})
+             },
+    /*termina pao */         
+},
+created() {
+    this.mostrarTemasAll();
+    this.mostrarMateriasAMatricular();
+    this.mostrarProfesorPorMateria();
+    this.mostrarMateriasMatriculadasEst();
+    
   }
+
 };
+
 </script>
 
 <style lang="scss" scoped>
