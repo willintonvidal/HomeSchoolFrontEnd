@@ -153,6 +153,8 @@ export default {
   },
   methods:{
 
+    
+
     registro(){
           
           api.registroInicio(this.numeroId,this.tipo_docu,this.nombres,this.apellidos,this.tipo_usuario,this.password,this.email,this.celular)

@@ -88,26 +88,66 @@ api.registrarProfesor= function(id_prof,titulo_prof, experiencia_laboral_prof){
     .catch(err=> {console.log('[ERROR]',err)})
 }
 
-/*
-api.registrarEstudiante= function(){
-    return trae.get('',{})
+/*Metodos para consultar materias matriculadas*/
+api.MateriasMatriculadasPorEstudiante= function(id_est){
+    return trae.get('/api/estudiante/getallmateriasestudiante/'+id_est)
     .then (res=> res.data)
     .catch(err=> {console.log('[ERROR]',err)})
 }
-api.registrarEstudiante= function(){
-    return trae.get('',{})
+
+/*Termina Métodos para consultar materias matriculadas*/
+
+/*Metodos de la matricula*/ 
+
+api.MateriasAMatricular= function(id_est){
+    return trae.get('/api/estudiante/mateamatricular/'+id_est)
+    .then (res=> res.data)
+    .catch(err=> {console.log('[ERROR]',err)})
+}
+
+api.MostrarProfesor= function(mat_id){
+    return trae.get('/api/materia/profesordelamateria/'+mat_id)
     .then (res=> res.data)
     .catch(err=> {console.log('[ERROR]',err)})
 }
 
 
+api.RegistrarMatricula= function(est_id,mat_id, matri_fecha_fin){
+    var matri_estado="Activo";
+    var matri_not_final=0;
+    return trae.post('/api/matricula/insertar',{est_id,mat_id, matri_fecha_fin, matri_estado, matri_not_final})
+    .then (res=> res.data)
+    .catch(err=> {console.log('[ERROR]',err)})
+}
+
+/*Termina Metodos de la matricula*/
+
+ /*Consultas rol Estudiante-- mostrar temas de la materia estudiante , siempre y cuendo el estudiante este matriculado */
+api.mostrarTemas= function(materia){
+    return trae.get('/api/materia/temasdelamateria/'+materia)
+    .then (res=> res.data)
+    .catch(err=> {console.log('[ERROR]',err)})
+}
+
+api.mostrarMaterialEstudio= function(tema){
+    return trae.get('/api/tema/materialestudio/'+tema)
+    .then (res=> res.data)
+    .catch(err=> {console.log('[ERROR]',err)})
+}
+
+api.mostrarActividadesTema=function(tema){
+    return trae.get('/api/tema/actividadesportema/'+tema)
+    .then (res=> res.data)
+    .catch(err=> {console.log('[ERROR]',err)})
+}
+
+/*Termina consultas rol Estudiante */
 
 api.getStatus = function(){
     return trae.get('/')
     .then(res => res.data)
     .catch(err => console.log('[ERROR]',err))
 }
-
 
 
 api.checkToken = function(){
@@ -119,6 +159,6 @@ api.isAuthenticated = function(){
     return window.localStorage.token
   }
 
-*/
+
 
 export default api
