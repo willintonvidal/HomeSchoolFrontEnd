@@ -50,7 +50,7 @@
                                 <md-field>
                                   <md-select v-model="Materia_sin_matri" name="Materia_sin_matri" id="Materia_sin_matri" placeholder="Materia" >
                                     <div v-for="(mate, i) in materiasMatri" >
-                                        <md-option value="'${mate[0]}'">{{mate[0]}}</md-option>
+                                        <md-option value="'${mate[0]}'">{{mate[0]}} {{i}}</md-option>
                                   </div>
                                   
                                   </md-select>
