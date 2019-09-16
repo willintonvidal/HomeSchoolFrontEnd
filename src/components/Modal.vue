@@ -45,6 +45,7 @@ export default {
   opacity: 0;
 }
 
+
 .modal-leave-active {
   opacity: 0;
 }
@@ -55,5 +56,8 @@ export default {
   transform: scale(1.1);
 }
 
+.modal-mask{
+  width: 800px;
+}
 
 </style>

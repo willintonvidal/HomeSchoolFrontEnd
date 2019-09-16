@@ -19,6 +19,7 @@
         </h3>
         </a>
       </div>
+      
       <div class="md-toolbar-section-end">
         <md-button
           class="md-just-icon md-simple md-toolbar-toggle"
@@ -73,12 +74,41 @@
               </li>
 
             <!--Items Menus -->
+         
+
             <md-list-item
-                href="#/login"
+                href="#/estudiante"
+                v-if="role=='Estudiante'"
               >
                 <i class="material-icons">account_circle</i>
-                <p>Iniciar Sesion</p>
+                <p>Estudiante</p>
             </md-list-item>
+
+            <md-list-item
+                href="#/profesor"
+                v-if="role=='Profesor'"
+              >
+                <i class="material-icons">account_circle</i>
+                <p>Profesor</p>
+            </md-list-item>
+
+            <md-list-item
+                href="#/admin"
+                v-if="role=='Administrador'"
+              >
+                <i class="material-icons">account_circle</i>
+                <p>Administrador</p>
+            </md-list-item>
+
+             <md-list-item
+                href="#/login"
+                v-if="role=='' || role ==null"
+              >
+                <i class="material-icons">account_circle</i>
+                <p>Iniciar sesion</p>
+            </md-list-item>
+            
+            
               <li class="md-list-item" >
                 <a
                   href="javascript:void(0)"
@@ -167,7 +197,8 @@ export default {
     return {
       extraNavClasses: "",
       toggledClass: false,
-      loginStaus: "false"
+      loginStaus: "false",
+      role:window.localStorage.role
     };
   },
   created(){
@@ -234,6 +265,7 @@ export default {
           localStorage.removeItem('estado');
 
           this.loginStaus = "false";
+          this.role = null;
           this.$router.push('/')
     },probar(){
      

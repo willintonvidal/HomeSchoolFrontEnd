@@ -27,6 +27,13 @@
           <div class="description text-center">
             <h1>Diferenciación</h1>
             <h1>{{calificacionfinal}}</h1>
+            <div>
+              <div class="md-layout md-gutter md-alignment-center">
+                <div v-for="n in calificacionfinal">
+                  <img style="width:50px" src="@/assets/img/img-act/star.png" alt="People" />
+                </div>
+              </div>
+            </div>
           </div>
           <div class="profile-tabs">
             <tabs
@@ -36,8 +43,21 @@
               nav-pills-icons
               color-button="success"
             >
+
+ <template slot="tab-pane-1">
+                <div class="md-layout">
+                  <div class="md-layout-item md-size-85 ml-auto">
+                      Material
+                  </div>
+                  <div class="md-layout-item md-size-15 mr-auto">
+                    <img :src="tabPane2[3].image" class="rounded" />
+                    <img :src="tabPane2[4].image" class="rounded" />
+                  </div>
+                </div>
+              </template>
+
               <!-- here you can add your content for tab-content -->
-              <template slot="tab-pane-1">
+              <template slot="tab-pane-2">
                 <div class="md-layout">
                   <div class="md-layout-item md-size-85 ml-auto">
                    
@@ -69,41 +89,33 @@
                     <div class="md-layout-item md-medium-size-33 md-small-size-50 md-xsmall-size-100">
                               
                               <img style="width:25px" src="@/assets/img/img-act/clown.png" alt="People">
-                              <img style="width:25px" src="@/assets/img/img-act/vinyl.png" alt="People">
-                              <img style="width:25px" src="@/assets/img/img-act/target.png" alt="People">
-                              <img style="width:25px" src="@/assets/img/img-act/soccer.png" alt="People">
-                              <img style="width:25px" src="@/assets/img/img-act/percolator.png" alt="People">
-                              <img style="width:25px" src="@/assets/img/img-act/pencil.png" alt="People">
+                              <img style="width:55px" src="@/assets/img/img-act/vinyl.png" alt="People">
+                              <img style="width:85px" src="@/assets/img/img-act/target.png" alt="People">
+                              <img style="width:55px" src="@/assets/img/img-act/pencil.png" alt="People">
                               <img style="width:25px" src="@/assets/img/img-act/gingerman.png" alt="People">
-                              <img style="width:25px" src="@/assets/img/img-act/dog.png" alt="People"><br>
+                              <img style="width:85px" src="@/assets/img/img-act/dog.png" alt="People"><br>
                                                            
                               <img style="width:25px" src="@/assets/img/img-act/clown.png" alt="People">
-                              <img style="width:25px" src="@/assets/img/img-act/vinyl.png" alt="People">
-                              <img style="width:25px" src="@/assets/img/img-act/target.png" alt="People">
-                              <img style="width:25px" src="@/assets/img/img-act/target.png" alt="People">
-                              <img style="width:25px" src="@/assets/img/img-act/soccer.png" alt="People"><br>
-                              <md-radio v-model="eje_uno" value="13">Aquel?</md-radio>
+                              <img style="width:65px" src="@/assets/img/img-act/vinyl.png" alt="People">
+                              
+
+                              <md-button class="md-warning" @click="click_eje_uno(1)"><strong>Sera este?</strong></md-button>
+                                
                     </div>
                     <div class="md-layout-item md-medium-size-33 md-small-size-50 md-xsmall-size-100">
-                        <h1>?</h1>
+                        <img style="width:150px" src="@/assets/img/img-act/panda.png" alt="People">
                       </div>
                       <div class="md-layout-item md-medium-size-33 md-small-size-50 md-xsmall-size-100">
                               <img style="width:25px" src="@/assets/img/img-act/clown.png" alt="People">
+                              <img style="width:85px" src="@/assets/img/img-act/vinyl.png" alt="People"><br>
+                              <img style="width:35px" src="@/assets/img/img-act/target.png" alt="People">                            
+                              <img style="width:75px" src="@/assets/img/img-act/clown.png" alt="People">
                               <img style="width:25px" src="@/assets/img/img-act/vinyl.png" alt="People"><br>
-                              <img style="width:25px" src="@/assets/img/img-act/target.png" alt="People">                            
-                              <img style="width:25px" src="@/assets/img/img-act/clown.png" alt="People">
-                              <img style="width:25px" src="@/assets/img/img-act/vinyl.png" alt="People"><br>
-                              <img style="width:25px" src="@/assets/img/img-act/target.png" alt="People">
-                              <img style="width:25px" src="@/assets/img/img-act/target.png" alt="People"><br>
-                              <img style="width:25px" src="@/assets/img/img-act/soccer.png" alt="People"><br>
-                              <img style="width:25px" src="@/assets/img/img-act/percolator.png" alt="People">
-                              <img style="width:25px" src="@/assets/img/img-act/pencil.png" alt="People"><br>
-                              <img style="width:25px" src="@/assets/img/img-act/gingerman.png" alt="People">
-                              <img style="width:25px" src="@/assets/img/img-act/dog.png" alt="People"><br>
-
-                              
-                              
-                              <md-radio v-model="eje_uno" value="12">Talvez este?</md-radio>
+                              <img style="width:65px" src="@/assets/img/img-act/target.png" alt="People">
+                              <img style="width:100px" src="@/assets/img/img-act/target.png" alt="People"><br>
+                              <br>
+                              <md-button class="md-rose" @click="click_eje_uno(2)"><strong>Sera este?</strong></md-button>
+                          
                       </div>
                    
                   </div>
@@ -119,7 +131,7 @@
                 </template>
 
                 <template slot="footer" v-if="eje_uno_mostrar">
-                    <md-button class="md-success" @click="click_eje_uno">Verificar</md-button>
+                 
                 </template>
               </modal>
             </div>
@@ -153,10 +165,10 @@
                               <img style="width:50px" src="@/assets/img/img-act/santa.png" alt="People">
                               <img style="width:80px" src="@/assets/img/img-act/santa.png" alt="People">
                               <img style="width:50px" src="@/assets/img/img-act/santa.png" alt="People"><br>
-                              <md-radio v-model="eje_dos" value="5">Aquel?</md-radio>
+                              <md-button class="md-rose" @click="click_eje_dos(5)"><strong>Sera este?</strong></md-button>
                     </div>
                     <div class="md-layout-item md-medium-size-33 md-small-size-50 md-xsmall-size-100">
-                      <h1>?</h1>
+                      <img style="width:150px" src="@/assets/img/img-act/panda.png" alt="People">
                     </div>
                       <div class="md-layout-item md-medium-size-33 md-small-size-50 md-xsmall-size-100">
                               <img style="width:50px" src="@/assets/img/img-act/santa.png" alt="People">
@@ -165,7 +177,7 @@
                               <img style="width:80px" src="@/assets/img/img-act/santa.png" alt="People">
                               <img style="width:50px" src="@/assets/img/img-act/santa.png" alt="People">
                               <img style="width:50px" src="@/assets/img/img-act/santa.png" alt="People"><br>
-                              <md-radio v-model="eje_dos" value="6">Aquel?</md-radio>
+                             <md-button class="md-warning" @click="click_eje_dos(6)"><strong>Sera este?</strong></md-button>
                       </div>
                 
                   </div>
@@ -181,7 +193,7 @@
                 </template>
 
                 <template slot="footer" v-if="eje_dos_mostrar">
-                    <md-button class="md-success" @click="click_eje_dos">Verificar</md-button>
+                 
                 </template>
               </modal>
             </div>
@@ -209,23 +221,21 @@
                 </template>
 
                 <template slot="body" v-if="eje_tres_mostrar">
-                 <h2>Sumando cada número en que cuadro hay un mayor valor?</h2>
+                 <h2>¿Cual es el número de mayor valor?</h2>
                   <div class="md-layout md-gutter md-alignment-center">
                     <div class="md-layout-item md-medium-size-33 md-small-size-50 md-xsmall-size-100">
-                        <img style="width:50px" src="@/assets/img/img-act/3.png" alt="People">
-                        <img style="width:50px" src="@/assets/img/img-act/5.png" alt="People">
-                        <img style="width:50px" src="@/assets/img/img-act/4.png" alt="People">
-                        <img style="width:50px" src="@/assets/img/img-act/1.png" alt="People"><br>
-                        <md-radio v-model="eje_tres" value="13">En este?</md-radio>
+                        <img style="width:60px" src="@/assets/img/img-act/3.png" alt="People">
+                        <img style="width:60px" src="@/assets/img/img-act/5.png" alt="People">
+                       <br>
+                        <md-button class="md-success" @click="click_eje_tres(35)"><strong>Sera este?</strong></md-button>
                     </div>
                  <div class="md-layout-item md-medium-size-33 md-small-size-50 md-xsmall-size-100">
-                      <h1>?</h1>
+                      <img style="width:150px" src="@/assets/img/img-act/panda.png" alt="People">
                     </div>
                       <div class="md-layout-item md-medium-size-33 md-small-size-50 md-xsmall-size-100">
-                        <img style="width:50px" src="@/assets/img/img-act/2.png" alt="People"><br>
-                        <img style="width:50px" src="@/assets/img/img-act/6.png" alt="People">
-                        <img style="width:50px" src="@/assets/img/img-act/7.png" alt="People"><br>
-                        <md-radio v-model="eje_tres" value="15">O talvez este?</md-radio>
+                        <img style="width:60px" src="@/assets/img/img-act/2.png" alt="People">
+                        <img style="width:60px" src="@/assets/img/img-act/6.png" alt="People">
+                        <md-button class="md-rose" @click="click_eje_tres(26)"><strong>Sera este?</strong></md-button>
                       </div>
                   
                   </div>
@@ -241,7 +251,7 @@
                 </template>
 
                 <template slot="footer" v-if="eje_tres_mostrar">
-                    <md-button class="md-success" @click="click_eje_tres">Verificar</md-button>
+                 
                 </template>
               </modal>
             </div>
@@ -255,6 +265,8 @@
                   </div>
                 </div>
               </template>
+
+             
               
             </tabs>
           </div>
@@ -353,8 +365,8 @@ export default {
     classicModalHide3() {
       this.classicModal3 = false;
     },
-  click_eje_uno(){
-          if(this.eje_uno_res_correcta == this.eje_uno){
+  click_eje_uno(num){
+          if(num== 1){
               this.eje_uno_mostrar = false;
               this.eje_uno_correcto = true;
               this.btn_eje_uno_disabled = true;
@@ -365,8 +377,8 @@ export default {
           }
           this.se_realizaron_las_tres_act_diferenciacion();
     },
-  click_eje_dos(){
-          if(this.eje_dos_res_correcta == this.eje_dos){
+  click_eje_dos(num){
+          if(num == 5){
               this.eje_dos_mostrar = false;
               this.eje_dos_correcto = true;
               this.btn_eje_dos_disabled = true;
@@ -377,8 +389,8 @@ export default {
           }
           this.se_realizaron_las_tres_act_diferenciacion();
     },
-  click_eje_tres(){
-          if(this.eje_tres_res_correcta == this.eje_tres){
+  click_eje_tres(num){
+          if(num == 35){
               this.eje_tres_mostrar = false;
               this.eje_tres_correcto = true;
               this.btn_eje_tres_disabled = true;

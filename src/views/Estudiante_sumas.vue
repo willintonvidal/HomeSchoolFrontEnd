@@ -25,7 +25,7 @@
             </div>
           </div>
           <div class="description text-center">
-            <h1>Operaciones Basicas</h1>
+            <h1>Sumas</h1>
             <h1>{{calificacionfinal}}</h1>
             <div>
               <div class="md-layout md-gutter md-alignment-center">
@@ -80,43 +80,39 @@
                 </template>
 
                 <template slot="body" v-if="suma_mostrar">
-                 <h2>Suma los perritos</h2>
-                  <div class="md-layout md-gutter md-alignment-center">
-                    <div class="md-layout-item md-medium-size-33 md-small-size-50 md-xsmall-size-100">
-                        <img style="width:50px" src="@/assets/img/img-act/dog.png" alt="People">
-                        <img style="width:80px" src="@/assets/img/img-act/dog.png" alt="People"><br>
-                        <img style="width:50px" src="@/assets/img/img-act/dog.png" alt="People">
-                        <img style="width:80px" src="@/assets/img/img-act/dog.png" alt="People">
+                 <h2>Sumas</h2>
+                  <div class="md-layout">
+                    <div class="md-layout-item">
+                        <div id="contenedor">
+                            <div id="contRadios" class="boton">
+                              <label ><input type="radio" name="tipoOperacion" id="suma" v-model="suma" checked="checked"/>Suma</label>
+                              <label><input type="radio" name="tipoOperacion" id="resta" v-model="resta"/>Resta</label>
+                            </div>
+                            <div id="contOperacion">
+                              <div id="operacion"></div>
+                              <div id="propResultado"><input type="text" id="propuestaResultado"/></div>
+                            </div>
+                            <div id="contBotones" >
+                              <button class="boton" id="botonResultado" >Comprobar</button>
+                              <button id="botonSiguiente" class="boton" >Siguiente</button>
+                            </div>
+                            <div id="mensaje"></div>			
+                        </div>
                     </div>
-                    <div class="md-layout-item md-medium-size-33 md-small-size-50 md-xsmall-size-100">
-                      <img style="width:100px" src="@/assets/img/img-act/mas.png" alt="People">
-                    </div>
-                    <div class="md-layout-item md-medium-size-33 md-small-size-50 md-xsmall-size-100">
-                        <img style="width:25px" src="@/assets/img/img-act/dog.png" alt="People">
-                        <img style="width:60px" src="@/assets/img/img-act/dog.png" alt="People"><br>
-                        <img style="width:50px" src="@/assets/img/img-act/dog.png" alt="People">
-                        <img style="width:70px" src="@/assets/img/img-act/dog.png" alt="People">
-                        <img style="width:50px" src="@/assets/img/img-act/dog.png" alt="People">
-                        <img style="width:60px" src="@/assets/img/img-act/dog.png" alt="People">
+                    
+                    <div class="md-layout-item">
+                        
                     </div>
                   </div>
-                  <div v-show="suma_incorrecto">
-                    <h3>Vuelve a contar los perritos....</h3>
-                  </div>
-                </template>
-
-                <template slot="body" v-if="suma_correcto">
-                 <h1>Es correcto!</h1>
-                 <img style="width:80%" src="@/assets/img/img-act/fireworks.png" alt="People">
-                 <h3>Realiza la siguiente actividad</h3>
+                  
                 </template>
 
                 <template slot="footer" v-if="suma_mostrar">
-                              <div class="md-layout md-gutter md-alignment-center">
-                                <md-button class="md-danger" @click="click_eje_uno(2)"><strong>2 perritos</strong></md-button>
-                                <md-button class="md-info" @click="click_eje_uno(10)"><strong>10 perritos</strong></md-button>
-                                <md-button @click="click_eje_uno(11)"><strong>11 perritos</strong></md-button>
-                              </div>
+                    <md-field>
+                      <label>****</label>
+                      <md-input v-model="suma" type="number"></md-input>
+                    </md-field>
+                    <md-button class="md-success" @click="resulSuma">Verificar</md-button>
                 </template>
               </modal>
             </div>
@@ -142,25 +138,25 @@
                 </template>
                 <template slot="body" v-if="resta_mostrar">
                  <h2>Debes  averiguar cuantas galletas quedarian realizando la operación</h2>
-                  <div class="md-layout md-gutter md-alignment-center">
-                    <div class="md-layout-item md-medium-size-33 md-small-size-50 md-xsmall-size-100">
+                  <div class="md-layout">
+                    <div class="md-layout-item">
                         <img style="width:50px" src="@/assets/img/img-act/gingerman.png" alt="People">
-                        <img style="width:70px" src="@/assets/img/img-act/gingerman.png" alt="People">
-                        <img style="width:50px" src="@/assets/img/img-act/gingerman.png" alt="People">
-                        <img style="width:60px" src="@/assets/img/img-act/gingerman.png" alt="People">
-                        <img style="width:50px" src="@/assets/img/img-act/gingerman.png" alt="People">
-                        <img style="width:60px" src="@/assets/img/img-act/gingerman.png" alt="People">
-                        <img style="width:50px" src="@/assets/img/img-act/gingerman.png" alt="People">
-                        <img style="width:60px" src="@/assets/img/img-act/gingerman.png" alt="People">
-                    </div>
-                    <div class="md-layout-item md-medium-size-33 md-small-size-50 md-xsmall-size-100">
-                      <img style="width:100px" src="@/assets/img/img-act/menos.png" alt="People">
-                    </div>
-                    <div class="md-layout-item md-medium-size-33 md-small-size-50 md-xsmall-size-100">
-                          <img style="width:80px" src="@/assets/img/img-act/gingerman.png" alt="People">
                         <img style="width:50px" src="@/assets/img/img-act/gingerman.png" alt="People"><br>
                         <img style="width:50px" src="@/assets/img/img-act/gingerman.png" alt="People">
-                        <img style="width:80px" src="@/assets/img/img-act/gingerman.png" alt="People">
+                        <img style="width:50px" src="@/assets/img/img-act/gingerman.png" alt="People">
+                        <img style="width:50px" src="@/assets/img/img-act/gingerman.png" alt="People">
+                        <img style="width:50px" src="@/assets/img/img-act/gingerman.png" alt="People"><br>
+                        <img style="width:50px" src="@/assets/img/img-act/gingerman.png" alt="People">
+                        <img style="width:50px" src="@/assets/img/img-act/gingerman.png" alt="People">
+                    </div>
+                    <div class="md-layout-item">
+                      <h1>-</h1>
+                    </div>
+                    <div class="md-layout-item">
+                          <img style="width:50px" src="@/assets/img/img-act/gingerman.png" alt="People">
+                        <img style="width:50px" src="@/assets/img/img-act/gingerman.png" alt="People"><br>
+                        <img style="width:50px" src="@/assets/img/img-act/gingerman.png" alt="People">
+                        <img style="width:50px" src="@/assets/img/img-act/gingerman.png" alt="People">
                     </div>
                   </div>
                   <div v-show="resta_incorrecto">
@@ -179,11 +175,11 @@
                 </template>
 
                 <template slot="footer" v-if="resta_mostrar">
-                              <div class="md-layout md-gutter md-alignment-center">
-                                <md-button class="md-danger" @click="click_eje_dos(5)"><strong>5 galletas</strong></md-button>
-                                <md-button class="md-info" @click="click_eje_dos(4)"><strong>4 galletas</strong></md-button>
-                                <md-button @click="click_eje_dos(12)"><strong>12 galletas</strong></md-button>
-                              </div>
+                  <md-field>
+                      <label>Cuantas galleticas quedan al final</label>
+                      <md-input v-model="resta" type="number"></md-input>
+                    </md-field>
+                    <md-button class="md-success" @click="click_resta">Verificar</md-button>
                 </template>
               </modal>
             </div>
@@ -211,20 +207,20 @@
 
                 <template slot="body" v-if="multiplicacion_mostrar">
                  <h2>Debes averiguar cuantos lapices resultaran luego de realizar la operación</h2>
-                  <div class="md-layout md-gutter md-alignment-center">
-                    <div class="md-layout-item md-medium-size-33 md-small-size-50 md-xsmall-size-100">
+                  <div class="md-layout">
+                    <div class="md-layout-item">
                         <img style="width:50px" src="@/assets/img/img-act/pencil.png" alt="People">
-                        <img style="width:80px" src="@/assets/img/img-act/pencil.png" alt="People">
+                        <img style="width:50px" src="@/assets/img/img-act/pencil.png" alt="People"><br>
                         <img style="width:50px" src="@/assets/img/img-act/pencil.png" alt="People">
-                        <img style="width:90px" src="@/assets/img/img-act/pencil.png" alt="People">
-                       
+                        <img style="width:50px" src="@/assets/img/img-act/pencil.png" alt="People">
+                        <img style="width:50px" src="@/assets/img/img-act/pencil.png" alt="People">
                     </div>
-                    <div class="md-layout-item md-medium-size-33 md-small-size-50 md-xsmall-size-100">
-                      <img style="width:100px" src="@/assets/img/img-act/multi.png" alt="People">
+                    <div class="md-layout-item">
+                      <h1>*</h1>
                     </div>
-                    <div class="md-layout-item md-medium-size-33 md-small-size-50 md-xsmall-size-100">
+                    <div class="md-layout-item">
                         <img style="width:50px" src="@/assets/img/img-act/pencil.png" alt="People">
-                        <img style="width:80px" src="@/assets/img/img-act/pencil.png" alt="People"><br>
+                        <img style="width:50px" src="@/assets/img/img-act/pencil.png" alt="People"><br>
                         <img style="width:50px" src="@/assets/img/img-act/pencil.png" alt="People">
                     </div>
                   </div>
@@ -242,11 +238,12 @@
                 </template>
 
                 <template slot="footer" v-if="multiplicacion_mostrar">
-                             <div class="md-layout md-gutter md-alignment-center">
-                                <md-button class="md-warning" @click="click_eje_tres(5)"><strong>Cinco lapices</strong></md-button>
-                                <md-button class="md-info" @click="click_eje_tres(7)"><strong>Siete Lapices</strong></md-button>
-                                <md-button class="md-rose" @click="click_eje_tres(12)"><strong>Doce lapices</strong></md-button>
-                              </div>
+                  <md-field>
+                      <label>Cuantos lapices fueron?</label>
+                      <md-input v-model="multiplicacion" type="number"></md-input>
+                      
+                    </md-field>
+                    <md-button  @click="click_multiplicacion" class="md-success">Verificar</md-button>
                 </template>
               </modal>
               
@@ -375,8 +372,8 @@ export default {
     classicModalHide3() {
       this.classicModal3 = false;
     },
-    click_eje_uno(num){
-        if(num== 10){
+    resulSuma(){
+        if(this.suma == this.resultadosuma){
             this.suma_mostrar = false;
             this.suma_correcto = true;
             this.calificacionfinal = this.calificacionfinal + 5;
@@ -388,8 +385,8 @@ export default {
 
         this.se_realizaron_las_tres_act_op_ba();
     },
-    click_eje_dos(num){
-        if(num == 4){
+    click_resta(){
+        if(this.resta == this.resultadoresta){
             this.resta_mostrar = false;
             this.resta_correcto = true;
             this.calificacionfinal = this.calificacionfinal + 5;
@@ -402,8 +399,8 @@ export default {
 
         this.se_realizaron_las_tres_act_op_ba();
     },
-    click_eje_tres(num){
-      if(num == 12){
+    click_multiplicacion(){
+      if(this.multiplicacion == this.resultadomultiplicacion){
           this.multiplicacion_mostrar = false;
           this.multiplicacion_correcto = true;
            this.calificacionfinal = this.calificacionfinal + 5;

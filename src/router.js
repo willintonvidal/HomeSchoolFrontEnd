@@ -15,6 +15,7 @@ import Estudiante_descomposicion from "./views/Estudiante_descomposicion.vue";
 import Estudiante_diferenciacion from "./views/Estudiante_diferenciacion.vue";
 import Estudiante_lectura_y_escritura from "./views/Estudiante_lectura_y_escritura.vue";
 import Estudiante_operaciones_basicas from "./views/Estudiante_operaciones_basicas.vue";
+import Estudiante_sumas from "./views/Estudiante_sumas.vue";
 
 //Vue.use(Router);
 
@@ -131,6 +132,14 @@ const routes = [
       path: "/estudiante/operacionesbasicas",
       name: "Estudiante_operaciones_basicas",
       components: { default: Estudiante_operaciones_basicas, header: MainNavbar, footer: MainFooter },
+      props: {
+        header: { colorOnScroll: 400 },
+        footer: { backgroundColor: "black" }
+      }
+    },{
+      path: "/estudiante/sumas",
+      name: "Estudiante_sumas",
+      components: { default: Estudiante_sumas, header: MainNavbar, footer: MainFooter },
       props: {
         header: { colorOnScroll: 400 },
         footer: { backgroundColor: "black" }
