@@ -20,6 +20,13 @@
           <div class="description text-center">
             <h1>Descomposición</h1>
             <h1>{{calificacionfinal}}</h1>
+            <div>
+              <div class="md-layout md-gutter md-alignment-center">
+                <div v-for="n in calificacionfinal">
+                  <img style="width:50px" src="@/assets/img/img-act/star.png" alt="People" />
+                </div>
+              </div>
+            </div>
           </div>
           <div class="profile-tabs">
             <tabs
@@ -77,75 +84,37 @@
                           </template>
 
                           <template slot="body" v-if="eje_uno_mostrar">
+                            <h2>Cual es la descomposición correcta para este número</h2>
+                            <img style="width:150px" src="@/assets/img/img-act/3.png" alt="People" />
+                            <img style="width:150px" src="@/assets/img/img-act/2.png" alt="People" />
+                            <br />
                             <div class="md-layout md-gutter md-alignment-center">
                               <div
                                 class="md-layout-item md-medium-size-33 md-small-size-50 md-xsmall-size-100"
                               >
-                                <md-field>
-                                  <label>#</label>
-                                  <md-input v-model="uno_" type="number"></md-input>
-                                </md-field>
-                                <md-field>
-                                  <label>#</label>
-                                  <md-input v-model="dos_" type="number"></md-input>
-                                </md-field>
-                                <md-field>
-                                  <label>#</label>
-                                  <md-input v-model="tres_" type="number"></md-input>
-                                </md-field>
-                              </div>
-                              <div
-                                class="md-layout-item md-medium-size-33 md-small-size-50 md-xsmall-size-100"
-                              >
-                                <md-field>
-                                  <label>#</label>
-                                  <md-input v-model="uno" type="number"></md-input>
-                                </md-field>
-                                <md-field>
-                                  <label>#</label>
-                                  <md-input v-model="dos" type="number"></md-input>
-                                </md-field>
-                                <md-field>
-                                  <label>#</label>
-                                  <md-input v-model="tres" type="number"></md-input>
-                                </md-field>
-                              </div>
-                              <div
-                                class="md-layout-item md-medium-size-33 md-small-size-50 md-xsmall-size-100"
-                              >
-                                <md-field>
-                                  <label>67</label>
-                                  <md-input v-model="resul_uno" type="number" disabled></md-input>
-                                </md-field>
-                                <md-field>
-                                  <label>86</label>
-                                  <md-input v-model="resul_dos" type="number" disabled></md-input>
-                                </md-field>
-                                <md-field>
-                                  <label>48</label>
-                                  <md-input v-model="resul_tres" type="number" disabled></md-input>
-                                </md-field>
+                                <div class="md-layout md-gutter md-alignment-center">
+                                  <md-button class="md-danger" @click="click_eje_uno(32)">
+                                    <strong>15 + 17</strong>
+                                  </md-button>
+                                  <md-button class="md-info" @click="click_eje_uno(33)">
+                                    <strong>31 + 2</strong>
+                                  </md-button>
+                                  <md-button @click="click_eje_uno(52)">
+                                    <strong>12 + 40</strong>
+                                  </md-button>
+                                </div>
                               </div>
                             </div>
                             <div v-show="eje_uno_incorrecto">
                               <h3>Vuelve a leer el numero....</h3>
                             </div>
                           </template>
-
-                          <template slot="body" v-if="eje_uno_correcto">
+    
+                        <template slot="body" v-if="eje_uno_correcto">
                             <h1>Es correcto!</h1>
-                            <img
-                              style="width:80%"
-                              src="@/assets/img/img-act/fireworks.png"
-                              alt="People"
-                            />
-                            <h3>Realiza la siguiente actividad</h3>
-                          
+                            <img style="width:80%" src="@/assets/img/img-act/fireworks.png" />
                           </template>
 
-                          <template slot="footer" v-if="eje_uno_mostrar">
-                            <md-button class="md-success" @click="click_eje_uno">Verificar</md-button>
-                          </template>
                         </modal>
                       </div>
                     </div>
@@ -173,24 +142,22 @@
 
                           <template slot="body" v-if="eje_dos_mostrar">
                             <h2>Cual es la descomposición incorrecta para este número</h2>
-                            <h1><strong>99</strong></h1>
+
                             <div class="md-layout md-gutter md-alignment-center">
-                              
                               <div
                                 class="md-layout-item md-medium-size-33 md-small-size-50 md-xsmall-size-100"
                               >
-                                <h3><strong>60 + 39</strong></h3><br>
-                                <h3><strong>70 + 29</strong></h3><br>
-                                <h3><strong>9 + 99</strong></h3>
-                              </div>
-                             
-                              <div
-                                class="md-layout-item md-medium-size-33 md-small-size-50 md-xsmall-size-100"
-                              >
-                                <br>
-                                <md-radio v-model="eje_dos" value="99">Aquel?</md-radio><br>
-                                <md-radio v-model="eje_dos" value="99">Aquel?</md-radio><br>
-                                <md-radio v-model="eje_dos" value="108">Aquel?</md-radio>
+                                <img
+                                  style="width:100px"
+                                  src="@/assets/img/img-act/8.png"
+                                  alt="People"
+                                />
+                                <img
+                                  style="width:100px"
+                                  src="@/assets/img/img-act/8.png"
+                                  alt="People"
+                                />
+                                <br />
                               </div>
                             </div>
                             <div v-show="eje_dos_incorrecto">
@@ -209,7 +176,17 @@
                           </template>
 
                           <template slot="footer" v-if="eje_dos_mostrar">
-                            <md-button class="md-success" @click="click_eje_dos">Verificar</md-button>
+                            <div class="md-layout md-gutter md-alignment-center">
+                              <md-button class="md-danger" @click="click_eje_dos(1)">
+                                <strong>80 + 8</strong>
+                              </md-button>
+                              <md-button class="md-info" @click="click_eje_dos(2)">
+                                <strong>60 + 28</strong>
+                              </md-button>
+                              <md-button @click="click_eje_dos(3)">
+                                <strong>72 + 18</strong>
+                              </md-button>
+                            </div>
                           </template>
                         </modal>
                       </div>
@@ -238,44 +215,38 @@
                           </template>
 
                           <template slot="body" v-if="eje_tres_mostrar">
-                            <h2>Cual es la descomposición correcto para este número</h2>
-                            <h1><strong>67</strong></h1>
+                            <h2>Cual es la descomposición correcta para este número</h2>
+                            <img style="width:150px" src="@/assets/img/img-act/6.png" alt="People" />
+                            <img style="width:150px" src="@/assets/img/img-act/7.png" alt="People" />
+                            <br />
                             <div class="md-layout md-gutter md-alignment-center">
-                              
                               <div
                                 class="md-layout-item md-medium-size-33 md-small-size-50 md-xsmall-size-100"
                               >
-                                <h3><strong>30 + 37</strong></h3><br>
-                                <h3><strong>47 + 21</strong></h3><br>
-                                <h3><strong>11+ 57</strong></h3>
-                              </div>
-                             
-                              <div
-                                class="md-layout-item md-medium-size-33 md-small-size-50 md-xsmall-size-100"
-                              >
-                                <br>
-                                <md-radio v-model="eje_tres" value="1">Aquel?</md-radio><br>
-                                <md-radio v-model="eje_tres" value="2">Aquel?</md-radio><br>
-                                <md-radio v-model="eje_tres" value="3">Aquel?</md-radio>
+                                <div class="md-layout md-gutter md-alignment-center">
+                                  <md-button class="md-danger" @click="click_eje_tres(77)">
+                                    <strong>60 + 17</strong>
+                                  </md-button>
+                                  <md-button class="md-info" @click="click_eje_tres(67)">
+                                    <strong>30 + 37</strong>
+                                  </md-button>
+                                  <md-button @click="click_eje_tres(52)">
+                                    <strong>12 + 40</strong>
+                                  </md-button>
+                                </div>
                               </div>
                             </div>
                             <div v-show="eje_tres_incorrecto">
                               <h3>Vuelve a leer el numero....</h3>
-                            </div>   
-                            
+                            </div>
                           </template>
 
                           <template slot="body" v-if="eje_tres_correcto">
                             <h1>Es correcto!</h1>
-                            <img
-                              style="width:80%"
-                              src="@/assets/img/img-act/fireworks.png">
-                           
+                            <img style="width:80%" src="@/assets/img/img-act/fireworks.png" />
                           </template>
 
-                          <template slot="footer" v-if="eje_tres_mostrar">
-                            <md-button class="md-success" @click="click_eje_tres">Verificar</md-button>
-                          </template>
+                          <template slot="footer" v-if="eje_tres_mostrar"></template>
                         </modal>
                       </div>
                     </div>
@@ -287,7 +258,6 @@
                   </div>
                 </div>
               </template>
-        
             </tabs>
           </div>
         </div>
@@ -336,43 +306,38 @@ export default {
 
       calificacionfinal: 0,
 
-      resul_uno:67,
-      resul_dos:86,
-      resul_tres:48,
+      resul_uno: 67,
+      resul_dos: 86,
+      resul_tres: 48,
 
-      uno_:null,
-      dos_:null,
-      tres_:null,
+      uno_: null,
+      dos_: null,
+      tres_: null,
 
-      uno:null,
-      dos:null,
-      tres:null,
+      uno: null,
+      dos: null,
+      tres: null,
 
-      eje_uno_mostrar:true,
-      eje_dos_mostrar:true,
-      eje_tres_mostrar:true,
+      eje_uno_mostrar: true,
+      eje_dos_mostrar: true,
+      eje_tres_mostrar: true,
 
-      btn_eje_uno_disabled:false,
-      btn_eje_dos_disabled:false,
-      btn_eje_tres_disabled:false,
+      btn_eje_uno_disabled: false,
+      btn_eje_dos_disabled: false,
+      btn_eje_tres_disabled: false,
 
-      eje_uno_correcto:false,
-      eje_uno_incorrecto:false,
+      eje_uno_correcto: false,
+      eje_uno_incorrecto: false,
 
+      eje_dos: null,
+      eje_dos_respuesta: 99,
+      eje_dos_correcto: false,
+      eje_dos_incorrecto: false,
 
-      eje_dos:null,
-      eje_dos_respuesta:99,
-      eje_dos_correcto:false,
-      eje_dos_incorrecto:false,
-
-      eje_tres:null,
-      eje_tres_respuesta:1,
-      eje_tres_correcto:false,
-      eje_tres_incorrecto:false
-
-
-
-      
+      eje_tres: null,
+      eje_tres_respuesta: 1,
+      eje_tres_correcto: false,
+      eje_tres_incorrecto: false
     };
   },
   props: {
@@ -402,52 +367,44 @@ export default {
     classicModalHide3() {
       this.classicModal3 = false;
     },
-    click_eje_uno() {
-      var resultado_uno = parseInt(this.uno) + parseInt(this.uno_) ;
-      var resultado_dos = parseInt(this.dos) + parseInt(this.dos_) ;
-      var resultado_tres = parseInt(this.tres) + parseInt(this.tres_) ;
-
-        if(resultado_uno == this.resul_uno){
-            if(resultado_dos == this.resul_dos){
-                if(resultado_tres == this.resul_tres){
-
-                  this.eje_uno_mostrar = false;
-                  this.eje_uno_correcto = true;
-                  this.btn_eje_uno_disabled = true;
-                  this.calificacionfinal = this.calificacionfinal + 5;
-
-        }
-        }          
-        }else{
-          this.eje_uno_incorrecto = true;
-          this.calificacionfinal = this.calificacionfinal - 1;
-        }
+    click_eje_uno(num) {
+      if (num == 32) {
+      
+            this.eje_uno_mostrar = false;
+            this.eje_uno_correcto = true;
+            this.btn_eje_uno_disabled = true;
+            this.calificacionfinal = this.calificacionfinal + 5;
+        
+      } else {
+        this.eje_uno_incorrecto = true;
+        //this.calificacionfinal = this.calificacionfinal - 1;
+      }
 
       this.se_realizaron_las_tres_act_lectu_num();
     },
-    click_eje_dos() {
-     if(this.eje_dos != this.eje_dos_respuesta){
-                  this.eje_dos_mostrar = false;
-                  this.eje_dos_correcto = true;
-                  this.btn_eje_dos_disabled = true;
-                  this.calificacionfinal = this.calificacionfinal + 5;
-     }else{
-           this.eje_dos_incorrecto = true;
-           this.calificacionfinal = this.calificacionfinal - 1;
-     }
+    click_eje_dos(num) {
+      if (num == 3) {
+        this.eje_dos_mostrar = false;
+        this.eje_dos_correcto = true;
+        this.btn_eje_dos_disabled = true;
+        this.calificacionfinal = this.calificacionfinal + 5;
+      } else {
+        this.eje_dos_incorrecto = true;
+        this.calificacionfinal = this.calificacionfinal - 1;
+      }
 
       this.se_realizaron_las_tres_act_lectu_num();
     },
-    click_eje_tres() {
-   if(this.eje_tres == this.eje_tres_respuesta){
-                  this.eje_tres_mostrar = false;
-                  this.eje_tres_correcto = true;
-                  this.btn_eje_tres_disabled = true;
-                  this.calificacionfinal = this.calificacionfinal + 5;
-     }else{
-           this.eje_tres_incorrecto = true;
-           this.calificacionfinal = this.calificacionfinal - 1;
-     }
+    click_eje_tres(num) {
+      if (num == 67) {
+        this.eje_tres_mostrar = false;
+        this.eje_tres_correcto = true;
+        this.btn_eje_tres_disabled = true;
+        this.calificacionfinal = this.calificacionfinal + 5;
+      } else {
+        this.eje_tres_incorrecto = true;
+        this.calificacionfinal = this.calificacionfinal - 1;
+      }
       this.se_realizaron_las_tres_act_lectu_num();
     },
     se_realizaron_las_tres_act_lectu_num() {

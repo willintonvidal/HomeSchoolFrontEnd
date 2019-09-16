@@ -8,7 +8,7 @@
           >
             <form @submit.prevent="acceso">
               <login-card header-color="green">
-                <h4 slot="title" class="card-title">Iniciar Sesion</h4>
+                <h4 slot="title" class="card-title"> Iniciar Sesion</h4>
 
               
                 <p slot="description" class="description">                </p>
