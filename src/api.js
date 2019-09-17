@@ -140,7 +140,11 @@ api.mostrarActividadesTema=function(tema){
     .then (res=> res.data)
     .catch(err=> {console.log('[ERROR]',err)})
 }
-
+api.mostrarIdMateria=function(NombreMateria){
+    return trae.get('/api/materia/idMateria/'+NombreMateria)
+    .then (res=> res.data)
+    .catch(err=> {console.log('[ERROR]',err)})
+}
 /*Termina consultas rol Estudiante */
 
 api.getStatus = function(){
