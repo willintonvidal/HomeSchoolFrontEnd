@@ -28,7 +28,7 @@
               <!--<h1>Matemáticas</h1>-->
               <!--Matriculas  por parte del estudiante-->
                <template>
-                      <md-button  class="md-primary md-round classic-modal " @click="classicModal = true"> Matricular Materia</md-button>
+                      <md-button  class="md-primary md-round classic-modal " @click="verificarsihaymaterias" v-if="this.materiasMatri.length != 0"> Matricular Materia</md-button>
                       <modal v-if="classicModal" @close="classicModalHide">
                         <template slot="header">
                           <h2 class="modal-title" >Matricular Materia</h2>
@@ -302,6 +302,10 @@ export default {
   },
   methods: {
 
+    verificarsihaymaterias(){
+      this.classicModal = true;
+      alert("funciona si hay verificar materias: "+this.materiasMatri.length);
+    },
     classicModalHide() {
       this.classicModal = false;
     },
@@ -377,9 +381,16 @@ export default {
 
             });
             },
+            //Registrar materia
             registroMateriaMatricular(){
               console.log("Antes de registrar la matricula:---id Materia---" +this.idMateria); 
-             
+              console.log("********** :");
+
+              var index = this.materiasMatri.indexOf(this.idMateria);
+              if(index > -1){
+                  this.materiasMatri.splice(index, 1);
+              }
+
                  api.RegistrarMatricula(this.identificacion, ""+this.idMateria, this.matri_fecha_fin)
                 .then(res =>{
                   console.log("Se registro la matricula:---id Materia---" +this.idMateria); 
@@ -387,7 +398,9 @@ export default {
                 if(res == 'Se insertaron correctamente los datos de la tabla matricula'){
                     console.log("Se insertaron los datos de la tabla matricula"+res)
                     toastr.success("Se registro exitosamente su matricula");
-                    this.$router.push("/estudiante");
+                    
+                    this.mostrarMateriasMatriculadasEst();
+                    
                   }
                 })
                 .catch(err =>{console.log("error al registrar matricula de la materia"+err)})
