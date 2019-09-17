@@ -105,7 +105,7 @@ const routes = [
         footer: { backgroundColor: "black" }
       }
     },{
-      path: "/estudiante/descomposicion",
+      path: "/estudiante/11340",
       name: "Estudiante_descomposicion",
       components: { default: Estudiante_descomposicion, header: MainNavbar, footer: MainFooter },
       props: {
@@ -113,7 +113,7 @@ const routes = [
         footer: { backgroundColor: "black" }
       }
     },,{
-      path: "/estudiante/diferenciacion",
+      path: "/estudiante/11337",
       name: "Estudiante_diferenciacion",
       components: { default: Estudiante_diferenciacion, header: MainNavbar, footer: MainFooter },
       props: {
@@ -121,7 +121,7 @@ const routes = [
         footer: { backgroundColor: "black" }
       }
     },{
-      path: "/estudiante/lecturayescritura",
+      path: "/estudiante/11334",
       name: "Estudiante_lectura_y_escritura",
       components: { default: Estudiante_lectura_y_escritura, header: MainNavbar, footer: MainFooter },
       props: {
@@ -129,7 +129,7 @@ const routes = [
         footer: { backgroundColor: "black" }
       }
     },{
-      path: "/estudiante/operacionesbasicas",
+      path: "/estudiante/11338",
       name: "Estudiante_operaciones_basicas",
       components: { default: Estudiante_operaciones_basicas, header: MainNavbar, footer: MainFooter },
       props: {

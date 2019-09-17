@@ -141,7 +141,7 @@
                   </div>
                   <div class="md-layout-item md-size-85 ml-auto">
                         <div v-for="(materiasMat) in materias_matriculadas">
-                         <md-button class="md-info" href="#/estudiante/">{{materiasMat[0]}}</md-button><br>       
+                         <md-button class="md-info" @click="click_id_materia_(materiasMat[0])">{{materiasMat[0]}}</md-button><br>
                         </div>
                       </div>
 
@@ -162,7 +162,7 @@
                        <md-button class="md-primary md-block" href="#/estudiante/descomposicion">Información traida desde la bd</md-button>
 
                        <div v-for="(temas) in temasAllMateria">
-                            <md-button class="md-info" href="#/estudiante/">{{temas}}</md-button><br>       
+                            <md-button class="md-info" :href="'#/estudiante/'+temas[1]">{{temas[0]}}</md-button><br>       
                       </div>
                   </div>
                   <div class="md-layout-item md-size-25 mr-auto">
@@ -228,7 +228,7 @@ export default {
       nombre_cada_materia:'Ingles', //obtenerlo del clic de cada materia
       materias_matriculadas:[],
       Materia_sin_matri:null,
-      temasdeunamateria:"Matematicas", //obtenerlo del clic de la materia 
+      temasdeunamateria:null, //obtenerlo del clic de la materia 
       nombredeltema: "Suma de conjuntos", //obtenerlo desde el clic de un tema especifico
       materialdeEstudio:[],
 
@@ -331,9 +331,9 @@ export default {
              },
 
             mostrarTemasAll() {
-
+            console.log("Prueba_____ :"+this.temasdeunamateria);
             api.mostrarTemas(this.temasdeunamateria).then(res => {
-              console.log(res);
+              console.log("Mostrar todos los temas por nombre de la materia: "+res);
               this.temasAllMateria = res;
             });
           
@@ -392,6 +392,11 @@ export default {
                 })
                 .catch(err =>{console.log("error al registrar matricula de la materia"+err)})
              },
+             //Mostrar temas por el nombre de la materia
+             click_id_materia_(mat){
+                    this.temasdeunamateria = mat;
+                    this.mostrarTemasAll();     
+             }
 
           
     /*termina pao */         
