@@ -28,7 +28,7 @@
               <!--<h1>Matemáticas</h1>-->
               <!--Matriculas  por parte del estudiante-->
                <template>
-                      <md-button  class="md-primary md-round classic-modal " @click="classicModal = true">Matricular Materia</md-button>
+                      <md-button  class="md-primary md-round classic-modal " @click="classicModal = true"> Matricular Materia</md-button>
                       <modal v-if="classicModal" @close="classicModalHide">
                         <template slot="header">
                           <h2 class="modal-title" >Matricular Materia</h2>
@@ -48,7 +48,7 @@
                                   </div>
                                   </md-select>
                                 </md-field>-->
-                                <select v-model="Materia_sin_matri" @click="mostrarProfesorPorMateria()">
+                                <select v-model="Materia_sin_matri" @click="mostrarProfesorPorMateria(), MostrarIdMateria ()">
                                   <option v-for="(Mate,i) in materiasMatri">
                                       {{Mate[0]}}
                                   </option>
@@ -141,7 +141,7 @@
                   </div>
                   <div class="md-layout-item md-size-85 ml-auto">
                         <div v-for="(materiasMat) in materias_matriculadas">
-                         <md-button class="md-info" href="#/estudiante/">{{materiasMat}}</md-button><br>       
+                         <md-button class="md-info" href="#/estudiante/">{{materiasMat[0]}}</md-button><br>       
                         </div>
                       </div>
 
@@ -232,13 +232,10 @@ export default {
       nombredeltema: "Suma de conjuntos", //obtenerlo desde el clic de un tema especifico
       materialdeEstudio:[],
 
+      idMateria:null,
+      matri_fecha_fin: '12-12-2019',
       
-      mat_id: 1405,
-      /*mat_id: 1403, esto es el codigo de matematicas*/
-      matri_fecha_fin: '12-03-2019',
-      
-       /*Termina Pao, coloque una coma(,)*/
-
+      /*Termina Pao, coloque una coma(,)*/
 
       tabPane1: [
         { image: require("@/assets/img/img-act/banner.jpg") },
@@ -372,11 +369,21 @@ export default {
              
             });
             },
+            
+            MostrarIdMateria (){
+              api.mostrarIdMateria (this.Materia_sin_matri).then(res => {
+              this.idMateria = res;
+              console.log("el id de la materia "+this.idMateria);
 
+            });
+            },
             registroMateriaMatricular(){
-                 api.RegistrarMatricula(this.identificacion, this.mat_id, this.matri_fecha_fin)
+              console.log("Antes de registrar la matricula:---id Materia---" +this.idMateria); 
+             
+                 api.RegistrarMatricula(this.identificacion, ""+this.idMateria, this.matri_fecha_fin)
                 .then(res =>{
-                  console.log("Se registro la matricula:" +res); 
+                  console.log("Se registro la matricula:---id Materia---" +this.idMateria); 
+                  console.log("Se registro la matricula:---Pao---" +res); 
                 if(res == 'Se insertaron correctamente los datos de la tabla matricula'){
                     console.log("Se insertaron los datos de la tabla matricula"+res)
                     toastr.success("Se registro exitosamente su matricula");
@@ -385,6 +392,8 @@ export default {
                 })
                 .catch(err =>{console.log("error al registrar matricula de la materia"+err)})
              },
+
+          
     /*termina pao */         
 },
 created() {
