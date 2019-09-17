@@ -39,32 +39,34 @@
 
                         <template slot="body">
                             <div class="md-layout-item"> 
-                               <!--
-                                <md-field>
-                                  <md-select v-model="Materia_sin_matri" name="Materia_sin_matri" id="Materia_sin_matri" placeholder="Materia" v-for="(mate, index) in filteredMateriasAMatricular ">
-                                    <md-option value="materia" >{{mate[0]}}</md-option>
-                                  </md-select>
-                                </md-field>
-                                -->
-
+                               
+                                <!--
                                 <md-field>
                                   <md-select v-model="Materia_sin_matri" name="Materia_sin_matri" id="Materia_sin_matri" placeholder="Materia" >
-                                    <div v-for="(mate, i) in materiasMatri" >
-                                        <md-option value="'${mate[0]}'">{{mate[0]}} {{i}}</md-option>
+
+                                    
+                                    <div v-for="(mate, i) in materiasMatri">
+                                        <md-option value="'${mate[0]}'">{{mate[0]}}</md-option>
+
                                   </div>
-                                  
                                   </md-select>
+                                </md-field>-->
+                                <select v-model="Materia_sin_matri" @click="mostrarProfesorPorMateria()">
+                                  <option v-for="(Mate,i) in materiasMatri">
+                                      {{Mate[0]}}
+                                  </option>
+                                </select >
+                              
+                                </div>
+                                <md-field>
+                                  <md-input v-model="nombre_profesor" disabled ></md-input>
                                 </md-field>
-
-                              </div>
-                            <md-field>
-                              <md-input v-model="nombre_profesor" disabled ></md-input>
-                            </md-field>
-
+                                
                         </template>
                       
                         <template slot="footer">
-                          <md-button class="md-simple md-success md-lg"  @click="registroMateriaMatricular">Registrar</md-button>
+                         
+                          <md-button class="md-simple md-success md-lg"  @click="registroMateriaMatricular()">Registrar</md-button>
                           <md-button class="md-danger md-simple" @click="classicModalHide">Cerrar</md-button>
 
                         </template>
@@ -142,7 +144,7 @@
                   </div>
                   <div class="md-layout-item md-size-85 ml-auto">
                         <div v-for="(materiasMat) in materias_matriculadas">
-                         <md-button class="md-info" href="#/estudiante/">{{materiasMat}}</md-button><br>       
+                         <md-button class="md-info"  @click="click_ver_temas_por_materias(materiasMat[0],materiasMat[1])">{{materiasMat[0]}}</md-button><br>       
                         </div>
                       </div>
 
@@ -229,7 +231,7 @@ export default {
       nombre_cada_materia:'Ingles', //obtenerlo del clic de cada materia
       materias_matriculadas:[],
       Materia_sin_matri:null,
-      temasdeunamateria:"Matematicas", //obtenerlo del clic de la materia 
+      temasdeunamateria:null, //obtenerlo del clic de la materia 
       nombredeltema: "Suma de conjuntos", //obtenerlo desde el clic de un tema especifico
       materialdeEstudio:[],
 
@@ -336,10 +338,20 @@ export default {
 
             mostrarTemasAll() {
 
+             /*
+             * Temas de una materia
+             */   
+
             api.mostrarTemas(this.temasdeunamateria).then(res => {
               console.log(res);
               this.temasAllMateria = res;
             });
+
+            
+             /*
+             *Temas de una materia
+             */
+          
             },
             mostrarMateriasAMatricular() {
             api.MateriasAMatricular(this.identificacion).then(res => {
@@ -350,7 +362,8 @@ export default {
             },
  
             mostrarProfesorPorMateria(){
-            api.MostrarProfesor(this.nombre_cada_materia).then(res => {
+              
+            api.MostrarProfesor(this.Materia_sin_matri).then(res => {
               console.log(res);
               this.nombre_profesor = res;
               
@@ -384,13 +397,19 @@ export default {
                 })
                 .catch(err =>{console.log("error al registrar matricula de la materia"+err)})
              },
-    /*termina pao */         
+    /*termina pao */
+    click_ver_temas_por_materias(num,id){
+          this.temasdeunamateria = num;
+          alert("Materia"+this.temasdeunamateria +" Id: "+id);
+    }                      
+
 },
 created() {
     this.mostrarTemasAll();
     this.mostrarMateriasAMatricular();
     this.mostrarProfesorPorMateria();
     this.mostrarMateriasMatriculadasEst();
+    console.log("--------------"+materiasMatri[1]);
     
   }
 
