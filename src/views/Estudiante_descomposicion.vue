@@ -64,17 +64,17 @@
                     <!--aqui iria el juego 1 -->
                     <!--esta es la actividad uno-->
                     <div class="md-layout">
-                      <div class="md-layout-item md-size-33">
+                      <div class="md-layout-item md-size-60">
                         <md-button
-                          class="md-success md-block"
+                          class="md-success md-block" style="font-size:17px"
                           @click="classicModal = true"
                           :disabled="btn_eje_uno_disabled"
                         >
-                          <md-icon>library_books</md-icon>Actividad uno
+                          <md-icon></md-icon>Descomposición de números básica
                         </md-button>
                         <modal v-if="classicModal" @close="classicModalHide">
                           <template slot="header">
-                            <h3 class="modal-title">Descomposición de números</h3>
+                             <h2 style="color:green">Descomposición de números básica</h2>
                             <md-button
                               class="md-simple md-just-icon md-round modal-default-button"
                               @click="classicModalHide"
@@ -84,7 +84,7 @@
                           </template>
 
                           <template slot="body" v-if="eje_uno_mostrar">
-                            <h2>Cual es la descomposición correcta para este número</h2>
+                             <h1 style="color:orange">¿ Cuál es la descomposición correcta para este número?</h1>
                             <img style="width:150px" src="@/assets/img/img-act/3.png" alt="People" />
                             <img style="width:150px" src="@/assets/img/img-act/2.png" alt="People" />
                             <br />
@@ -121,17 +121,17 @@
                     <!-- Fin del juego-->
                     <!--esta es la actividad dos-->
                     <div class="md-layout">
-                      <div class="md-layout-item md-size-33">
+                      <div class="md-layout-item md-size-60">
                         <md-button
-                          class="md-success md-block"
+                          class="md-success md-block" style="font-size:17px"
                           @click="classicModal2 = true"
                           :disabled="btn_eje_dos_disabled"
                         >
-                          <md-icon>library_books</md-icon>Actividad dos
+                          <md-icon></md-icon>Descomposición de numeros sencilla
                         </md-button>
                         <modal v-if="classicModal2" @close="classicModalHide2">
                           <template slot="header">
-                            <h3 class="modal-title">Descomposición de números</h3>
+                            <h2 style="color:green">Descomposición de numeros sencilla</h2>
                             <md-button
                               class="md-simple md-just-icon md-round modal-default-button"
                               @click="classicModalHide2"
@@ -141,7 +141,7 @@
                           </template>
 
                           <template slot="body" v-if="eje_dos_mostrar">
-                            <h2>Cual es la descomposición incorrecta para este número</h2>
+                            <h1 style="color:purple">¿Cuál es la descomposición incorrecta para este número?</h1>
 
                             <div class="md-layout md-gutter md-alignment-center">
                               <div
@@ -175,6 +175,8 @@
                             <h3>Realiza la siguiente actividad</h3>
                           </template>
 
+
+
                           <template slot="footer" v-if="eje_dos_mostrar">
                             <div class="md-layout md-gutter md-alignment-center">
                               <md-button class="md-danger" @click="click_eje_dos(1)">
@@ -195,17 +197,17 @@
 
                     <!--esta es la actividad tres-->
                     <div class="md-layout">
-                      <div class="md-layout-item md-size-33">
+                      <div class="md-layout-item md-size-60">
                         <md-button
-                          class="md-success md-block"
+                          class="md-success md-block" style="font-size:17px"
                           @click="classicModal3 = true"
                           :disabled="btn_eje_tres_disabled"
                         >
-                          <md-icon>library_books</md-icon>Actividad tres
+                          <md-icon></md-icon>Descomposición de números intermedia
                         </md-button>
                         <modal v-if="classicModal3" @close="classicModalHide3">
                           <template slot="header">
-                            <h3 class="modal-title">Actividad uno lectura y escritura de números</h3>
+                            <h2 style="color:green">Descomposición de números intermedia</h2>
                             <md-button
                               class="md-simple md-just-icon md-round modal-default-button"
                               @click="classicModalHide3"
@@ -215,7 +217,7 @@
                           </template>
 
                           <template slot="body" v-if="eje_tres_mostrar">
-                            <h2>Cual es la descomposición correcta para este número</h2>
+                            <h1 style="color:orange">¿Cuál es la descomposición correcta para este número?</h1>
                             <img style="width:150px" src="@/assets/img/img-act/6.png" alt="People" />
                             <img style="width:150px" src="@/assets/img/img-act/7.png" alt="People" />
                             <br />

@@ -73,7 +73,7 @@
                         </md-button>
                         <modal v-if="classicModal" @close="classicModalHide">
                           <template slot="header">
-                            <h3 class="modal-title">Actividad  lectura y escritura de números básica</h3>
+                            <h2 style="color:green">Actividad  lectura y escritura de números básica</h2>
                             <md-button
                               class="md-simple md-just-icon md-round modal-default-button"
                               @click="classicModalHide"
@@ -130,7 +130,7 @@
                         </md-button>
                         <modal v-if="classicModal2" @close="classicModalHide2">
                           <template slot="header">
-                            <h3 class="modal-title">Actividad uno lectura y escritura de números</h3>
+                            <h2 style="color:green">Actividad lectura y escritura de números</h2>
                             <md-button
                               class="md-simple md-just-icon md-round modal-default-button"
                               @click="classicModalHide2"
@@ -140,7 +140,7 @@
                           </template>
 
                           <template slot="body" v-if="eje_dos_mostrar">
-                            <h2>¿El niño cuantas manzanas tiene?</h2>
+                            <h1 style="color:purple">¿El niño cuántas manzanas tiene?</h1>
                             <div class="md-layout md-gutter md-alignment-center">
                               
                                
@@ -197,7 +197,7 @@
                         </md-button>
                         <modal v-if="classicModal3" @close="classicModalHide3">
                           <template slot="header">
-                            <h3 class="modal-title">Actividad uno lectura y escritura de números</h3>
+                            <h2 style="color:green">Actividad uno lectura y escritura de números</h2>
                             <md-button
                               class="md-simple md-just-icon md-round modal-default-button"
                               @click="classicModalHide3"
@@ -207,7 +207,7 @@
                           </template>
 
                           <template slot="body" v-if="eje_tres_mostrar">
-                            <h2>¿Cuantas caras de payasos observas?</h2>
+                            <h1 style="color:orange">¿Cuántas caras de payasos observas?</h1>
                             <div class="md-layout md-gutter md-alignment-center">
                              
                                 <img
