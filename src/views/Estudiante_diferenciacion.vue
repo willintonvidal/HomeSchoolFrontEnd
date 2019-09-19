@@ -25,7 +25,7 @@
             </div>
           </div>
           <div class="description text-center">
-            <h1>Diferenciación</h1>
+            <h1 style="color:green" >Diferenciación</h1>
             <h1>{{calificacionfinal}}</h1>
             <div>
               <div class="md-layout md-gutter md-alignment-center">
@@ -350,9 +350,7 @@ export default {
       calificacionfinal3: null,
       calificacionfinal: null,
       calificacionTema:null,
-      cal1:null,
-      cal2:null,
-      cal3:null
+      calificacionPrueba:0
 
     };
   },
@@ -392,7 +390,7 @@ export default {
               //cambios pao
                   this.actividad=54559;
                   this.registroActividadEstudiante();
-                  this.cal1=calificacionfinal;
+                   this.calificacionPrueba=this.calificacionPrueba+this.calificacionfinal;
 
           }else{
               this.eje_uno_incorrecto = true;
@@ -409,7 +407,7 @@ export default {
                 //cambios pao
                   this.actividad=54560;
                   this.registroActividadEstudiante();
-                  this.cal1=calificacionfinal;
+                   this.calificacionPrueba=this.calificacionPrueba+this.calificacionfinal;
           }else{
               this.eje_dos_incorrecto = true;
               this.calificacionfinal2 = this.calificacionfinal2 - 1;
@@ -422,7 +420,7 @@ export default {
               this.eje_tres_correcto = true;
               this.btn_eje_tres_disabled = true;
               this.calificacionfinal = this.calificacionfinal3 + 5;
-              
+               this.calificacionPrueba=this.calificacionPrueba+this.calificacionfinal;
               this.se_realizaron_las_tres_act_diferenciacion();
 
               this.actividad=54561;
@@ -436,9 +434,10 @@ export default {
           
     },
     se_realizaron_las_tres_act_diferenciacion(){
+       console.log("Calificación prueba pao pao------"+this.calificacionPrueba);
       if(this.btn_eje_uno_disabled == true && this.btn_eje_dos_disabled == true && this.btn_eje_tres_disabled == true){
            alert("Ya se realizaron las tres actividades");
-           this.calificacionTema =this.cal1+this.cal2+this.cal3;
+           this.calificacionTema =(this.calificacionPrueba)/3;
            this.registroTemaEstudiante();
       }
   },
