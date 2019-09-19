@@ -38,7 +38,7 @@
                         </template>
 
                         <template slot="body">
-                            <div class="md-layout-item"> 
+                            <div class="md-layout-item" v-if="this.materiasMatri.length != 0"> 
                                
                                 <!--
                                 <md-field>
@@ -55,6 +55,11 @@
                                 </select >
                               
                                 </div>
+
+                                <div class="md-layout-item" v-if="this.materiasMatri.length == 0">
+                                    <h1>Ya no tienes mas materias por registrar</h1> 
+                                </div>
+                                
                                 <md-field>
                                   <md-input v-model="nombre_profesor" disabled ></md-input>
                                 </md-field>
@@ -75,8 +80,8 @@
           </div>
           <div class="profile-tabs">
             <tabs
-              :tab-name="['Acudiente', 'Mis Materias', 'Mis temas']"
-              :tab-icon="['person', 'palette', 'list']"
+              :tab-name="['Acudiente', 'Mis Materias']"
+              :tab-icon="['person', 'palette']"
               plain
               nav-pills-icons
               color-button="success"
@@ -139,17 +144,24 @@
                     <img :src="tabPane2[5].image" class="rounded" />
                   
                   </div>
-                  <div class="md-layout-item md-size-85 ml-auto">
-                        <div v-for="(materiasMat) in materias_matriculadas">
+                  <div  class="md-layout md-gutter md-alignment-center">
+                        <div v-for="(materiasMat) in materias_matriculadas"  class="md-layout md-gutter md-alignment-center">
                          <md-button class="md-info" @click="click_id_materia_(materiasMat[0])">{{materiasMat[0]}}</md-button><br>
                         </div>
+                    </div>
+
+                    <div class="md-layout-item md-size-85 ml-auto">
+                
+                       <div v-for="(temas) in temasAllMateria" class="md-layout md-gutter md-alignment-center">
+                            <md-button class="md-info   md-wd" :href="'#/estudiante/'+temas[1]">{{temas[0]}}</md-button><br>       
                       </div>
+                    </div>
 
                 </div>
               </template>
    <!-- termina Consulta los materias matriculadas  por cada estudiante-->   
 
-<!--Consultas para los temas de la materia de matemáticas-->
+<!--
               <template slot="tab-pane-3">
                 <div class="md-layout">
                   <div class="md-layout-item md-size-85 ml-auto">
@@ -172,7 +184,7 @@
                   </div>
                 </div>
               </template>
-  <!-- Termina Consultas para los temas de la materia de matemáticas-->
+  Termina Consultas para los temas de la materia de matemáticas-->
             </tabs>
           </div>
         </div>
@@ -304,7 +316,6 @@ export default {
 
     verificarsihaymaterias(){
       this.classicModal = true;
-      alert("funciona si hay verificar materias: "+this.materiasMatri.length);
     },
     classicModalHide() {
       this.classicModal = false;
@@ -384,12 +395,8 @@ export default {
             //Registrar materia
             registroMateriaMatricular(){
               console.log("Antes de registrar la matricula:---id Materia---" +this.idMateria); 
-              console.log("********** :");
+              console.log("********** :"+this.materiasMatri);
 
-              var index = this.materiasMatri.indexOf(this.idMateria);
-              if(index > -1){
-                  this.materiasMatri.splice(index, 1);
-              }
 
                  api.RegistrarMatricula(this.identificacion, ""+this.idMateria, this.matri_fecha_fin)
                 .then(res =>{
@@ -398,7 +405,7 @@ export default {
                 if(res == 'Se insertaron correctamente los datos de la tabla matricula'){
                     console.log("Se insertaron los datos de la tabla matricula"+res)
                     toastr.success("Se registro exitosamente su matricula");
-                    
+                    this.mostrarMateriasAMatricular();
                     this.mostrarMateriasMatriculadasEst();
                     
                   }

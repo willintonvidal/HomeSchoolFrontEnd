@@ -58,7 +58,7 @@ export default {
   },
   data() {
     return {
-      activePanel: this.tabName[0]
+      activePanel: this.tabName[1]
     };
   },
   methods: {

@@ -16,6 +16,13 @@ api.authenticate = function(usuario_id,usuario_contrasenia){
     .catch(err => console.log('[ERROR]', err))
 }
 
+api.rescuperar_password = function(id){
+    return trae.post('/api/email/enviar',{id})
+    .then(res => res.data)
+    .catch(err => console.log('[ERROR]', err))
+}
+
+
 api.verificarid = function(id){
     return trae.get('/api/usuario/verificarusuario/'+id)
     .then(res => res.data)

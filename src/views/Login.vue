@@ -1,5 +1,36 @@
 <template>
   <div class="wrapper">
+
+<template>
+                      
+                      <modal v-if="classicModal" @close="classicModalHide">
+                        <template slot="header">
+                          <h2 class="modal-title" >Recordatorio de contraseña</h2>
+                          <md-button class="md-simple md-just-icon md-round modal-default-button" @click="classicModalHide">
+                            <md-icon>clear</md-icon>
+                          </md-button>
+                        </template>
+
+                        <template slot="body">
+                           
+                               
+                                
+
+                                <md-field>
+                                  <label>Digita tu número de documento de identidad</label>
+                                  <md-input v-model="num_ident" type="number"></md-input>
+                                </md-field>
+                                
+                                <md-field>
+                                  <md-input v-model="nombre_profesor" disabled ></md-input>
+                                </md-field>
+                                <md-button class="md-danger md-simple" @click="mandarCorreo">Enviar</md-button>
+                        </template>
+                   
+                      </modal>
+                    </template>
+                
+
     <div class="section page-header header-filter" :style="headerStyle">
       <div class="container">
         <div class="md-layout">
@@ -34,10 +65,16 @@
                   href="#/Registro"
                 >Registrate</md-button>
 
+               
+
 
                 <md-button slot="footer" @click="acceso" class="md-simple md-success md-lg">Acceder</md-button>
                 
-             
+             <md-button
+                  slot="footer"
+                  class="md-simple md-info md-lg"
+                  @click="mostrarModal"
+                ><small>Olvide la contraseña</small></md-button>
                 </login-card>
             </form>
           </div>
@@ -49,10 +86,19 @@
       </div>
     </div>
   </div>
+
+
+
 </template>
+
+
+
+
 
 <script>
 import { LoginCard } from "@/components";
+import {Modal} from '@/components';
+
 import api from "@/api";
 import toastr from "toastr";
 
@@ -76,7 +122,7 @@ toastr.options = {
 
 export default {
   components: {
-    LoginCard
+    LoginCard,Modal
   },
   bodyClass: "login-page",
   name: "login",
@@ -84,10 +130,30 @@ export default {
     return {
       id_usuario: "",
       password: "",
-      error: {}
+      error: {},
+      classicModal: false,
+      num_ident:null
+
     };
   },
   methods: {
+    mandarCorreo(){
+        api.rescuperar_password(this.num_ident)
+        .then(res =>{
+            if(res=='0'){
+                toastr.error("La identificación no existe en nuestro sistema");
+            }else{
+                toastr.success("Se ha enviado a tu correo "+res+" la contraseña...");
+                this.classicModal=false;
+            }
+        }).catch();
+    },
+    mostrarModal() {
+      this.classicModal = true;
+    },
+    classicModalHide() {
+      this.classicModal = false;
+    },
     acceso() {
       api
         .authenticate(this.id_usuario, this.password)
