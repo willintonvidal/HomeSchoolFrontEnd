@@ -147,6 +147,29 @@ api.mostrarIdMateria=function(NombreMateria){
 }
 /*Termina consultas rol Estudiante */
 
+/*  insertar notas  del estudiante a  la materia, tema y actividades  */
+api.insertarActividadEstudiante= function(estudiante_id,actividad_eva_id, tema_id, materia_id, rel_actividad_nota ){
+    return trae.post('/api/actividad_estudiante/insertar/',{estudiante_id,actividad_eva_id, tema_id, materia_id, rel_actividad_nota})
+    .then (res=> res.data)
+    .catch(err=> {console.log('[ERROR]',err)})
+}
+
+api.insertarTemaEstudiante= function(estudiante_id,tema_id, materia_id, rel_tema_nota ){
+    return trae.post('/api/tema_estudiante/insertar/',{estudiante_id,tema_id, materia_id, rel_tema_nota})
+    .then (res=> res.data)
+    .catch(err=> {console.log('[ERROR]',err)})
+}
+
+api.actualzarMatricula= function(matri_id, est_id, mat_id, matri_not_final){
+    var matri_estado="Activo";
+    var matri_estado="Finalizado";
+    return trae.put('/api/matricula/actualizar/',{matri_id, est_id, mat_id, matri_estado, matri_not_final})
+    .then (res=> res.data)
+    .catch(err=> {console.log('[ERROR]',err)})
+}
+/*  Termina de insertar notas  del estudiante a  la materia, tema y actividades  */
+
+
 api.getStatus = function(){
     return trae.get('/')
     .then(res => res.data)

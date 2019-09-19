@@ -30,8 +30,8 @@
           </div>
           <div class="profile-tabs">
             <tabs
-              :tab-name="['Material', 'Actividades']"
-              :tab-icon="['camera', 'palette']"
+              :tab-name="['Material de estudio', 'Actividades']"
+              :tab-icon="['palette', 'list']"
               plain
               nav-pills-icons
               color-button="success"
@@ -269,6 +269,9 @@
 <script>
 import { Tabs } from "@/components";
 import { Modal } from "@/components";
+// Modificaciones pao
+import api from '@/api'
+import toastr from 'toastr';
 
 export default {
   components: {
@@ -300,6 +303,8 @@ export default {
       ],
       nombres: window.localStorage.nombres,
       apellidos: window.localStorage.apellidos,
+      identificacion: window.localStorage.id,
+      
       classicModal: false,
       classicModal2: false,
       classicModal3: false,
@@ -337,7 +342,21 @@ export default {
       eje_tres: null,
       eje_tres_respuesta: 1,
       eje_tres_correcto: false,
-      eje_tres_incorrecto: false
+      eje_tres_incorrecto: false,
+
+        //cambios pao
+      IdTema: 11340, // id de lectura y escritura de numeros
+      actividadesDeTema:[], //arreglo de las actividades del tema (que tiene el id y nombre de la actividad)
+      idMateria: 1403,
+      actividad:null,
+      calificacionfinal1: null,
+      calificacionfinal2: null,
+      calificacionfinal3: null,
+      calificacionfinal: null,
+      calificacionTema:null,
+      cal1:null,
+      cal2:null,
+      cal3:null
     };
   },
   props: {
@@ -373,11 +392,15 @@ export default {
             this.eje_uno_mostrar = false;
             this.eje_uno_correcto = true;
             this.btn_eje_uno_disabled = true;
-            this.calificacionfinal = this.calificacionfinal + 5;
-        
+            this.calificacionfinal = this.calificacionfinal1 + 5;
+            
+         //cambios pao
+            this.actividad=54553;
+            this.registroActividadEstudiante();
+            this.cal1=calificacionfinal;
       } else {
         this.eje_uno_incorrecto = true;
-        //this.calificacionfinal = this.calificacionfinal - 1;
+        this.calificacionfinal1 = this.calificacionfinal1 - 1;
       }
 
       this.se_realizaron_las_tres_act_lectu_num();
@@ -387,10 +410,15 @@ export default {
         this.eje_dos_mostrar = false;
         this.eje_dos_correcto = true;
         this.btn_eje_dos_disabled = true;
-        this.calificacionfinal = this.calificacionfinal + 5;
+        this.calificacionfinal = this.calificacionfinal2 + 5;
+        this.actividad=54554;
+        this.registroActividadEstudiante();
+        this.cal1=calificacionfinal;
+
+
       } else {
         this.eje_dos_incorrecto = true;
-        this.calificacionfinal = this.calificacionfinal - 1;
+        this.calificacionfinal2 = this.calificacionfinal2 - 1;
       }
 
       this.se_realizaron_las_tres_act_lectu_num();
@@ -400,12 +428,18 @@ export default {
         this.eje_tres_mostrar = false;
         this.eje_tres_correcto = true;
         this.btn_eje_tres_disabled = true;
-        this.calificacionfinal = this.calificacionfinal + 5;
+        this.calificacionfinal = this.calificacionfinal3 + 5;
+
+        this.se_realizaron_las_tres_act_lectu_num();
+        this.actividad=54555;
+        this.registroActividadEstudiante();
+        this.cal1=calificacionfinal;
+
       } else {
         this.eje_tres_incorrecto = true;
-        this.calificacionfinal = this.calificacionfinal - 1;
+        this.calificacionfinal3 = this.calificacionfinal3 - 1;
       }
-      this.se_realizaron_las_tres_act_lectu_num();
+      
     },
     se_realizaron_las_tres_act_lectu_num() {
       if (
@@ -414,8 +448,40 @@ export default {
         this.btn_eje_tres_disabled == true
       ) {
         alert("Ya se realizaron las tres actividades");
+        this.calificacionTema =this.cal1+this.cal2+this.cal3;
+        this.registroTemaEstudiante();
       }
-    }
+    },
+   
+   /*Metodos Pao */
+       
+    registroActividadEstudiante(){
+
+      console.log("Entro actividad estudiante-- lectura y escritura");
+                 api.insertarActividadEstudiante(this.identificacion, this.actividad, this.IdTema, this.idMateria, this.calificacionfinal)
+                .then(res =>{
+                  console.log("Se registro actividad estudiante:" +res);
+                if(res == 'Se insertaron correctamente los datos'){
+                     toastr.success("Se registro exitosamente  la nota de la actividad del estudiante");     
+                }
+                })
+                .catch(err =>{console.log("error al registrar la actividad del estudiante"+err)})
+  },
+      registroTemaEstudiante(){
+      console.log("Entro tema estudiante");
+                 api.insertarTemaEstudiante(this.identificacion, this.IdTema, this.idMateria, this.calificacionTema)
+                .then(res =>{
+                  console.log("Se registro actividad estudiante:" +res);
+                if(res == 'Se insertaron correctamente los datos'){
+                     toastr.success("Se registro exitosamente  la nota del tema para el estudiante");  
+                }
+                })
+                .catch(err =>{console.log("error al registrar la actividad del estudiante"+err)})
+  }
+
+    /*Termina metodo Pao */
+
+
   }
 };
 </script>

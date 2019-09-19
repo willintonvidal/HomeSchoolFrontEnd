@@ -343,7 +343,7 @@ export default {
           
             },
             mostrarMateriasAMatricular() {
-            api.MateriasAMatricular(this.identificacion).then(res => {
+            api.mostrarActividadesTema(this.identificacion).then(res => {
               console.log(res);
               this.materiasMatri = res;
 

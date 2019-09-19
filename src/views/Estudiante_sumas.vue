@@ -282,7 +282,10 @@
 
 <script>
 import { Tabs } from "@/components";
-import {Modal} from '@/components'
+import {Modal} from '@/components';
+// Modificaciones pao
+import api from '@/api';
+import toastr from 'toastr';
 
 export default {
   components: {
@@ -313,6 +316,7 @@ export default {
       ],
       nombres: window.localStorage.nombres,
       apellidos: window.localStorage.apellidos,
+      identificacion: window.localStorage.id,
       words: ['Pera', 'Manzana', 'Tomate', 'Cereza', 'Frutilla'],
       classicModal: false,
       classicModal2: false,
