@@ -32,8 +32,11 @@
           </div>
           <div class="profile-tabs">
             <tabs
+
               :tab-name="['Notas Materia', 'Notas Tema']"
               :tab-icon="['camera', 'palette']"
+
+
               plain
               nav-pills-icons
               color-button="success"
@@ -41,6 +44,7 @@
               <!-- here you can add your content for tab-content -->
               <template slot="tab-pane-1">
                 <div class="md-layout">
+
                   <div class="md-layout-item md-size-85 ml-auto">
                    <div class="table-responsive-sm">
                       <table class="table table-striped table:hover table-bordered">
@@ -71,6 +75,7 @@
                     </div>
                   </div>
                   <div class="md-layout-item md-size-15 mr-auto">
+
                     <img :src="tabPane1[3].image" class="rounded" />
                     <img :src="tabPane1[2].image" class="rounded" />
                   </div>
@@ -78,6 +83,7 @@
               </template>
               <template slot="tab-pane-2">
                 <div class="md-layout">
+
                   <div class="md-layout-item md-size-85 ml-auto">
                       <div class="table-responsive-sm">
                       <table class="table table-striped table:hover table-bordered">
@@ -112,12 +118,13 @@
                     </div>
                   </div>
                   <div class="md-layout-item md-size-15 mr-auto">
+
                     <img :src="tabPane2[3].image" class="rounded" />
                     <img :src="tabPane2[4].image" class="rounded" />
                   </div>
                 </div>
               </template>
-              
+
             </tabs>
           </div>
         </div>
@@ -128,7 +135,9 @@
 
 <script>
 import { Tabs } from "@/components";
+
 import api from '@/api'
+
 
 
 export default {
@@ -160,9 +169,11 @@ export default {
       ],
       nombres: window.localStorage.nombres,
       apellidos: window.localStorage.apellidos,
+
       id:window.localStorage.id,
       notas_tema:[],
       notas_materia:[]
+
     }
   },
   props: {
@@ -181,6 +192,7 @@ export default {
         backgroundImage: `url(${this.header})`
       };
     }
+
   },methods: {
     mostrar_temas_notas() {
       api.tema_notas(this.id).then(res => {
@@ -197,6 +209,7 @@ export default {
   },created(){
     this.mostrar_temas_notas();
     this.mostrar_temas_materias();
+
   }
 };
 </script>

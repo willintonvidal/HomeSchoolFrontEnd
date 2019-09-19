@@ -176,6 +176,7 @@ api.actualzarMatricula= function(matri_id, est_id, mat_id, matri_not_final){
 }
 /*  Termina de insertar notas  del estudiante a  la materia, tema y actividades  */
 
+
 //mostrar nota de los  temas y de las materias
 api.tema_notas=function(id){
     return trae.get('/api/estudiante/notas_tema/'+id)
