@@ -58,22 +58,22 @@
               </template>
               <template slot="tab-pane-2">
                 <div class="md-layout">
-                  <div class="md-layout-item md-size-85 ml-auto">
+                  <div class="md-layout-item md-size-65 ml-auto">
                     <!--aqui iria el juego 1 -->
                     <!--aqui iria el juego 1 -->
                     <!--esta es la actividad uno-->
                     <div class="md-layout">
-                      <div class="md-layout-item md-size-33">
+                      <div class="md-layout-item md-size-71">
                         <md-button
-                          class="md-success md-block"
+                          class="md-success md-block" style="font-size:15px"
                           @click="classicModal = true"
                           :disabled="btn_eje_uno_disabled"
                         >
-                          <md-icon>library_books</md-icon>Actividad uno
+                         Lectura y escritura básica
                         </md-button>
                         <modal v-if="classicModal" @close="classicModalHide">
                           <template slot="header">
-                            <h3 class="modal-title">Actividad uno lectura y escritura de números</h3>
+                            <h3 class="modal-title">Actividad  lectura y escritura de números básica</h3>
                             <md-button
                               class="md-simple md-just-icon md-round modal-default-button"
                               @click="classicModalHide"
@@ -120,13 +120,13 @@
                     <!-- Fin del juego-->
                     <!--esta es la actividad dos-->
                     <div class="md-layout">
-                      <div class="md-layout-item md-size-33">
+                      <div class="md-layout-item md-size-71">
                         <md-button
-                          class="md-success md-block"
+                          class="md-success md-block" style="font-size:15px"
                           @click="classicModal2 = true"
                           :disabled="btn_eje_dos_disabled"
                         >
-                          <md-icon>library_books</md-icon>Actividad dos
+                          <md-icon></md-icon>Actividad  lectura y escritura de números intermedia
                         </md-button>
                         <modal v-if="classicModal2" @close="classicModalHide2">
                           <template slot="header">
@@ -187,13 +187,13 @@
 
                     <!--esta es la actividad tres-->
                     <div class="md-layout">
-                      <div class="md-layout-item md-size-33">
+                      <div class="md-layout-item md-size-71">
                         <md-button
-                          class="md-success md-block"
+                          class="md-success md-block" style="font-size:15px"
                           @click="classicModal3 = true"
                           :disabled="btn_eje_tres_disabled"
                         >
-                          <md-icon>library_books</md-icon>Actividad tres
+                          <md-icon></md-icon>Actividad  lectura y escritura de números dificil
                         </md-button>
                         <modal v-if="classicModal3" @close="classicModalHide3">
                           <template slot="header">
