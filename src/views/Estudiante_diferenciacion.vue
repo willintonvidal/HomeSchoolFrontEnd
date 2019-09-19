@@ -74,7 +74,7 @@
               >
               <modal v-if="classicModal" @close="classicModalHide">
                 <template slot="header">
-                  <h3 class="modal-title">Diferenciar objetos de forma sencilla</h3>
+                  <h2 style="color:green">Diferenciar objetos de forma sencilla</h2>
                   <md-button
                     class="md-simple md-just-icon md-round modal-default-button"
                     @click="classicModalHide"
@@ -84,7 +84,7 @@
                 </template>
 
                 <template slot="body" v-if="eje_uno_mostrar">
-                 <h2>En que lado hay más elemetos?</h2>
+                 <h1>¿En que lugar observas más elemetos?</h1>
                   <div class="md-layout md-gutter md-alignment-center">
                     <div class="md-layout-item md-medium-size-33 md-small-size-50 md-xsmall-size-100">
                               
@@ -99,7 +99,7 @@
                               <img style="width:65px" src="@/assets/img/img-act/vinyl.png" alt="People">
                               
 
-                              <md-button class="md-warning" @click="click_eje_uno(1)"><strong>Sera este?</strong></md-button>
+                              <md-button class="md-warning" @click="click_eje_uno(1)"><strong>¿Será este?</strong></md-button>
                                 
                     </div>
                     <div class="md-layout-item md-medium-size-33 md-small-size-50 md-xsmall-size-100">
@@ -114,7 +114,7 @@
                               <img style="width:65px" src="@/assets/img/img-act/target.png" alt="People">
                               <img style="width:100px" src="@/assets/img/img-act/target.png" alt="People"><br>
                               <br>
-                              <md-button class="md-rose" @click="click_eje_uno(2)"><strong>Sera este?</strong></md-button>
+                              <md-button class="md-rose" @click="click_eje_uno(2)"><strong>¿Será este?</strong></md-button>
                           
                       </div>
                    
@@ -147,7 +147,7 @@
               >
               <modal v-if="classicModal2" @close="classicModalHide2">
                 <template slot="header">
-                  <h3 class="modal-title">Diferenciar objetos intermedia</h3>
+                 <h2 style="color:green">Diferenciar objetos intermedia</h2>
                   <md-button
                     class="md-simple md-just-icon md-round modal-default-button"
                     @click="classicModalHide2"
@@ -157,7 +157,7 @@
                 </template>
 
                 <template slot="body" v-if="eje_dos_mostrar">
-                 <h2>Donde hay menos santa clouse?¡?</h2>
+                 <h1 style="color:red">¿ Donde observas menos santa clouse?</h1>
                   <div class="md-layout md-gutter md-alignment-center">
                     <div class="md-layout-item md-medium-size-33 md-small-size-50 md-xsmall-size-100">
                               <img style="width:50px" src="@/assets/img/img-act/santa.png" alt="People">
@@ -211,7 +211,7 @@
               >
               <modal v-if="classicModal3" @close="classicModalHide3">
                 <template slot="header">
-                  <h3 class="modal-title">Diferenciar números</h3>
+                   <h2 style="color:green">Diferenciar números</h2>
                   <md-button
                     class="md-simple md-just-icon md-round modal-default-button"
                     @click="classicModalHide3"
@@ -221,13 +221,13 @@
                 </template>
 
                 <template slot="body" v-if="eje_tres_mostrar">
-                 <h2>¿Cual es el número de mayor valor?</h2>
+                 <h1 style="color:orange">¿Cuál es el número de mayor valor?</h1>
                   <div class="md-layout md-gutter md-alignment-center">
                     <div class="md-layout-item md-medium-size-33 md-small-size-50 md-xsmall-size-100">
                         <img style="width:60px" src="@/assets/img/img-act/3.png" alt="People">
                         <img style="width:60px" src="@/assets/img/img-act/5.png" alt="People">
                        <br>
-                        <md-button class="md-success" @click="click_eje_tres(35)"><strong>Sera este?</strong></md-button>
+                        <md-button class="md-success" @click="click_eje_tres(35)"><strong>¿Será este?</strong></md-button>
                     </div>
                  <div class="md-layout-item md-medium-size-33 md-small-size-50 md-xsmall-size-100">
                       <img style="width:150px" src="@/assets/img/img-act/panda.png" alt="People">
@@ -235,12 +235,12 @@
                       <div class="md-layout-item md-medium-size-33 md-small-size-50 md-xsmall-size-100">
                         <img style="width:60px" src="@/assets/img/img-act/2.png" alt="People">
                         <img style="width:60px" src="@/assets/img/img-act/6.png" alt="People">
-                        <md-button class="md-rose" @click="click_eje_tres(26)"><strong>Sera este?</strong></md-button>
+                        <md-button class="md-rose" @click="click_eje_tres(26)"><strong>¿Será este?</strong></md-button>
                       </div>
                   
                   </div>
                   <div v-show="eje_tres_incorrecto">
-                    <h3>Vuelve a leer el numero....</h3>
+                    <h3> Te equivocaste, Vuelve a intentarlo</h3>
                   </div>
                 </template>
 
