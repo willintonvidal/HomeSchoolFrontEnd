@@ -45,6 +45,7 @@
             >
 
  <template slot="tab-pane-1">
+   
      <div class="md-layout">
                   <div class="md-layout-item md-size-85 ml-auto"> 
                 
@@ -60,6 +61,7 @@
                             <img :src="tabPane3[1].image" class="rounded" />
                           </div>
                         </div>
+                
 
                        <iframe 
                          width="100%"

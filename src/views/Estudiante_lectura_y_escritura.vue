@@ -40,6 +40,26 @@
               <template slot="tab-pane-1">
                 <div class="md-layout">
                   <div class="md-layout-item md-size-85 ml-auto">
+                   
+                   
+                    <div class="description text-center">
+                      <h1 style="color:green">Ejemplos de numeros en letras</h1>
+                      <br/>
+                      </div>
+                      
+                      <div class="md-layout">
+                          <div class="md-layout-item md-size-50 ml-auto">
+                            <img :src="tabPane3[0].image" class="rounded" />
+                            <img :src="tabPane3[1].image" class="rounded" />
+                          </div>
+                          <div class="md-layout-item md-size-25 mr-auto">
+                            <img :src="tabPane3[2].image" class="rounded" />
+                          </div>
+                        </div>
+
+                   
+                   
+                   
                     <iframe
                       width="560"
                       height="315"
@@ -51,8 +71,8 @@
                     <!-- Fin del juego-->
                   </div>
                   <div class="md-layout-item md-size-15 mr-auto">
-                    <img :src="tabPane1[3].image" class="rounded" />
-                    <img :src="tabPane1[2].image" class="rounded" />
+                    <img :src="tabPane3[3].image" class="rounded" />
+               
                   </div>
                 </div>
               </template>
@@ -258,8 +278,8 @@
                     <!-- Fin del juego-->
                   </div>
                   <div class="md-layout-item md-size-15 mr-auto">
-                    <img :src="tabPane2[3].image" class="rounded" />
-                    <img :src="tabPane2[4].image" class="rounded" />
+                    <img :src="tabPane3[3].image" class="rounded" />
+                    
                   </div>
                 </div>
               </template>
@@ -300,10 +320,10 @@ export default {
         { image: require("@/assets/img/examples/boy.png") }
       ],
       tabPane3: [
-        { image: require("@/assets/img/examples/boy.png") },
-        { image: require("@/assets/img/examples/boy.png") },
-        { image: require("@/assets/img/examples/boy.png") },
-        { image: require("@/assets/img/examples/boy.png") },
+        { image: require("@/assets/img/examples/lectura1.jpg") },
+        { image: require("@/assets/img/examples/lectura2.jpg") },
+        { image: require("@/assets/img/examples/nino.gif") },
+        { image: require("@/assets/img/examples/num.png") },
         { image: require("@/assets/img/examples/boy.png") }
       ],
       nombres: window.localStorage.nombres,
