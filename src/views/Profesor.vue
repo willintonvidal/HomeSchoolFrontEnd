@@ -32,8 +32,8 @@
           </div>
           <div class="profile-tabs">
             <tabs
-              :tab-name="['Studio', 'Work', 'Favorite']"
-              :tab-icon="['camera', 'palette', 'favorite']"
+              :tab-name="['Notas Materia', 'Notas Tema']"
+              :tab-icon="['camera', 'palette']"
               plain
               nav-pills-icons
               color-button="success"
@@ -41,11 +41,36 @@
               <!-- here you can add your content for tab-content -->
               <template slot="tab-pane-1">
                 <div class="md-layout">
-                  <div class="md-layout-item md-size-25 ml-auto">
-                    <img :src="tabPane1[0].image" class="rounded" />
-                    <img :src="tabPane1[1].image" class="rounded" />
+                  <div class="md-layout-item md-size-85 ml-auto">
+                   <div class="table-responsive-sm">
+                      <table class="table table-striped table:hover table-bordered">
+                        <thead>
+                          <tr>
+                            <td># Identificación</td>
+                            <td>Nombres</td>
+                            <td>Apellidos</td>
+                            <td>Materia</td>
+                            <td>Nota materia</td>
+                            <td>Acudiente</td>
+                            
+                          </tr>
+                        </thead>
+
+                        <tbody>
+                          <tr v-for="(item,index) in notas_materia">
+                            <td>{{ item[1] }}</td>
+                            <td>{{ item[2] }}</td>
+                            <td>{{ item[3] }}</td>
+                            <td>{{ item[4] }}</td>
+                            <td>{{ item[5] }}</td>
+                            <td>{{ item[8] }}</td>
+                            
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
                   </div>
-                  <div class="md-layout-item md-size-25 mr-auto">
+                  <div class="md-layout-item md-size-15 mr-auto">
                     <img :src="tabPane1[3].image" class="rounded" />
                     <img :src="tabPane1[2].image" class="rounded" />
                   </div>
@@ -53,30 +78,46 @@
               </template>
               <template slot="tab-pane-2">
                 <div class="md-layout">
-                  <div class="md-layout-item md-size-25 ml-auto">
-                    <img :src="tabPane2[0].image" class="rounded" />
-                    <img :src="tabPane2[1].image" class="rounded" />
-                    <img :src="tabPane2[2].image" class="rounded" />
+                  <div class="md-layout-item md-size-85 ml-auto">
+                      <div class="table-responsive-sm">
+                      <table class="table table-striped table:hover table-bordered">
+                        <thead>
+                          <tr>
+                            <td># Identificación</td>
+                            <td>Nombres</td>
+                            <td>Apellidos</td>
+                            <td>Materia</td>
+                            <td>Nota materia</td>
+                            <td>Nombre tema</td>
+                            <td>Nota tema</td>
+                            <td>Acudiente</td>
+                            
+                          </tr>
+                        </thead>
+
+                        <tbody>
+                          <tr v-for="(item,index) in notas_tema">
+                            <td>{{ item[1] }}</td>
+                            <td>{{ item[2] }}</td>
+                            <td>{{ item[3] }}</td>
+                            <td>{{ item[4] }}</td>
+                            <td>{{ item[5] }}</td>
+                            <td>{{ item[8] }}</td>
+                            <td>{{ item[9] }}</td>
+                            <td>{{ item[10] }}</td>
+                            
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
                   </div>
-                  <div class="md-layout-item md-size-25 mr-auto">
+                  <div class="md-layout-item md-size-15 mr-auto">
                     <img :src="tabPane2[3].image" class="rounded" />
                     <img :src="tabPane2[4].image" class="rounded" />
                   </div>
                 </div>
               </template>
-              <template slot="tab-pane-3">
-                <div class="md-layout">
-                  <div class="md-layout-item md-size-25 ml-auto">
-                    <img :src="tabPane3[0].image" class="rounded" />
-                    <img :src="tabPane3[1].image" class="rounded" />
-                  </div>
-                  <div class="md-layout-item md-size-25 mr-auto">
-                    <img :src="tabPane3[2].image" class="rounded" />
-                    <img :src="tabPane3[3].image" class="rounded" />
-                    <img :src="tabPane3[4].image" class="rounded" />
-                  </div>
-                </div>
-              </template>
+              
             </tabs>
           </div>
         </div>
@@ -87,6 +128,9 @@
 
 <script>
 import { Tabs } from "@/components";
+import api from '@/api'
+
+
 export default {
   components: {
     Tabs
@@ -116,6 +160,9 @@ export default {
       ],
       nombres: window.localStorage.nombres,
       apellidos: window.localStorage.apellidos,
+      id:window.localStorage.id,
+      notas_tema:[],
+      notas_materia:[]
     }
   },
   props: {
@@ -134,6 +181,22 @@ export default {
         backgroundImage: `url(${this.header})`
       };
     }
+  },methods: {
+    mostrar_temas_notas() {
+      api.tema_notas(this.id).then(res => {
+        console.log(res);
+        this.notas_tema = res;
+      });
+    },
+    mostrar_temas_materias() {
+      api.materia_notas(this.id).then(res => {
+        console.log(res);
+        this.notas_materia = res;
+      });
+    }
+  },created(){
+    this.mostrar_temas_notas();
+    this.mostrar_temas_materias();
   }
 };
 </script>
