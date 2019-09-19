@@ -177,6 +177,21 @@ api.actualzarMatricula= function(matri_id, est_id, mat_id, matri_not_final){
 /*  Termina de insertar notas  del estudiante a  la materia, tema y actividades  */
 
 
+//mostrar nota de los  temas y de las materias
+api.tema_notas=function(id){
+    return trae.get('/api/estudiante/notas_tema/'+id)
+    .then (res=> res.data)
+    .catch(err=> {console.log('[ERROR]',err)})
+}
+
+api.materia_notas=function(id){
+    return trae.get('/api/estudiante/notas_materia/'+id)
+    .then (res=> res.data)
+    .catch(err=> {console.log('[ERROR]',err)})
+}
+//********************** */
+
+
 api.getStatus = function(){
     return trae.get('/')
     .then(res => res.data)
