@@ -418,9 +418,7 @@ export default {
       calificacionfinal3: null,
       calificacionfinal: null,
       calificacionTema:null,
-      cal1:null,
-      cal2:null,
-      cal3:null,
+      calificacionPrueba:0,
       MaterialEstudioDeTema: [],
      
      //video del material de estuido
@@ -472,7 +470,8 @@ export default {
             //cambios pao
             this.actividad=54550;
             this.registroActividadEstudiante();
-            this.cal1=calificacionfinal;
+            this.calificacionPrueba=this.calificacionPrueba+this.calificacionfinal;
+            
 
         }else{
           this.suma_incorrecto = true;
@@ -490,7 +489,7 @@ export default {
             //cambios pao
             this.actividad=54551;
             this.registroActividadEstudiante();
-             this.cal2=calificacionfinal;
+            this.calificacionPrueba=this.calificacionPrueba+this.calificacionfinal;
 
 
         }else{
@@ -506,12 +505,11 @@ export default {
           this.multiplicacion_correcto = true;
           this.calificacionfinal = this.calificacionfinal3 + 5;
           this.btn_multiplicacion_disabled = true;
-
+           this.calificacionPrueba=this.calificacionPrueba+this.calificacionfinal;
           this.se_realizaron_las_tres_act_op_ba(); 
-          
-         this.actividad=54552;
+          this.actividad=54552;
           this.registroActividadEstudiante();
-          this.cal3=calificacionfinal; 
+         
 
       }else{
             this.multiplicacion_incorrecto = true;
@@ -520,9 +518,10 @@ export default {
         
     },
     se_realizaron_las_tres_act_op_ba(){
-      console.log("Ya se realizaron las tres actividades-----inicio pao pao------");
+      console.log("Calificación prueba pao pao------"+this.calificacionPrueba);
+
       if(this.btn_suma_disabled == true && this.btn_resta_disabled == true && this.btn_multiplicacion_disabled == true){
-         this.calificacionTema =this.cal1+this.cal2+this.cal3;
+         this.calificacionTema =(this.calificacionPrueba)/3;
           this.registroTemaEstudiante();
           alert("Ya se realizaron las tres actividades");
           console.log("Ya se realizaron las tres actividades-----pao------");
