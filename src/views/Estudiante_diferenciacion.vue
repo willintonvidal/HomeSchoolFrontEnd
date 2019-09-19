@@ -66,15 +66,15 @@
                     <!--aqui iria el juego 1 -->
                      <!--esta es la actividad uno-->
                     <div class="md-layout">
-            <div class="md-layout-item md-size-33">
+            <div class="md-layout-item md-size-60">
               <md-button
-                class="md-success md-block"
+                class="md-success md-block" style="font-size:20px"
                 @click="classicModal = true"
-                 :disabled="btn_eje_uno_disabled"><md-icon>library_books</md-icon> Actividad uno</md-button
+                 :disabled="btn_eje_uno_disabled"><md-icon></md-icon> Diferenciar objetos sencilla</md-button
               >
               <modal v-if="classicModal" @close="classicModalHide">
                 <template slot="header">
-                  <h3 class="modal-title">Actividad uno diferenciación</h3>
+                  <h3 class="modal-title">Diferenciar objetos de forma sencilla</h3>
                   <md-button
                     class="md-simple md-just-icon md-round modal-default-button"
                     @click="classicModalHide"
@@ -139,15 +139,15 @@
                     <!-- Fin del juego-->
                     <!--esta es la actividad dos-->
                     <div class="md-layout">
-            <div class="md-layout-item md-size-33">
+            <div class="md-layout-item md-size-60">
               <md-button
-                class="md-success md-block"
+                class="md-success md-block" style="font-size:20px"
                 @click="classicModal2 = true"
-                 :disabled="btn_eje_dos_disabled"><md-icon>library_books</md-icon> Actividad dos</md-button
+                 :disabled="btn_eje_dos_disabled"><md-icon></md-icon> Diferenciar objetos intermedia</md-button
               >
               <modal v-if="classicModal2" @close="classicModalHide2">
                 <template slot="header">
-                  <h3 class="modal-title">Actividad uno lectura y escritura de números</h3>
+                  <h3 class="modal-title">Diferenciar objetos intermedia</h3>
                   <md-button
                     class="md-simple md-just-icon md-round modal-default-button"
                     @click="classicModalHide2"
@@ -203,15 +203,15 @@
 
                     <!--esta es la actividad tres-->
                     <div class="md-layout">
-            <div class="md-layout-item md-size-33">
+            <div class="md-layout-item md-size-60" >
               <md-button
-                class="md-success md-block"
+                class="md-success md-block" style="font-size:20px"
                 @click="classicModal3 = true"
-                 :disabled="btn_eje_tres_disabled"><md-icon>library_books</md-icon> Actividad tres</md-button
+                 :disabled="btn_eje_tres_disabled"><md-icon></md-icon> Diferenciar números</md-button
               >
               <modal v-if="classicModal3" @close="classicModalHide3">
                 <template slot="header">
-                  <h3 class="modal-title">Actividad uno lectura y escritura de números</h3>
+                  <h3 class="modal-title">Diferenciar números</h3>
                   <md-button
                     class="md-simple md-just-icon md-round modal-default-button"
                     @click="classicModalHide3"
