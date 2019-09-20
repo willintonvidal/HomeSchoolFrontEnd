@@ -49,9 +49,11 @@
      <div class="md-layout">
                   <div class="md-layout-item md-size-85 ml-auto"> 
                 
-                      <div class="description text-center">
-                      <h1 style="color:green"> </h1>
+                        <div class="description text-center">
+                      <h1 style="color:green">Ejemplos para diferenciar objetos</h1>
                       </div>
+                      <br/>
+                       <br/>
                       
                       <div class="md-layout">
                           <div class="md-layout-item md-size-40 ml-auto">
@@ -80,7 +82,7 @@
                   <div class="md-layout-item md-size-15 mr-auto">
                   
                        <div class="description text-center">
-                      <h1 style="color:green">Simbolos</h1>
+                      <h1 style="color:green">Objetos</h1>
                       </div>
                     <img :src="tabPane1[0].image" class="rounded" > 
                     <img :src="tabPane1[1].image" class="rounded" > 

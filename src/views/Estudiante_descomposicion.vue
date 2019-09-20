@@ -40,19 +40,43 @@
               <template slot="tab-pane-1">
                 <div class="md-layout">
                   <div class="md-layout-item md-size-85 ml-auto">
-                    <iframe
-                      width="560"
-                      height="315"
-                      src="https://www.youtube.com/embed/EO7IG6wpJt4"
-                      frameborder="0"
-                      allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                      allowfullscreen
-                    ></iframe>
+
+                       <div class="description text-center">
+                      <h1 style="color:green">Ejemplos para descomponer números </h1>
+                      <br/>
+                      </div>
+                      
+                      <div class="md-layout">
+                          <div class="md-layout-item md-size-50 ml-auto">
+                            <img :src="tabPane3[0].image" class="rounded" />
+                            <img :src="tabPane3[1].image" class="rounded" />
+                          </div>
+                          <div class="md-layout-item md-size-25 mr-auto">
+                            <img :src="tabPane2[3].image" class="rounded" />
+                          </div>
+                    
+                        </div>
+                            
+                        <iframe
+                          width="560"
+                          height="315"
+                          src="https://www.youtube.com/embed/EO7IG6wpJt4"
+                          frameborder="0"
+                          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                          allowfullscreen
+                        ></iframe>
+                             
+
+
+
+
+
+
                     <!-- Fin del juego-->
                   </div>
                   <div class="md-layout-item md-size-15 mr-auto">
-                    <img :src="tabPane1[3].image" class="rounded" />
-                    <img :src="tabPane1[2].image" class="rounded" />
+                    
+                   
                   </div>
                 </div>
               </template>
@@ -256,7 +280,7 @@
                   </div>
                   <div class="md-layout-item md-size-15 mr-auto">
                     <img :src="tabPane2[3].image" class="rounded" />
-                    <img :src="tabPane2[4].image" class="rounded" />
+                    
                   </div>
                 </div>
               </template>
@@ -292,13 +316,13 @@ export default {
       tabPane2: [
         { image: require("@/assets/img/examples/olu-eletu.jpg") },
         { image: require("@/assets/img/examples/clem-onojeghuo.jpg") },
-        { image: require("@/assets/img/examples/cynthia-del-rio.jpg") },
-        { image: require("@/assets/img/examples/mariya-georgieva.jpg") },
+        { image: require("@/assets/img/examples/descomponer.jpg") },
+        { image: require("@/assets/img/examples/descomponer.jpg") },
         { image: require("@/assets/img/examples/clem-onojegaw.jpg") }
       ],
       tabPane3: [
-        { image: require("@/assets/img/examples/mariya-georgieva.jpg") },
-        { image: require("@/assets/img/examples/studio-3.jpg") },
+        { image: require("@/assets/img/examples/descomponer4.png") },
+        { image: require("@/assets/img/examples/descomponer5.png") },
         { image: require("@/assets/img/examples/clem-onojeghuo.jpg") },
         { image: require("@/assets/img/examples/olu-eletu.jpg") },
         { image: require("@/assets/img/examples/studio-1.jpg") }
