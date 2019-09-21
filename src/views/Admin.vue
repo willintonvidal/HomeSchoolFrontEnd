@@ -19,7 +19,7 @@
           </div>
           <div class="profile-tabs">
             <tabs
-              :tab-name="['Sin Validar', 'Total usuarios', 'Perfil','Otro']"
+              :tab-name="['Sin Validar', 'Total usuarios', 'Perfil','Asignar materia']"
               :tab-icon="['error', 'supervisor_account', 'favorite','favorite']"
               plain
               nav-pills-icons
@@ -169,10 +169,10 @@
               </template>
               <template slot="tab-pane-4">
                 <div class="md-layout">
-                  <div class="md-layout-item md-size-25 ml-auto">
-                    <img :src="tabPane3[0].image" class="rounded" />
+                  <div class="md-layout-item md-size-85 ml-auto">
+                    <h1>Asignar materia</h1>
                   </div>
-                  <div class="md-layout-item md-size-25 mr-auto">
+                  <div class="md-layout-item md-size-15 mr-auto">
                     <img :src="tabPane3[2].image" class="rounded" />
                     <img :src="tabPane3[3].image" class="rounded" />
                   </div>

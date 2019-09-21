@@ -360,7 +360,7 @@ export default {
           
             },
             mostrarMateriasAMatricular() {
-            api.mostrarActividadesTema(this.identificacion).then(res => {
+            api.MateriasAMatricular(this.identificacion).then(res => {
               console.log(res);
               this.materiasMatri = res;
 
