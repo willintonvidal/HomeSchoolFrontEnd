@@ -355,7 +355,7 @@ export default {
         { image: require("@/assets/img/examples/studio-5.jpg") }
       ],
       tabPane2: [
-        { image: require("@/assets/img/examples/diferenciar.gif") },
+        { image: require("@/assets/img/examples/nino.gif") },
         { image: require("@/assets/img/examples/clem-onojeghuo.jpg") },
         { image: require("@/assets/img/examples/cynthia-del-rio.jpg") },
         { image: require("@/assets/img/examples/mariya-georgieva.jpg") },
