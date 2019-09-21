@@ -45,16 +45,55 @@
             >
 
  <template slot="tab-pane-1">
-                <div class="md-layout">
-                  <div class="md-layout-item md-size-85 ml-auto">
-                      Material
+   
+     <div class="md-layout">
+                  <div class="md-layout-item md-size-85 ml-auto"> 
+                
+                        <div class="description text-center">
+                      <h1 style="color:green">Ejemplos para diferenciar objetos</h1>
+                      </div>
+                      <br/>
+                       <br/>
+                      
+                      <div class="md-layout">
+                          <div class="md-layout-item md-size-40 ml-auto">
+                            <img :src="tabPane3[0].image" class="rounded" />
+                          </div>
+                          <div class="md-layout-item md-size-40 mr-auto">
+                            <img :src="tabPane3[1].image" class="rounded" />
+                          </div>
+                        </div>
+                
+
+                       <iframe 
+                         width="100%"
+                          height="100%" 
+                          src="https://www.youtube.com/embed/WBqXpj1_96g"
+                          frameborder="0" allow="accelerometer; 
+                          autoplay; encrypted-media;
+                           gyroscope; picture-in-picture" 
+                           allowfullscreen></iframe> 
+
+                   <div v-for="(mateEst) in MaterialEstudioDeTema">
+                           
+                            <h2> {{mateEst[2]}}</h2></div>    
                   </div>
+
                   <div class="md-layout-item md-size-15 mr-auto">
-                    <img :src="tabPane2[3].image" class="rounded" />
-                    <img :src="tabPane2[4].image" class="rounded" />
+                  
+                       <div class="description text-center">
+                      <h1 style="color:green">Objetos</h1>
+                      </div>
+                    <img :src="tabPane1[0].image" class="rounded" > 
+                    <img :src="tabPane1[1].image" class="rounded" > 
+                   
+                    
                   </div>
                 </div>
-              </template>
+
+                <!-- Termina teplate 1 -->
+          
+</template>
 
               <!-- here you can add your content for tab-content -->
               <template slot="tab-pane-2">
@@ -282,13 +321,10 @@
                     
                   </div>
                   <div class="md-layout-item md-size-15 mr-auto">
-                    <img :src="tabPane2[3].image" class="rounded" />
-                    <img :src="tabPane2[4].image" class="rounded" />
+                    <img :src="tabPane2[0].image" class="rounded" />
                   </div>
                 </div>
               </template>
-
-             
               
             </tabs>
           </div>
@@ -313,21 +349,21 @@ export default {
   data() {
     return {
       tabPane1: [
-        { image: require("@/assets/img/examples/studio-1.jpg") },
-        { image: require("@/assets/img/examples/studio-2.jpg") },
+        { image: require("@/assets/img/examples/diferencia.png") },
+        { image: require("@/assets/img/examples/nueva.png") },
         { image: require("@/assets/img/examples/studio-4.jpg") },
         { image: require("@/assets/img/examples/studio-5.jpg") }
       ],
       tabPane2: [
-        { image: require("@/assets/img/examples/olu-eletu.jpg") },
+        { image: require("@/assets/img/examples/diferenciar.gif") },
         { image: require("@/assets/img/examples/clem-onojeghuo.jpg") },
         { image: require("@/assets/img/examples/cynthia-del-rio.jpg") },
         { image: require("@/assets/img/examples/mariya-georgieva.jpg") },
         { image: require("@/assets/img/examples/clem-onojegaw.jpg") }
       ],
       tabPane3: [
-        { image: require("@/assets/img/examples/mariya-georgieva.jpg") },
-        { image: require("@/assets/img/examples/studio-3.jpg") },
+        { image: require("@/assets/img/examples/diferenciacion1.png") },
+        { image: require("@/assets/img/examples/diferenciacion2.png") },
         { image: require("@/assets/img/examples/clem-onojeghuo.jpg") },
         { image: require("@/assets/img/examples/olu-eletu.jpg") },
         { image: require("@/assets/img/examples/studio-1.jpg") }

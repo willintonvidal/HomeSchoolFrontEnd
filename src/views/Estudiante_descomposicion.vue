@@ -40,19 +40,43 @@
               <template slot="tab-pane-1">
                 <div class="md-layout">
                   <div class="md-layout-item md-size-85 ml-auto">
-                    <iframe
-                      width="560"
-                      height="315"
-                      src="https://www.youtube.com/embed/EO7IG6wpJt4"
-                      frameborder="0"
-                      allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                      allowfullscreen
-                    ></iframe>
+
+                       <div class="description text-center">
+                      <h1 style="color:green">Ejemplos para descomponer números </h1>
+                      <br/>
+                      </div>
+                      
+                      <div class="md-layout">
+                          <div class="md-layout-item md-size-50 ml-auto">
+                            <img :src="tabPane3[0].image" class="rounded" />
+                            <img :src="tabPane3[1].image" class="rounded" />
+                          </div>
+                          <div class="md-layout-item md-size-25 mr-auto">
+                            <img :src="tabPane2[3].image" class="rounded" />
+                          </div>
+                    
+                        </div>
+                            
+                        <iframe
+                          width="560"
+                          height="315"
+                          src="https://www.youtube.com/embed/EO7IG6wpJt4"
+                          frameborder="0"
+                          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                          allowfullscreen
+                        ></iframe>
+                             
+
+
+
+
+
+
                     <!-- Fin del juego-->
                   </div>
                   <div class="md-layout-item md-size-15 mr-auto">
-                    <img :src="tabPane1[3].image" class="rounded" />
-                    <img :src="tabPane1[2].image" class="rounded" />
+                    
+                   
                   </div>
                 </div>
               </template>
@@ -64,17 +88,17 @@
                     <!--aqui iria el juego 1 -->
                     <!--esta es la actividad uno-->
                     <div class="md-layout">
-                      <div class="md-layout-item md-size-33">
+                      <div class="md-layout-item md-size-60">
                         <md-button
-                          class="md-success md-block"
+                          class="md-success md-block" style="font-size:17px"
                           @click="classicModal = true"
                           :disabled="btn_eje_uno_disabled"
                         >
-                          <md-icon>library_books</md-icon>Actividad uno
+                          <md-icon></md-icon>Descomposición de números básica
                         </md-button>
                         <modal v-if="classicModal" @close="classicModalHide">
                           <template slot="header">
-                            <h3 class="modal-title">Descomposición de números</h3>
+                             <h2 style="color:green">Descomposición de números básica</h2>
                             <md-button
                               class="md-simple md-just-icon md-round modal-default-button"
                               @click="classicModalHide"
@@ -84,7 +108,7 @@
                           </template>
 
                           <template slot="body" v-if="eje_uno_mostrar">
-                            <h2>Cual es la descomposición correcta para este número</h2>
+                             <h1 style="color:orange">¿ Cuál es la descomposición correcta para este número?</h1>
                             <img style="width:150px" src="@/assets/img/img-act/3.png" alt="People" />
                             <img style="width:150px" src="@/assets/img/img-act/2.png" alt="People" />
                             <br />
@@ -121,17 +145,17 @@
                     <!-- Fin del juego-->
                     <!--esta es la actividad dos-->
                     <div class="md-layout">
-                      <div class="md-layout-item md-size-33">
+                      <div class="md-layout-item md-size-60">
                         <md-button
-                          class="md-success md-block"
+                          class="md-success md-block" style="font-size:17px"
                           @click="classicModal2 = true"
                           :disabled="btn_eje_dos_disabled"
                         >
-                          <md-icon>library_books</md-icon>Actividad dos
+                          <md-icon></md-icon>Descomposición de numeros sencilla
                         </md-button>
                         <modal v-if="classicModal2" @close="classicModalHide2">
                           <template slot="header">
-                            <h3 class="modal-title">Descomposición de números</h3>
+                            <h2 style="color:green">Descomposición de numeros sencilla</h2>
                             <md-button
                               class="md-simple md-just-icon md-round modal-default-button"
                               @click="classicModalHide2"
@@ -141,7 +165,7 @@
                           </template>
 
                           <template slot="body" v-if="eje_dos_mostrar">
-                            <h2>Cual es la descomposición incorrecta para este número</h2>
+                            <h1 style="color:purple">¿Cuál es la descomposición incorrecta para este número?</h1>
 
                             <div class="md-layout md-gutter md-alignment-center">
                               <div
@@ -175,6 +199,8 @@
                             <h3>Realiza la siguiente actividad</h3>
                           </template>
 
+
+
                           <template slot="footer" v-if="eje_dos_mostrar">
                             <div class="md-layout md-gutter md-alignment-center">
                               <md-button class="md-danger" @click="click_eje_dos(1)">
@@ -195,17 +221,17 @@
 
                     <!--esta es la actividad tres-->
                     <div class="md-layout">
-                      <div class="md-layout-item md-size-33">
+                      <div class="md-layout-item md-size-60">
                         <md-button
-                          class="md-success md-block"
+                          class="md-success md-block" style="font-size:17px"
                           @click="classicModal3 = true"
                           :disabled="btn_eje_tres_disabled"
                         >
-                          <md-icon>library_books</md-icon>Actividad tres
+                          <md-icon></md-icon>Descomposición de números intermedia
                         </md-button>
                         <modal v-if="classicModal3" @close="classicModalHide3">
                           <template slot="header">
-                            <h3 class="modal-title">Actividad uno lectura y escritura de números</h3>
+                            <h2 style="color:green">Descomposición de números intermedia</h2>
                             <md-button
                               class="md-simple md-just-icon md-round modal-default-button"
                               @click="classicModalHide3"
@@ -215,7 +241,7 @@
                           </template>
 
                           <template slot="body" v-if="eje_tres_mostrar">
-                            <h2>Cual es la descomposición correcta para este número</h2>
+                            <h1 style="color:orange">¿Cuál es la descomposición correcta para este número?</h1>
                             <img style="width:150px" src="@/assets/img/img-act/6.png" alt="People" />
                             <img style="width:150px" src="@/assets/img/img-act/7.png" alt="People" />
                             <br />
@@ -254,7 +280,7 @@
                   </div>
                   <div class="md-layout-item md-size-15 mr-auto">
                     <img :src="tabPane2[3].image" class="rounded" />
-                    <img :src="tabPane2[4].image" class="rounded" />
+                    
                   </div>
                 </div>
               </template>
@@ -290,13 +316,13 @@ export default {
       tabPane2: [
         { image: require("@/assets/img/examples/olu-eletu.jpg") },
         { image: require("@/assets/img/examples/clem-onojeghuo.jpg") },
-        { image: require("@/assets/img/examples/cynthia-del-rio.jpg") },
-        { image: require("@/assets/img/examples/mariya-georgieva.jpg") },
+        { image: require("@/assets/img/examples/descomponer.jpg") },
+        { image: require("@/assets/img/examples/descomponer.jpg") },
         { image: require("@/assets/img/examples/clem-onojegaw.jpg") }
       ],
       tabPane3: [
-        { image: require("@/assets/img/examples/mariya-georgieva.jpg") },
-        { image: require("@/assets/img/examples/studio-3.jpg") },
+        { image: require("@/assets/img/examples/descomponer4.png") },
+        { image: require("@/assets/img/examples/descomponer5.png") },
         { image: require("@/assets/img/examples/clem-onojeghuo.jpg") },
         { image: require("@/assets/img/examples/olu-eletu.jpg") },
         { image: require("@/assets/img/examples/studio-1.jpg") }

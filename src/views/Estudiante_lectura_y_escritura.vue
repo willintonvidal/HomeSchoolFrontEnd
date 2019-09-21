@@ -40,6 +40,26 @@
               <template slot="tab-pane-1">
                 <div class="md-layout">
                   <div class="md-layout-item md-size-85 ml-auto">
+                   
+                   
+                    <div class="description text-center">
+                      <h1 style="color:green">Ejemplos de numeros en letras</h1>
+                      <br/>
+                      </div>
+                      
+                      <div class="md-layout">
+                          <div class="md-layout-item md-size-50 ml-auto">
+                            <img :src="tabPane3[0].image" class="rounded" />
+                            <img :src="tabPane3[1].image" class="rounded" />
+                          </div>
+                          <div class="md-layout-item md-size-25 mr-auto">
+                            <img :src="tabPane3[2].image" class="rounded" />
+                          </div>
+                        </div>
+
+                   
+                   
+                   
                     <iframe
                       width="560"
                       height="315"
@@ -51,8 +71,8 @@
                     <!-- Fin del juego-->
                   </div>
                   <div class="md-layout-item md-size-15 mr-auto">
-                    <img :src="tabPane1[3].image" class="rounded" />
-                    <img :src="tabPane1[2].image" class="rounded" />
+                    <img :src="tabPane3[3].image" class="rounded" />
+               
                   </div>
                 </div>
               </template>
@@ -73,7 +93,7 @@
                         </md-button>
                         <modal v-if="classicModal" @close="classicModalHide">
                           <template slot="header">
-                            <h3 class="modal-title">Actividad  lectura y escritura de números básica</h3>
+                            <h2 style="color:green">Actividad  lectura y escritura de números básica</h2>
                             <md-button
                               class="md-simple md-just-icon md-round modal-default-button"
                               @click="classicModalHide"
@@ -130,7 +150,7 @@
                         </md-button>
                         <modal v-if="classicModal2" @close="classicModalHide2">
                           <template slot="header">
-                            <h3 class="modal-title">Actividad uno lectura y escritura de números</h3>
+                            <h2 style="color:green">Actividad lectura y escritura de números</h2>
                             <md-button
                               class="md-simple md-just-icon md-round modal-default-button"
                               @click="classicModalHide2"
@@ -140,7 +160,7 @@
                           </template>
 
                           <template slot="body" v-if="eje_dos_mostrar">
-                            <h2>¿El niño cuantas manzanas tiene?</h2>
+                            <h1 style="color:purple">¿El niño cuántas manzanas tiene?</h1>
                             <div class="md-layout md-gutter md-alignment-center">
                               
                                
@@ -197,7 +217,7 @@
                         </md-button>
                         <modal v-if="classicModal3" @close="classicModalHide3">
                           <template slot="header">
-                            <h3 class="modal-title">Actividad uno lectura y escritura de números</h3>
+                            <h2 style="color:green">Actividad uno lectura y escritura de números</h2>
                             <md-button
                               class="md-simple md-just-icon md-round modal-default-button"
                               @click="classicModalHide3"
@@ -207,7 +227,7 @@
                           </template>
 
                           <template slot="body" v-if="eje_tres_mostrar">
-                            <h2>¿Cuantas caras de payasos observas?</h2>
+                            <h1 style="color:orange">¿Cuántas caras de payasos observas?</h1>
                             <div class="md-layout md-gutter md-alignment-center">
                              
                                 <img
@@ -258,8 +278,8 @@
                     <!-- Fin del juego-->
                   </div>
                   <div class="md-layout-item md-size-15 mr-auto">
-                    <img :src="tabPane2[3].image" class="rounded" />
-                    <img :src="tabPane2[4].image" class="rounded" />
+                    <img :src="tabPane3[3].image" class="rounded" />
+                    
                   </div>
                 </div>
               </template>
@@ -300,10 +320,10 @@ export default {
         { image: require("@/assets/img/examples/boy.png") }
       ],
       tabPane3: [
-        { image: require("@/assets/img/examples/boy.png") },
-        { image: require("@/assets/img/examples/boy.png") },
-        { image: require("@/assets/img/examples/boy.png") },
-        { image: require("@/assets/img/examples/boy.png") },
+        { image: require("@/assets/img/examples/lectura1.jpg") },
+        { image: require("@/assets/img/examples/lectura2.jpg") },
+        { image: require("@/assets/img/examples/nino.gif") },
+        { image: require("@/assets/img/examples/num.png") },
         { image: require("@/assets/img/examples/boy.png") }
       ],
       nombres: window.localStorage.nombres,
