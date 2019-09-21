@@ -146,14 +146,15 @@
                   </div>
                   <div  class="md-layout md-gutter md-alignment-center">
                         <div v-for="(materiasMat) in materias_matriculadas"  class="md-layout md-gutter md-alignment-center">
-                         <md-button class="md-info" @click="click_id_materia_(materiasMat[0])">{{materiasMat[0]}}</md-button><br>
+                         <md-button class="md-info"  @click="click_id_materia_(materiasMat[0],materiasMat[1])">{{materiasMat[0]}}</md-button><br>
                         </div>
                     </div>
 
                     <div class="md-layout-item md-size-85 ml-auto">
                 
                        <div v-for="(temas) in temasAllMateria" class="md-layout md-gutter md-alignment-center">
-                            <md-button class="md-info   md-wd" :href="'#/estudiante/'+temas[1]">{{temas[0]}}</md-button><br>       
+                           <!-- <md-button class="md-info md-block" :href="'#/estudiante/'+temas[1]" >{{temas[0]}}</md-button><br> -->
+                           <md-button class="md-info md-block" @click="click_tema_promedio(temas[1])">{{temas[0]}}</md-button><br>
                       </div>
                     </div>
 
@@ -246,7 +247,12 @@ export default {
 
       idMateria:null,
       matri_fecha_fin: '12-12-2019',
+      //nota_promedio,
+      id:window.localStorage.id,
+      id_materia_nota:null,
+      datos_acudiente:[],
       
+
       /*Termina Pao, coloque una coma(,)*/
 
       tabPane1: [
@@ -413,9 +419,56 @@ export default {
                 .catch(err =>{console.log("error al registrar matricula de la materia"+err)})
              },
              //Mostrar temas por el nombre de la materia
-             click_id_materia_(mat){
+             click_id_materia_(mat,id_mat){
                     this.temasdeunamateria = mat;
+                    this.id_materia_nota = id_mat;
                     this.mostrarTemasAll();     
+             },
+             click_tema_promedio(tema){
+               
+
+                console.log("*********"+this.datos_acudiente[0]);
+
+                  api.promedio_tema_estudiante(this.id,tema,this.id_materia_nota).then(
+                    res =>{
+                      console.log("_____"+res);
+                      
+                      
+                   this.enviar_correo_acudiente(res);
+
+                      
+                      
+                      alert("El hasta ahora es:"+res);
+                      this.$router.push({path:'/estudiante/'+tema});
+                     //mandar correo si el promedio es mayor a cero
+                      
+                    }
+                  ).catch(
+                      error =>{
+                        alert("Error");
+                      }
+                  )
+                   
+                
+             },
+             cargar_datos_acudiente(){
+               api.cargar_datos_acudiente(this.id)
+               .then(res =>{
+                    this.datos_acudiente = res;
+               })
+               .catch(err =>{
+                    console.log("No se encontraron datos del acudiente");
+               });
+             },
+             enviar_correo_acudiente(pro){
+        
+                  api.enviar_correo_con_el_promedio(this.datos_acudiente[0][0],this.datos_acudiente[0][1],this.nombres,pro.toString(),this.temasdeunamateria)
+                        .then(respues =>{
+                            console.log("Se envio el correo");
+                        })
+                        .catch(error =>{
+                              console.log("No se pudo enviar el correo");
+                        });
              }
 
           
@@ -426,6 +479,7 @@ created() {
     this.mostrarMateriasAMatricular();
     this.mostrarProfesorPorMateria();
     this.mostrarMateriasMatriculadasEst();
+    this.cargar_datos_acudiente();
     console.log("--------------"+materiasMatri[1]);
     
   }

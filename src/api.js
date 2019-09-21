@@ -168,7 +168,7 @@ api.insertarTemaEstudiante= function(estudiante_id,tema_id, materia_id, rel_tema
 }
 
 api.actualzarMatricula= function(matri_id, est_id, mat_id, matri_not_final){
-    var matri_estado="Activo";
+  
     var matri_estado="Finalizado";
     return trae.put('/api/matricula/actualizar/',{matri_id, est_id, mat_id, matri_estado, matri_not_final})
     .then (res=> res.data)
@@ -191,6 +191,28 @@ api.materia_notas=function(id){
 }
 //********************** */
 
+//Sacando el promedio del tema por usuario
+api.promedio_tema_estudiante = function(id,tem_id,mat_id ){
+    return trae.post('/api/tema_estudiante/promedio_tema/',{id,tem_id,mat_id})
+    .then (res=> res.data)
+    .catch(err=> {console.log('[ERROR]',err)})
+}
+//--------------------------
+
+//Cargar datos acudiente
+api.cargar_datos_acudiente = function(id){
+    return trae.get('/api/estudiante/datos_acudiente/'+id)
+    .then (res=> res.data)
+    .catch(err=> {console.log('[ERROR]',err)})
+}
+
+//Enviando promedio al padre de familia
+api.enviar_correo_con_el_promedio = function(correo,nom_acudiente,nom_estudiante,promedio,materia){
+    return trae.post('/api/email/promedio/',{correo,nom_acudiente,nom_estudiante,promedio,materia})
+    .then (res=> res.data)
+    .catch(err=> {console.log('[ERROR]',err)})
+}
+//--------------------------
 
 api.getStatus = function(){
     return trae.get('/')
