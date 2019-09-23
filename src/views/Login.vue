@@ -40,6 +40,7 @@
             <form @submit.prevent="acceso">
               <login-card header-color="green">
                 <h2 slot="title" class="card-title">Iniciar Sesion</h2>
+                
 
                 <p slot="description" class="description">                </p>
 
@@ -53,36 +54,33 @@
                     @change="verificarid"
                   ></md-input>
                 </md-field>
+                
                 <md-field class="md-form-group" slot="inputs">
                   <md-icon>lock_outline</md-icon>
                   <label>Password</label>
                   <md-input v-model="password" name="password" type="password"></md-input>
                 </md-field>
 
-                 <md-button
+
+                <md-button slot="inputs" @click="acceso" class="md-success md-lg">Acceder</md-button>
+
+                <md-button
                   slot="footer"
                   class="md-simple md-info md-lg"
                   href="#/Registro"
                 >Registrate</md-button>
-
-               
-
-
-                <md-button slot="footer" @click="acceso" class="md-simple md-success md-lg">Acceder</md-button>
                 
              <md-button
                   slot="footer"
                   class="md-simple md-info md-lg"
-                  @click="mostrarModal"
+                  @click="mandarCorreo"
                 ><small>Olvide la contraseña</small></md-button>
                 </login-card>
+                
             </form>
           </div>
         </div>
-        <p>
-          {{error.statusText}}
-          <small>{{error.status}}</small>
-        </p>
+        
       </div>
     </div>
   </div>
@@ -138,7 +136,8 @@ export default {
   },
   methods: {
     mandarCorreo(){
-        api.rescuperar_password(this.num_ident)
+      if(this.id_usuario != ''){
+          api.rescuperar_password(this.id_usuario)
         .then(res =>{
             if(res=='0'){
                 toastr.error("La identificación no existe en nuestro sistema");
@@ -147,6 +146,10 @@ export default {
                 this.classicModal=false;
             }
         }).catch();
+      }else{
+        toastr.error("Debes ingresar tu número de indentificación")
+      }
+        
     },
     mostrarModal() {
       this.classicModal = true;

@@ -31,7 +31,7 @@
                       <md-button  class="md-primary md-round classic-modal " @click="verificarsihaymaterias" v-if="this.materiasMatri.length != 0"> Matricular Materia</md-button>
                       <modal v-if="classicModal" @close="classicModalHide">
                         <template slot="header">
-                          <h2 class="modal-title" >Matricular Materia</h2>
+                          <h2 class="modal-title" >Matricular Materias</h2>
                           <md-button class="md-simple md-just-icon md-round modal-default-button" @click="classicModalHide">
                             <md-icon>clear</md-icon>
                           </md-button>
@@ -48,7 +48,7 @@
                                   </div>
                                   </md-select>
                                 </md-field>-->
-                                <select v-model="Materia_sin_matri" @click="mostrarProfesorPorMateria(), MostrarIdMateria ()">
+                                <select v-model="Materia_sin_matri" @click="mostrarProfesorPorMateria(), MostrarIdMateria ()" class="form-control">
                                   <option v-for="(Mate,i) in materiasMatri">
                                       {{Mate[0]}}
                                   </option>
@@ -438,7 +438,7 @@ export default {
 
                       
                       
-                      alert("El hasta ahora es:"+res);
+                      
                       this.$router.push({path:'/estudiante/'+tema});
                      //mandar correo si el promedio es mayor a cero
                       
@@ -480,7 +480,7 @@ created() {
     this.mostrarProfesorPorMateria();
     this.mostrarMateriasMatriculadasEst();
     this.cargar_datos_acudiente();
-    console.log("--------------"+materiasMatri[1]);
+    
     
   }
 

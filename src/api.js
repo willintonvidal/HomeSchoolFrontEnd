@@ -95,6 +95,38 @@ api.registrarProfesor= function(id_prof,titulo_prof, experiencia_laboral_prof){
     .catch(err=> {console.log('[ERROR]',err)})
 }
 
+api.insertarMateria= function(mat_id,mat_nombre,gra_id,prof_id){
+    return trae.post('/api/materia/insertar',{mat_id,mat_nombre,gra_id,prof_id})
+    .then (res=> res.data)
+    .catch(err=> {console.log('[ERROR]',err)})
+}
+
+api.insertarGrado= function(nombre){
+    var id = "1";
+    return trae.post('/api/grado/insertar',{id,nombre})
+    .then (res=> res.data)
+    .catch(err=> {console.log('[ERROR]',err)})
+}
+
+
+/*Mostrar profesores*/
+api.mostrarProfesores= function(){
+    return trae.get('/api/profesor/getall')
+    .then (res=> res.data)
+    .catch(err=> {console.log('[ERROR]',err)})
+}
+
+/*Profesores*/
+
+/*Sacando todos los grados*/
+api.mostrarGrados= function(){
+    return trae.get('/api/grado/getall')
+    .then (res=> res.data)
+    .catch(err=> {console.log('[ERROR]',err)})
+}
+/*Sacando todos los grados*/
+
+
 /*Metodos para consultar materias matriculadas*/
 api.MateriasMatriculadasPorEstudiante= function(id_est){
     return trae.get('/api/estudiante/getallmateriasestudiante/'+id_est)

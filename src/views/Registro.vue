@@ -51,7 +51,7 @@
               <md-field class="md-form-group" slot="inputs">
                 <md-icon>email</md-icon>
                 <label>Email...</label>
-                <md-input v-model="email" type="email" @change="verificarcorreo" @input="verificarcorreo"></md-input>
+                <md-input v-model="email" type="email"></md-input>
               </md-field>
               <md-field class="md-form-group" slot="inputs">
                 <md-icon>lock_outline</md-icon>

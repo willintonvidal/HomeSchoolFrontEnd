@@ -19,8 +19,8 @@
           </div>
           <div class="profile-tabs">
             <tabs
-              :tab-name="['Sin Validar', 'Total usuarios', 'Perfil','Asignar materia']"
-              :tab-icon="['error', 'supervisor_account', 'favorite','favorite']"
+              :tab-name="['Sin Validar', 'Total usuarios', 'Perfil','Asignar materia','Registrar grados']"
+              :tab-icon="['error', 'supervisor_account', 'favorite','favorite','favorite']"
               plain
               nav-pills-icons
               color-button="success"
@@ -168,10 +168,57 @@
                 </div>
               </template>
               <template slot="tab-pane-4">
-                <div class="md-layout">
+                <div class="md-layout md-gutter">
                   <div class="md-layout-item md-size-85 ml-auto">
-                    <h1>Asignar materia</h1>
+                    <h1>Crear y asignar materias</h1>
+                    
+                      <input type="text" placeholder="Ingresa el nombre de la materia" v-model="nom_materia" class="form-control"/>
+                    <br>
+                    
+                      
+          
+                    <!-- Toca que bsuque el nombre del profesor por el did-->
+                    <select v-model="seleccion_profesor" class="form-control">
+                                  <option v-for="(pro,i) in profesores" v-bind:value="pro[0]">
+                                      {{pro[3]}} {{pro[4]}}
+                                  </option>
+                    </select >
+          
+                    <br>
+                    <select v-model="seleccion_grado" class="form-control">
+                                  <option v-for="(gra,i) in grados" v-bind:value="gra[0]">
+                                      {{gra[1]}}
+                                  </option>
+                    </select >
+          
+                    <br>
+                    <md-button class="md-warning" @click="registrarMateria">Registrar materia</md-button>
                   </div>
+
+ 
+                  
+            
+
+                  <div class="md-layout-item md-size-15 mr-auto">
+                    <img :src="tabPane3[2].image" class="rounded" />
+                    <img :src="tabPane3[3].image" class="rounded" />
+                  </div>
+                </div>
+              </template>
+              <template slot="tab-pane-5">
+                <div class="md-layout md-gutter">
+                  <div class="md-layout-item md-size-85 ml-auto">
+                    <h1>Crear grados</h1>
+                    
+                      <input type="text" placeholder="Ingresa el nombre del grado" v-model="nom_grado" class="form-control"/>
+                    <br>
+                    <md-button class="md-warning" @click="registrarGrado">Registrar grado</md-button>
+                  </div>
+
+ 
+                  
+            
+
                   <div class="md-layout-item md-size-15 mr-auto">
                     <img :src="tabPane3[2].image" class="rounded" />
                     <img :src="tabPane3[3].image" class="rounded" />
@@ -236,7 +283,13 @@ export default {
       usu_estado:window.localStorage.estado,
       usu_email:window.localStorage.correo,
       usu_telefono:window.localStorage.celular,
-      usu_foto:"Sin foto"
+      usu_foto:"Sin foto",
+      nom_materia:null,
+      profesores:null,
+      seleccion_profesor:null,
+      seleccion_grado:null,
+      grados:[],
+      nom_grado:null
     };
   },
   props: {
@@ -373,11 +426,49 @@ export default {
         .catch(err =>{
           console.log(err)
         })
+    },
+    listar_profesores(){
+      api.mostrarProfesores()
+      .then(res =>{
+        this.profesores = res;
+      }
+      ).catch(
+
+      );
+    },registrarMateria(){
+      api.insertarMateria("1",this.nom_materia,this.seleccion_grado,this.seleccion_profesor)
+      .then(res =>{
+            toastr.success("Se creo correctamente la materia!");
+      })
+      .catch(res =>{
+            toastr.error("Ocurrio un error");
+      });
+    },
+    llenar_arreglo_de_grados(){
+      api.mostrarGrados().then(res =>{
+        this.grados = res;
+      }).catch(
+          err =>{
+            console.log(err);
+          }
+      );
+    },
+    registrarGrado(){
+      api.insertarGrado(this.nom_grado)
+      .then(res =>{
+        toastr.success("Se creo el grado correctamente!");
+      })
+      .catch(err =>{
+        toastr.error("No se pudo crear el grado!");
+      });
     }
+
   },
   created() {
     this.mostrarUsuarios();
     this.mostrarUsuariosAll();
+    this.listar_profesores();
+    this.llenar_arreglo_de_grados();
   }
 };
 </script>
