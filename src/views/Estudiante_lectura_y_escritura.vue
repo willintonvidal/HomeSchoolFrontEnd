@@ -18,7 +18,8 @@
             </div>
           </div>
           <div class="description text-center">
-            <h1>Lectura y escritura</h1>
+            <h1>Lectura y escritura de números</h1>
+            
             <h1>{{calificacionfinal}}</h1>
             <div>
               <div class="md-layout md-gutter md-alignment-center">
@@ -110,10 +111,14 @@
                                   src="@/assets/img/img-act/7conejos.png"
                                   alt="People"
                                 />
-                             
                             </div>
-                            <div v-show="eje_uno_incorrecto">
-                              <h3>Vuelve a leer el numero....</h3>
+                            <div v-show="eje_uno_incorrecto" class="md-layout md-gutter md-alignment-center">
+                              <img
+                              style="width:20%"
+                              src="@/assets/img/examples/intentalo.gif"
+                              alt="People"
+                             />
+                              <h3 style="color:red">   Incorrecto !!! Vuelve a intentarlo</h3>
                             </div>
                           </template>
 
@@ -121,7 +126,7 @@
                             <h1>Es correcto!</h1>
                             <img
                               style="width:100%; height:100%;"
-                              src="@/assets/img/img-act/fireworks.png"
+                              src="@/assets/img/img-act/muybien.gif"
                               alt="People"
                             />
                             <h3>Realiza la siguiente actividad...</h3>
@@ -178,8 +183,13 @@
                              
 
                             </div>
-                            <div v-show="eje_dos_incorrecto">
-                              <h3>Vuelve a leer el numero....</h3>
+                            <div v-show="eje_dos_incorrecto" class="md-layout md-gutter md-alignment-center">
+                              <img
+                              style="width:20%"
+                              src="@/assets/img/examples/intentalo.gif"
+                              alt="People"
+                             />
+                              <h3 style="color:red">   Incorrecto !!! Vuelve a intentarlo</h3>
                             </div>
                           </template>
 
@@ -187,7 +197,7 @@
                             <h1>Es correcto!</h1>
                             <img
                               style="width:80%"
-                              src="@/assets/img/img-act/fireworks.png"
+                              src="@/assets/img/img-act/muybien.gif"
                               alt="People"
                             />
                             <h3>Realiza la siguiente actividad</h3>
@@ -249,8 +259,14 @@
                                 <br />
                        
                             </div>
-                            <div v-show="eje_tres_incorrecto">
-                              <h3>Vuelve a leer el numero....</h3>
+                            <div v-show="eje_tres_incorrecto" class="md-layout md-gutter md-alignment-center">
+                             <img
+                              style="width:20%"
+                              src="@/assets/img/examples/intentalo.gif"
+                              alt="People"
+                             />
+                              <h3 style="color:red">   Incorrecto !!! Vuelve a intentarlo</h3>
+
                             </div>
                           </template>
 
@@ -258,7 +274,7 @@
                             <h1>Es correcto!</h1>
                             <img
                               style="width:80%"
-                              src="@/assets/img/img-act/fireworks.png"
+                              src="@/assets/img/img-act/muybien.gif"
                               alt="People"
                             />
                             <h3>Realiza la siguiente actividad</h3>
