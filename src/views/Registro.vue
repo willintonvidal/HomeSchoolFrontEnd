@@ -33,7 +33,7 @@
               <md-field class="md-form-group" slot="inputs">       
 
                   <md-select v-model="tipo_docu" name="tipo_docu" id="tipo_docu" placeholder="Tipo de documento">
-                      <md-option value="Targetaidentidad">Targeta identidad</md-option>
+                      <md-option value="Tarjeta de identidad">Tarjeta identidad</md-option>
                       <md-option value="Cedula">Cédula</md-option>
                    </md-select>  
 
