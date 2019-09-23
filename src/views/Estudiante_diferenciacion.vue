@@ -166,14 +166,19 @@
                       </div>
                    
                   </div>
-                  <div v-show="eje_uno_incorrecto">
-                    <h3>Vuelve a leer el numero....</h3>
-                  </div>
+                  <div v-show="eje_uno_incorrecto" class="md-layout md-gutter md-alignment-center">
+                              <img
+                              style="width:20%"
+                              src="@/assets/img/examples/intentalo.gif"
+                              alt="People"
+                             />
+                              <h3 style="color:red">   Incorrecto !!! Vuelve a intentarlo</h3>
+                            </div>
                 </template>
 
                 <template slot="body" v-if="eje_uno_correcto">
                  <h1>Es correcto!</h1>
-                 <img style="width:80%" src="@/assets/img/img-act/fireworks.png" alt="People">
+                 <img style="width:80%" src="@/assets/img/img-act/muybien.gif" alt="People">
                  <h3>Realiza la siguiente actividad</h3>
                 </template>
 
@@ -232,14 +237,19 @@
                       </div>
                 
                   </div>
-                  <div v-show="eje_dos_incorrecto">
-                    <h3>Vuelve a leer el numero....</h3>
-                  </div>
+                  <div v-show="eje_dos_incorrecto" class="md-layout md-gutter md-alignment-center">
+                              <img
+                              style="width:20%"
+                              src="@/assets/img/examples/intentalo.gif"
+                              alt="People"
+                             />
+                              <h3 style="color:red">   Incorrecto !!! Vuelve a intentarlo</h3>
+                            </div>
                 </template>
 
                 <template slot="body" v-if="eje_dos_correcto">
                  <h1>Es correcto!</h1>
-                 <img style="width:80%" src="@/assets/img/img-act/fireworks.png" alt="People">
+                 <img style="width:80%" src="@/assets/img/img-act/muybien.gif" alt="People">
                  <h3>Realiza la siguiente actividad</h3>
                 </template>
 
@@ -298,18 +308,21 @@
                       </div>
                   
                   </div>
-                  <div v-show="eje_tres_incorrecto">
-
-                    <h3> Te equivocaste, Vuelve a intentarlo</h3>
-
-                  </div>
+                  <div v-show="eje_tres_incorrecto" class="md-layout md-gutter md-alignment-center">
+                              <img
+                              style="width:20%"
+                              src="@/assets/img/examples/intentalo.gif"
+                              alt="People"
+                             />
+                              <h3 style="color:red">   Incorrecto !!! Vuelve a intentarlo</h3>
+                            </div>
                 </template>
 
                 <template slot="body" v-if="eje_tres_correcto">
                  <h1>Es correcto!</h1>
-                 <img style="width:80%" src="@/assets/img/img-act/fireworks.png" alt="People">
+                 <img style="width:80%" src="@/assets/img/img-act/muybien.gif" alt="People">
                  <h3>Realiza la siguiente actividad</h3>
-                </template>
+                </template> 
 
                 <template slot="footer" v-if="eje_tres_mostrar">
                  

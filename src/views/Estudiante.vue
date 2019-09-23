@@ -48,6 +48,7 @@
                                   </div>
                                   </md-select>
                                 </md-field>-->
+                                
                                 <select v-model="Materia_sin_matri" @click="mostrarProfesorPorMateria(), MostrarIdMateria ()" class="form-control">
                                   <option v-for="(Mate,i) in materiasMatri">
                                       {{Mate[0]}}
@@ -59,9 +60,11 @@
                                 <div class="md-layout-item" v-if="this.materiasMatri.length == 0">
                                     <h1>Ya no tienes mas materias por registrar</h1> 
                                 </div>
-                                
+
+                                <h3>El nombre del profesor es:</h3>
                                 <md-field>
-                                  <md-input v-model="nombre_profesor" disabled ></md-input>
+                                  
+                                  <md-input v-model="nombre_profesor" disabled  ></md-input>
                                 </md-field>
                                 
                         </template>
@@ -99,7 +102,7 @@
                  
                   <div class="md-layout-item md-size-60 ml-auto">  
                         <md-select v-model="acudiente_tipo_ident" name="tipo_docu" id="acu_tipo_identificacion" placeholder="Tipo de documento">
-                                <md-option value="Targetaidentidad">Tarjeta de identidad</md-option>
+                                <md-option value="Tarjeta de identidad">Tarjeta de identidad</md-option>
                                 <md-option value="Cedula">Cédula</md-option>
                         </md-select> 
 
@@ -140,7 +143,7 @@
    <!--Consulta los materias matriculadas  por cada estudiante-->           
               <template slot="tab-pane-2">
                 <div class="md-layout">
-                  <div class="md-layout-item md-size-15 mr-auto">
+                  <div class="md-layout-item md-size-25 mr-auto">
                     <img :src="tabPane2[5].image" class="rounded" />
                   
                   </div>

@@ -147,14 +147,19 @@
                         <img style="width:60px" src="@/assets/img/img-act/dog.png" alt="People">
                     </div>
                   </div>
-                  <div v-show="suma_incorrecto">
-                    <h3>Vuelve a contar los perritos....</h3>
-                  </div>
+                  <div v-show="suma_incorrecto" class="md-layout md-gutter md-alignment-center">
+                              <img
+                              style="width:20%"
+                              src="@/assets/img/examples/intentalo.gif"
+                              alt="People"
+                             />
+                              <h3 style="color:red">   Incorrecto !!! Vuelve a contar los perritos </h3>
+                            </div>
                 </template>
 
                 <template slot="body" v-if="suma_correcto">
                  <h1>Es correcto!</h1>
-                 <img style="width:80%" src="@/assets/img/img-act/fireworks.png" alt="People">
+                 <img style="width:80%" src="@/assets/img/img-act/muybien.gif" alt="People">
                  <h3>Realiza la siguiente actividad</h3>
                 </template>
 
@@ -210,14 +215,19 @@
                         <img style="width:80px" src="@/assets/img/img-act/gingerman.png" alt="People">
                     </div>
                   </div>
-                  <div v-show="resta_incorrecto">
-                    <h3>Vuelve a restar las galletas....</h3>
-                  </div>
+                  <div v-show="resta_incorrecto" class="md-layout md-gutter md-alignment-center">
+                              <img
+                              style="width:20%"
+                              src="@/assets/img/examples/intentalo.gif"
+                              alt="People"
+                             />
+                              <h3 style="color:red">   Incorrecto !!! Vuelve a restar las galletas</h3>
+                            </div>
                 </template>
 
                 <template slot="body" v-if="resta_correcto">
                  <h1>Es correcto!</h1>
-                 <img style="width:80%" src="@/assets/img/img-act/fireworks.png" alt="People">
+                 <img style="width:80%" src="@/assets/img/img-act/muybien.gif" alt="People">
                  <h3>Realiza la siguiente actividad</h3>
                 </template>
 
@@ -272,15 +282,20 @@
                     </div>
                   </div>
 
-                  <div v-show="multiplicacion_incorrecto">
-                    <h3>Vuelve a hacer la operacion de las galletas....</h3>
-                  </div>
+                  <div v-show="multiplicacion_incorrecto" class="md-layout md-gutter md-alignment-center">
+                              <img
+                              style="width:20%"
+                              src="@/assets/img/examples/intentalo.gif"
+                              alt="People"
+                             />
+                              <h3 style="color:red">   Incorrecto !!! Vuelve a leer a multiplicar los lapiceros</h3>
+                            </div>
 
                 </template>
 
                 <template slot="body" v-if="multiplicacion_correcto">
                  <h1>Es correcto!</h1>
-                 <img style="width:80%" src="@/assets/img/img-act/fireworks.png" alt="People">
+                 <img style="width:80%" src="@/assets/img/img-act/muybien.gif" alt="People">
                  <h3>Realiza la siguiente actividad</h3>
                 </template>
 
